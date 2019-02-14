@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Calendar</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <h1>[CS 149]</h1>
+    <table>
+        <tr>
+            <th>Time</th>
+            <!-- Colspan = 2, since 2 TAs can sign up for the same time. -->
+            <th colspan="2">Sunday</th>
+            <th colspan="2">Monday</th>
+            <th colspan="2">Tuesday</th>
+            <th colspan="2">Wednesday</th>
+            <th colspan="2">Thursday</th>
+            <th colspan="2">Friday</th>
+            <th colspan="2">Saturday</th>
+        </tr>
+        <tr>
+            <!-- Times will probably need to be changed. We don't -->
+            <th>3:00</th>
+            <!-- rowspan = 10, since there are 10 time slots. This may change once we learn more -->
+            <td rowspan="10"><div>1</div></td>
+            <td rowspan="10"><div>2</div></td>
+            <td rowspan="10"><div>1</div></td>
+            <td rowspan="10"><div>2</div></td>
+            <td rowspan="10"><div>1</div></td>
+            <td rowspan="10"><div>2</div></td>
+            <td rowspan="10"><div>1</div></td>
+            <td rowspan="10"><div>2</div></td>
+            <td rowspan="10"><div>1</div></td>
+            <td rowspan="10"><div>2</div></td>
+            <td rowspan="10"><div>1</div></td>
+            <td rowspan="10"><div>2</div></td>
+            <td rowspan="10"><div>1</div></td>
+            <td rowspan="10"><div>2</div></td>
+        </tr>
+        <tr>
+            <th>4:00</th>
+        </tr>
+        <tr>
+            <th>5:00</th>
+        </tr>
+        <tr>
+            <th>6:00</th>
+        </tr>
+        <tr>
+            <th>7:00</th>
+        </tr>
+        <tr>
+            <th>8:00</th>
+        </tr>
+        <tr>
+            <th>9:00</th>
+        </tr>
+        <tr>
+            <th>10:00</th>
+        </tr>
+        <tr>
+            <th>11:00</th>
+        </tr>
+        <tr>
+            <th>12:00</th>
+        </tr>
+    </table>
+    <form>
+        <label for="sesion_code">TA Session Code:</label>
+        <input type="text" name="session_code">
+        <input type="submit" value="Submit">
+    </form>
+    <p>Session codes will be created by the TAs and given to students who show up to office hours.</p>
+</body>
+</html>
