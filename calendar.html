@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Calendar</title>
+  <title>Calendar</title>
   <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
@@ -66,11 +66,30 @@
             <th>12:00</th>
         </tr>
     </table>
-    <form>
-        <label for="sesion_code">TA Session Code:</label>
-        <input type="text" name="session_code">
-        <input type="submit" value="Submit">
-    </form>
-    <p>Session codes will be created by the TAs and given to students who show up to office hours.</p>
+
+    <!-- Have this stuff show up from a script only if it checks if they are a student, ta, or professor first -->
+    <!-- But since this is the html phase we will leave this all here for now -->
+
+    <!-- If entered page as a student this should be visible. 
+        And anything with "ta" or "professor" should be removed from page.-->
+    <div id="student">
+        <h2>Session Code</h2>
+        <form>
+            <label for="sesion_code">TA Session Code:</label>
+            <input type="text" name="session_code">
+            <input type="submit" value="Submit">
+        </form>
+        <p>Session codes will be created by the TAs and given to students who show up to office hours.</p>
+    </div>
+    
+    <div id="ta">
+        <h2>Session Code</h2>
+        <form>
+            <label for="generate_code">Generate Code:</label>
+            <input type="submit" name="generate_code" value="Generate Code">
+        </form>
+        <p><span id="generated_code">X1Z9</span></p>
+    </div>
+    
 </body>
 </html>
