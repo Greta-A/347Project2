@@ -5,22 +5,57 @@
     <title>Student Sign-In</title>
   </head>
   <body>
-    <div id="signins">
-      <ul>
-        <li>Professor</li>
-        <li><a href="professor_signin.html">Sign in</a></li>
-        <li><a href="professor_signup.html">Sign up</a></li>
-        <li>TA</li>
-        <li><a href="ta_signin.html">Sign in</a></li>
-        <li><a href="ta_signup.html">Sign up</a></li>
-      </ul>
+    <h1> Log In </h1>
+    <div id="log_in">
+      <form action="" id="general_sign_in">
+        <label>E-ID</label>
+        <input type="text" name="EID">
+        <label>Password</label>
+        <input type="password" name="password">
+        <input type="submit" value="Log In">
+      </form>
     </div>
-    <form action="student_calendar.html" id="Signin">
-      <label>E-ID</label>
-      <input type="text" name="eid">
-      <label>Class ID</label>
-      <input type="text" name="classID" placeholder="CS149">
-      <input type="submit" value="Sign In">
-    </form>
+    <br>
+    <br>
+    <div id="Student_Sign_Up_dropdown">
+    <button type="button">Student Sign Up</button>
+    <div id="student_sign_up_info">
+      <form action="student_calendar.html" id="Signin">
+        <label>E-ID</label>
+        <input type="text" name="eid">
+        <label>Password</label>
+        <input type="password" name="password">
+        <input type="submit" value="Sign Up">
+      </form>
+    </div>
+  </div>
+    <br>
+    <div id="TA_Sign_Up_dropdown">
+      <button type="button">TA Sign Up</button>
+      <div id="TA_sign_up_info">
+      <form action="" id="Signin">
+        <label>E-ID</label>
+        <input type="text" name="eid">
+        <label>Password</label>
+        <input type="password" name="password">
+        <input type="submit" value="Sign Up">
+      </form>
+    </div>
+    </div>
+    <br>
+    <div id="Professor_sign_up_dropdown">
+      <button type="button">Professor Sign Up</button>
+      <div id="Professor_sign_up_info">
+      <form action="" id="Signin">
+        <label>Name</label>
+        <input type="text" name="name">
+        <label>E-ID</label>
+        <input type="text" name="eid">
+        <label>Password</label>
+        <input type="password" name="password">
+        <input type="submit" value="Sign Up">
+      </form>
+    </div>
+    </div>
   </body>
 </html>
