@@ -30,3 +30,17 @@ table {
 button {
   padding: 10px;
 }
+
+#question {
+  border: solid black 2px;
+  margin: 2px;
+  
+}
+
+.hidden {
+  display: none;
+}
+
+.showing {
+  display: inherit;
+}

@@ -11,28 +11,41 @@
         <button type="submit">&#x2b05</button>
       </form>
     </div>
+    <!-- Role selector: TEMPORARY -->
+    <select name="role" id="role-selector" defaultvalue="role-1">
+        <option value="role-0">Student</option>
+        <option value="role-1">TA</option>
+        <option value="role-2">Admin</option>
+    </select>
+
     <h1> Question Forum </h1>
     <br>
-    <div id="student">
+
+    <div class="role-0">
       <form id="AskQuestion">
         <label>Ask a Question</label>
         <input type="text" name="QuestionString">
         <input type="submit" value="Submit">
       </form>
     </div>
+
     <br>
+
     <div id="currentQuestion">
-    <label> Current Question: </label>
-    <p> How do I make a for loop? </p>
+      <label> Current Question: </label>
+      <p> How do I make a for loop? </p>
     </div>
+
     <br>
     <br>
-    <div id="ta">
+
+    <div class="role-1">
       <button>Get Next Question</button>
     </div>
-    <div id="student">
+    <div class="role-0">
       <label> Up Next </label>
     </div>
+
     <div id="questionList">
       <div id="question">
         <p>Question 1 Placeholder</p><button type="button">&#x1F44D 7</button id="student"><span id="student"><button id="eid">X</button></span>
@@ -41,5 +54,6 @@
           <p>Question 2 Placeholder</p><button type="button">&#x1F44D 2</button id="student"><span id="student"><button id="eid">X</button></span>
       </div>
     </div>
+    <script src="display_by_role.js"></script>
   </body>
 </html>
