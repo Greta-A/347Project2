@@ -4,5 +4,26 @@ h1 {
 
 th, td {
   font-family: "Arial";
-  padding: 10px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+td {
+  border-left: solid 1px black;
+
+}
+
+tr {
+  border: solid 1px black;
+}
+
+table {
+  table-layout: fixed;
+  width: 60%;
+  border-width: thin;
+  border-style: solid;
+  border-color: black;
+  border-radius: 4px;
+  border-collapse: collapse;
 }
