@@ -11,7 +11,6 @@ th, td {
 
 td {
   border-left: solid 1px black;
-
 }
 
 tr {
@@ -26,4 +25,8 @@ table {
   border-color: black;
   border-radius: 4px;
   border-collapse: collapse;
+}
+
+button {
+  padding: 10px;
 }
