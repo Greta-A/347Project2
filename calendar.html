@@ -7,13 +7,20 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
+  <!-- Role selector: TEMPORARY -->
+    <select name="role" id="role-selector" defaultvalue="role-1">
+      <option value="role-0">Student</option>
+      <option value="role-1">TA</option>
+      <option value="role-2">Admin</option>
+    </select>
+
     <h1>[CS 149]</h1>
-    <div id="ta">
+    <div class="role-1">
     <button type="button">Add</button>
     <button type="button">Remove</button>
     <button type="button">Request Cover</button>
     </div>
-    <div id="professor">
+    <div class="role-2">
       <button type="button">Approve Cover</button>
     </div>
     <br>
@@ -138,9 +145,9 @@
 
     <!-- If entered page as a student this should be visible.
         And anything with "ta" or "professor" should be removed from page.-->
-    <div id="student">
+    <div class="role-0">
         <h2>Session Code</h2>
-        <form>
+        <form  action="questions.html">
             <label for="sesion_code">TA Session Code:</label>
             <input type="text" name="session_code">
             <input type="submit" value="Submit">
@@ -148,7 +155,7 @@
         <p>Session codes will be created by the TAs and given to students who show up to office hours.</p>
     </div>
 
-    <div id="ta">
+    <div class="role-1">
         <h2>Session Code</h2>
         <form>
             <label for="generate_code">Generate Code:</label>
@@ -156,6 +163,6 @@
         </form>
         <p><span id="generated_code">X1Z9</span></p>
     </div>
-
+<script src="display_by_role.js"></script>
 </body>
 </html>
