@@ -1,5 +1,15 @@
 h1 {
   font-family: "Arial";
+  text-align: center;
+}
+
+body {
+  text-align: center;
+}
+
+dl {
+  margin: 0 auto;
+  width: 13%;
 }
 
 th, td {
@@ -93,3 +103,19 @@ textarea {
 .showing {
   display: inherit;
 }
+
+.desc { color:#f2f2f2;}
+.desc a {color:#f2f2f2;}
+.dropdown dd, .dropdown dt, .dropdown ul { margin:0px; padding:0px; }
+.dropdown dd { position:relative; }
+.dropdown a, .dropdown a:visited { color:#816c5b; text-decoration:none; outline:none;}
+.dropdown a:hover { color:#5d4617;}
+.dropdown dt a:hover { color:#5d4617; border: 1px solid #000000;}
+.dropdown dt a {background:#f2f2f2 no-repeat scroll right center; display:block; padding-right:20px;
+                        border:1px solid #000000; width:150px;}
+.dropdown dt a span {cursor:pointer; display:block; padding:5px;}
+.dropdown dd ul { background:#f2f2f2 none repeat scroll 0 0; border:1px solid #000000; color:#000000; display:none;
+                          left:0px; padding:5px 0px; position:absolute; top:2px; width:auto; min-width:170px; list-style:none;}
+.dropdown span.value { display:none;}
+.dropdown dd ul li a { padding:5px; display:block;}
+.dropdown dd ul li a:hover { background-color:#f2e6ff;}

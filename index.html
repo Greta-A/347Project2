@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Log In</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   <body>
     <h1> Log In </h1>
@@ -18,45 +19,92 @@
     </div>
     <br>
     <br>
-    <div id="Student_Sign_Up_dropdown">
-    <button type="button">Student Sign Up</button>
-    <div id="student_sign_up_info">
-      <form id="Signin">
+    <dl id="signups" class="dropdown">
+      <dt>
+        <a href="#"> <span> Sign Up </span></a>
+      </dt>
+      <dd>
+        <ul style="display:none;">
+          <li> <a href="#">Student Sign Up<span class="value">Stu</span></a></li>
+          <li> <a href="#">TA Sign Up<span class="value">TA</span></a></li>
+          <li> <a href="#">Professor Sign Up<span class="value">Prof</span></a></li>
+        </ul>
+      </dd>
+    </dl>
+    <br>
+    <span id="result"></span>
+    <div hidden id="student_sign_up">
+      <form action="course_list.html" id="sign_up">
         <label>E-ID</label>
-        <input type="text" name="eid">
+        <input type="text" name="EID">
         <label>Password</label>
         <input type="password" name="password">
         <input type="submit" value="Sign Up">
       </form>
     </div>
-  </div>
-    <br>
-    <div id="TA_Sign_Up_dropdown">
-      <button type="button">TA Sign Up</button>
-      <div id="TA_sign_up_info">
-      <form action="" id="Signin">
+    <div hidden id="ta_sign_up">
+      <form action="course_list.html" id="sign_up">
         <label>E-ID</label>
-        <input type="text" name="eid">
+        <input type="text" name="EID">
         <label>Password</label>
         <input type="password" name="password">
         <input type="submit" value="Sign Up">
       </form>
     </div>
-    </div>
-    <br>
-    <div id="Professor_sign_up_dropdown">
-      <button type="button">Professor Sign Up</button>
-      <div id="Professor_sign_up_info">
-      <form action="" id="Signin">
+    <div hidden id="professor_sign_up">
+      <form action="course_list.html" id="sign_up">
         <label>Name</label>
         <input type="text" name="name">
         <label>E-ID</label>
-        <input type="text" name="eid">
+        <input type="text" name="EID">
         <label>Password</label>
         <input type="password" name="password">
         <input type="submit" value="Sign Up">
       </form>
     </div>
-    </div>
+  <script>
+
+              $(".dropdown dt a").click(function() {
+                  $(".dropdown dd ul").toggle();
+              });
+
+              $(".dropdown dd ul li a").click(function() {
+                  var text = $(this).html();
+                  $(".dropdown dt a span").html(text);
+                  $(".dropdown dd ul").hide();
+                  $("#result").html("Selected value is: " + getSelectedValue("signups"));
+                  if (getSelectedValue("signups") == "Stu")
+                  {
+                    $("#result").html("Student Sign Up");
+                    $("#student_sign_up").show();
+                    $("#ta_sign_up").hide();
+                    $("#professor_sign_up").hide();
+                  }
+                  if (getSelectedValue("signups") == "TA")
+                  {
+                    $("#result").html("TA Sign Up");
+                    $("#ta_sign_up").show();
+                    $("#student_sign_up").hide();
+                    $("#professor_sign_up").hide();
+                  }
+                  if (getSelectedValue("signups") == "Prof")
+                  {
+                    $("#result").html("Professor Sign Up");
+                    $("#professor_sign_up").show();
+                    $("#ta_sign_up").hide();
+                    $("#student_sign_up").hide();
+                  }
+              });
+
+              function getSelectedValue(id) {
+                  return $("#" + id).find("dt a span.value").html();
+              }
+
+              $(document).bind('click', function(e) {
+                  var $clicked = $(e.target);
+                  if (! $clicked.parents().hasClass("dropdown"))
+                      $(".dropdown dd ul").hide();
+              });
+  </script>
   </body>
 </html>
