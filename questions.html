@@ -13,16 +13,16 @@
       </form>
     </div>
     <!-- Role selector: TEMPORARY -->
-    <select name="role" id="role-selector" defaultvalue="role-1">
+    <!-- <select name="role" id="role-selector" defaultvalue="role-1">
         <option value="role-0">Student</option>
         <option value="role-1">TA</option>
         <option value="role-2">Admin</option>
-    </select>
+    </select> -->
 
     <h1> Question Forum </h1>
     <br>
 
-    <div class="role-0">
+    <div class="role-0 showing">
       <section>
       <form id="AskQuestion">
         <label>Ask a Question</label>
@@ -30,20 +30,17 @@
         <input type="submit" value="Submit">
       </form>
     </div>
-
       <div id="currentQuestion">
       <label> Current Question: </label>
       <textarea rows="1" cols="50">How do I make a for loop?</textarea>
       </div>
-
-
     <br>
     <br>
 
-    <div class="role-1">
+    <div class="role-1 hidden">
       <button id="get_next_question">Get Next Question</button>
     </div>
-    <div class="role-0">
+    <div class="role-0 showing">
       <label id="upNext"> Up Next </label>
     </div>
 
