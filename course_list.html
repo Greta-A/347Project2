@@ -5,19 +5,33 @@
     <title>Course List</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
   </head>
-  <body>
-
+  <body class="courses">
     <h1>Your Course List</h1>
+    <br>
     <form action="calendar.html" id="chooseCourse">
-    <button type="submit">CS 149</button>
+    <button id="course" type="submit">CS 149</button>
+    <button id="course" type="button" onclick="showCourses()">+</button>
     </form>
-    <button type="button">+</button>
     <br>
     <br>
-    <div id="hidden_course_list">
-      <button type="button">CS 159</button>
-      <button type="button">CS 240</button>
-      <button type="button">CS 345</button>
+    <div style="display:none;" id="hidden_course_list">
+      <button id="course" type="button">CS 159</button>
+      <button id="course" type="button">CS 240</button>
+      <button id="course" type="button">CS 345</button>
     </div>
   </body>
+  <script>
+  function showCourses()
+  {
+    var x = document.getElementById("hidden_course_list");
+    if (x.style.display === "none")
+    {
+      x.style.display = "block";
+    }
+    else
+    {
+    x.style.display = "none";
+    }
+  }
+  </script>
 </html>

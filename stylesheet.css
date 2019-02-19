@@ -6,6 +6,15 @@ h1 {
   text-align: center;
 }
 
+.courses {
+  text-align: center;
+}
+
+#course {
+  padding: 20px;
+  font-size: 18px;
+}
+
 dl {
   margin: 0 auto;
   width: 13%;
