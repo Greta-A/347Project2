@@ -43,6 +43,7 @@
     var pickedList = document.getElementById("picked_courses");
     pickedList.appendChild(e.target);
     e.target.removeAttribute("onclick");
+    //creates a new onclick event which makes it work on a new click, not this click.
     e.target.onclick = function() {e.target.type = "submit";};
   }
   </script>
