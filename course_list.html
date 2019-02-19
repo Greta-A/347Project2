@@ -9,15 +9,19 @@
     <h1>Your Course List</h1>
     <br>
     <form action="calendar.html" id="chooseCourse">
-    <button id="course" type="submit">CS 149</button>
-    <button id="course" type="button" onclick="showCourses()">+</button>
+      <ul id="picked_courses">
+      <li><button id="149" class="course" type="submit">CS 149</button></li>
+      </ul>
+      <button id="add" type="button" onclick="showCourses()">+</button>
     </form>
     <br>
     <br>
     <div style="display:none;" id="hidden_course_list">
-      <button id="course" type="button">CS 159</button>
-      <button id="course" type="button">CS 240</button>
-      <button id="course" type="button">CS 345</button>
+      <ul id="available_courses">
+        <li><button id="159" class="course" type="button" onclick="addCourse(event)">CS 159</button></li>
+        <li><button id="240" class="course" type="button" onclick="addCourse(event)">CS 240</button></li>
+        <li><button id="345" class="course" type="button" onclick="addCourse(event)">CS 345</button></li>
+    </ul>
     </div>
   </body>
   <script>
@@ -32,6 +36,14 @@
     {
     x.style.display = "none";
     }
+  }
+
+  function addCourse(e)
+  {
+    var pickedList = document.getElementById("picked_courses");
+    pickedList.appendChild(e.target);
+    e.target.removeAttribute("onclick");
+    e.target.style.display = "inline-block";
   }
   </script>
 </html>

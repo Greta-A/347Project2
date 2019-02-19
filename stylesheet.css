@@ -10,9 +10,18 @@ h1 {
   text-align: center;
 }
 
-#course {
+.course, #add {
   padding: 20px;
   font-size: 18px;
+  margin: 5px;
+}
+
+#picked_courses {
+  display: inline-block;
+}
+
+ul {
+  list-style-type: none;
 }
 
 dl {
