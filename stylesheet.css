@@ -16,6 +16,10 @@ h1 {
   margin: 5px;
 }
 
+li {
+  display: inline-block;
+}
+
 #picked_courses {
   display: inline-block;
 }
