@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Questions</title>
-    <!--<link rel="stylesheet" type="text/css" href="reset.css">-->
+    <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
   </head>
   <body>
-    <div id="navBar">
-      <form action="calendar.html">
-        <button type="submit">&#x2b05;</button>
-      </form>
+    <div id="nav_bar">
+      <ul>
+        <li><a href="course_list.html">Course List</a></li>
+        <li><a href="calendar.html">Class Calendar</a></li>
+        <li><a href="index.html">Sign Out</a></li>
+      </ul>
     </div>
     <!-- Role selector: TEMPORARY -->
     <select name="role" id="role-selector">
@@ -32,16 +34,17 @@
     </div>
       <div id="currentQuestion">
       <label> Current Question: </label>
-      <textarea rows="1" cols="50">How do I make a for loop?</textarea>
+      <textarea rows="1" cols="40">How do I make a for loop?</textarea>
       </div>
     <br>
     <br>
 
-    <div class="role-1 hidden">
-      <button id="get_next_question">Get Next Question</button>
+    <div class="role-1 hidden" id="get_next_question">
+      <button>Get Next Question</button>
     </div>
-    <div class="role-0 showing">
-      <label id="upNext"> Up Next </label>
+    <br>
+    <div class="role-0 showing" id="up_next">
+      <label> Up Next </label>
     </div>
 
     <div id="questionList">
@@ -52,6 +55,12 @@
         <p>Question 2 Placeholder<button type="button" id="upvote">&#x1F44D; 2</button type ="button" id="student"><span id="student"><button type="button" id="remove">Remove</button></span></p>
       </div>
     </div>
+    <br>
+    <br>
+    <footer>
+      <img src="https://www.jmu.edu/_images/cise/cise-logo.jpg"
+      alt="JMU CISE" height="100" width="150"/>
+    </footer>
     <script src="display_by_role.js"></script>
   </body>
 </html>

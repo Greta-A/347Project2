@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Course List</title>
+    <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
   </head>
   <body class="courses">
@@ -10,19 +11,24 @@
     <br>
     <form action="calendar.html" id="chooseCourse">
       <ul id="picked_courses">
-      <li><button id="149" class="course" type="submit">CS 149</button></li>
+      <li><button id="149" class="course" type="submit">CS 149<br>Programming Fundamentals</button></li>
       </ul>
       <button id="add" type="button" onclick="showCourses()">+</button>
     </form>
     <br>
     <br>
     <div style="display:none;" id="hidden_course_list">
+      <h2> Available Courses </h2>
       <ul id="available_courses">
-        <li><button id="159" class="course" type="button" onclick="addCourse(event)">CS 159</button></li>
-        <li><button id="240" class="course" type="button" onclick="addCourse(event)">CS 240</button></li>
-        <li><button id="345" class="course" type="button" onclick="addCourse(event)">CS 345</button></li>
+        <li><button id="159" class="course" type="button" onclick="addCourse(event)">CS 159 <br>Advanced Programming</button></li>
+        <li><button id="240" class="course" type="button" onclick="addCourse(event)">CS 240 <br>Algorithms & Data Structures</button></li>
+        <li><button id="345" class="course" type="button" onclick="addCourse(event)">CS 345<br>Software Engineering</button></li>
     </ul>
     </div>
+    <footer>
+      <img src="https://www.jmu.edu/_images/cise/cise-logo.jpg"
+      alt="JMU CISE" height="100" width="150"/>
+    </footer>
   </body>
   <script>
   function showCourses()

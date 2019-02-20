@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Calendar</title>
   <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" type="text/css" href="reset.css">
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
@@ -13,16 +14,22 @@
     <option value="role-1">TA</option>
     <option value="role-2">Admin</option>
   </select>
+  <section id="page_container">
+    <div id="nav_bar">
+      <ul>
+        <li><a href="course_list.html">Course List</a></li>
+        <li><a href="index.html">Sign Out</a></li>
+      </ul>
+    </div>
     <br>
     <br>
-    <a href="course_list.html">Course List</a>
-    <h1>[CS 149]</h1>
-    <div class="role-1">
+    <h1>CS 149: Programming Fundamentals</h1>
+    <div class="role-1" id="ta_calendar_buttons">
     <button type="button">Add</button>
     <button type="button">Remove</button>
     <button type="button">Request Cover</button>
     </div>
-    <div class="role-2">
+    <div class="role-2" id="admin_calendar_button">
       <button type="button">Approve Cover</button>
     </div>
     <br>
@@ -165,6 +172,11 @@
         </form>
         <p><span id="generated_code">X1Z9</span></p>
     </div>
+    <footer>
+      <img src="https://www.jmu.edu/_images/cise/cise-logo.jpg"
+      alt="JMU CISE" height="100" width="150"/>
+    </footer>
+  </section>
 <script src="display_by_role.js"></script>
 </body>
 </html>
