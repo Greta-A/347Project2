@@ -3,6 +3,7 @@ h1,h2 {
   text-align: center;
 }
 
+
 #welcome {
   font-weight: lighter;
   background-color: #e0b7f4;
@@ -90,6 +91,14 @@ table {
 #ta_calendar_buttons, #admin_calendar_button {
   text-align: center;
   margin: 0 auto;
+}
+
+#ta_button {
+  /**background-color: #37d100;*/
+}
+
+#hidden_session_code, #hidden_generate_session {
+  text-align: center;
 }
 
 button {

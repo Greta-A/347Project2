@@ -9,6 +9,7 @@
 </head>
 <body>
   <!-- Role selector: TEMPORARY -->
+  <br>
   <select name="role" id="role-selector">
     <option value="role-0">Student</option>
     <option value="role-1">TA</option>
@@ -21,7 +22,6 @@
         <li><a href="index.html">Sign Out</a></li>
       </ul>
     </div>
-    <br>
     <br>
     <h1>CS 149: Programming Fundamentals</h1>
     <div class="role-1" id="ta_calendar_buttons">
@@ -90,7 +90,9 @@
         <tr>
             <th>7:00</th>
             <td colspan="2"></td>
-            <td colspan="2"><button type="button">TA1</button><button type="button">TA2</button></td>
+            <td colspan="2"><div class="role-1"><button type="button" id="ta_button" onclick="displaySessionCode()">TA1</button><button type="button" id="ta_button" onclick="displaySessionCode()">TA2</button></div>
+            <div class="role-0"><button type="button" id="student_button" onclick="getSessionCode()">7:00-8:00 in Room 243</button></div>
+            <div class="role-2"><button type="button" id="ta_button">TA1</button><button type="button" id="ta_button">TA2</button></div></td>
             <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2"></td>
@@ -124,7 +126,9 @@
             <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2"></td>
-            <td colspan="2"><button type="button">TA3</button></td>
+            <td colspan="2"><div class="role-1"><button type="button" id="ta_button" onclick="displaySessionCode()">TA3</button></div>
+            <div class="role-0"><button type="button" id="student_button" onclick="getSessionCode()">10:00-11:00 in Room 243</button></div>
+            <div class="role-2"><button type="button" id="ta_button">TA3</button></div></td>
             <td colspan="2"></td>
         </tr>
         <tr>
@@ -154,23 +158,22 @@
 
     <!-- If entered page as a student this should be visible.
         And anything with "ta" or "professor" should be removed from page.-->
-    <div class="role-0">
-        <h2>Session Code</h2>
+    <br>
+    <br>
+    <div style="display:none;" class="role-0" id="hidden_session_code">
         <form  action="questions.html">
-            <label for="sesion_code">TA Session Code:</label>
+            <label for="sesion_code">Session Code:</label>
             <input type="text" name="session_code">
             <input type="submit" value="Submit">
         </form>
-        <p>Session codes will be created by the TAs and given to students who show up to office hours.</p>
+        <p>Session codes are created by TAs for each session and given to students who show up to TA hours for access to the question forum.</p>
     </div>
 
-    <div class="role-1">
-        <h2>Session Code</h2>
+    <div style="display:none;" class="role-1" id="hidden_generate_session">
         <form>
-            <label for="generate_code">Generate Code:</label>
-            <input type="submit" name="generate_code" value="Generate Code">
+            <input type="button" name="generate_code" value="Generate Code" onclick="generateSessionCode()">
+            <input type="text" id="code" readonly></input>
         </form>
-        <p><span id="generated_code">X1Z9</span></p>
     </div>
     <footer>
       <img src="https://www.jmu.edu/_images/cise/cise-logo.jpg"
@@ -178,5 +181,40 @@
     </footer>
   </section>
 <script src="display_by_role.js"></script>
+<script>
+
+  function getSessionCode() {
+    var x = document.getElementById("hidden_session_code");
+    if (x.style.display === "none")
+    {
+      x.style.display = "block";
+    }
+    else
+    {
+      x.style.display = "none";
+    }
+  }
+
+  function displaySessionCode()
+  {
+    var x = document.getElementById("hidden_generate_session");
+    if (x.style.display === "none")
+    {
+      document.getElementById("code").value = "";
+      x.style.display = "block";
+    }
+    else
+    {
+      x.style.display = "none";
+    }
+  }
+
+    function generateSessionCode()
+    {
+      var session = Math.floor(1000 + Math.random() * 9000);
+      var x = document.getElementById("code").value = session;
+    }
+
+</script>
 </body>
 </html>
