@@ -8,15 +8,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   <body class="index">
-    <h1 id="welcome">Welcome to the Computer Science TA System!</h1>
-    <h1> Log In </h1>
     <div id="log_in">
+    <h1> Login </h1>
       <form action="course_list.html" id="general_sign_in">
-        <label>E-ID</label>
-        <input type="text" name="EID">
-        <label>Password</label>
-        <input type="password" name="password">
-        <input type="submit" value="Log In">
+        <p><input type="text" name="EID" placeholder="EID"></p>
+        <p><input type="password" name="password" placeholder="Password"></p>
+        <p><button type="submit" id="login_button">Login</button></p>
       </form>
     </div>
     <br>
@@ -37,36 +34,29 @@
     <span id="result"></span>
     <div hidden id="student_sign_up">
       <form action="course_list.html" id="sign_up">
-        <label>E-ID</label>
-        <input type="text" name="EID">
-        <label>Password</label>
-        <input type="password" name="password">
-        <input type="submit" value="Sign Up">
+        <p><input type="text" name="EID" placeholder="EID"></p>
+        <p><input type="password" name="password" placeholder="Password"></p>
+        <p><button type="submit" id="sign_up_button">Sign Up</button></p>
       </form>
     </div>
     <div hidden id="ta_sign_up">
       <form action="course_list.html" id="sign_up">
-        <label>E-ID</label>
-        <input type="text" name="EID">
-        <label>Password</label>
-        <input type="password" name="password">
-        <input type="submit" value="Sign Up">
+        <p><input type="text" name="EID" placeholder="EID"></p>
+        <p><input type="password" name="password" placeholder="Password"></p>
+        <p><button type="submit" id="sign_up_button">Sign Up</button></p>
       </form>
     </div>
     <div hidden id="professor_sign_up">
       <form action="course_list.html" id="sign_up">
-        <label>Name</label>
-        <input type="text" name="name">
-        <label>E-ID</label>
-        <input type="text" name="EID">
-        <label>Password</label>
-        <input type="password" name="password">
-        <input type="submit" value="Sign Up">
+        <p><input type="text" name="name" placeholder="Name"></p>
+        <p><input type="text" name="EID" placeholder="EID"></p>
+        <p><input type="password" name="password" placeholder="Password"></p>
+        <p><button type="submit" id="sign_up_button">Sign Up</button></p>
       </form>
     </div>
     <footer>
       <img src="https://www.jmu.edu/_images/cise/cise-logo.jpg"
-      alt="JMU CISE" height="100" width="150"/>
+      alt="JMU CISE" height="80" width="200"/>
     </footer>
   <script>
 
@@ -78,24 +68,21 @@
                   var text = $(this).html();
                   $(".dropdown dt a span").html(text);
                   $(".dropdown dd ul").hide();
-                  $("#result").html("Selected value is: " + getSelectedValue("signups"));
+                  // $("#result").html("Selected value is: " + getSelectedValue("signups"));
                   if (getSelectedValue("signups") == "Stu")
                   {
-                    $("#result").html("Student Sign Up");
                     $("#student_sign_up").show();
                     $("#ta_sign_up").hide();
                     $("#professor_sign_up").hide();
                   }
                   if (getSelectedValue("signups") == "TA")
                   {
-                    $("#result").html("TA Sign Up");
                     $("#ta_sign_up").show();
                     $("#student_sign_up").hide();
                     $("#professor_sign_up").hide();
                   }
                   if (getSelectedValue("signups") == "Prof")
                   {
-                    $("#result").html("Professor Sign Up");
                     $("#professor_sign_up").show();
                     $("#ta_sign_up").hide();
                     $("#student_sign_up").hide();
