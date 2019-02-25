@@ -23,9 +23,9 @@
       </ul>
     </div>
     <br>
-    <h1>CS 149: Programming Fundamentals</h1>
+    <h1>CS 149<p>Programming Fundamentals</p></h1>
     <div class="role-1" id="ta_calendar_buttons">
-    <button type="button">Add</button>
+    <button type="button" onclick="addTATime()">Add</button>
     <button type="button">Remove</button>
     <button type="button">Request Cover</button>
     </div>
@@ -35,15 +35,15 @@
     <br>
     <table id="calendar_table">
         <tr>
-            <th>Time</th>
+            <th></th>
             <!-- Colspan = 2, since 2 TAs can sign up for the same time. -->
-            <th colspan="2">Sunday</th>
-            <th colspan="2">Monday</th>
-            <th colspan="2">Tuesday</th>
-            <th colspan="2">Wednesday</th>
-            <th colspan="2">Thursday</th>
-            <th colspan="2">Friday</th>
-            <th colspan="2">Saturday</th>
+            <th colspan="2">SUN</th>
+            <th colspan="2">MON</th>
+            <th colspan="2">TUE</th>
+            <th colspan="2">WED</th>
+            <th colspan="2">THU</th>
+            <th colspan="2">FRI</th>
+            <th colspan="2">SAT</th>
         </tr>
         <tr>
             <!-- Times will probably need to be changed. We don't -->
@@ -69,29 +69,29 @@
         </tr>
         <tr>
             <th>5:00</th>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
         </tr>
         <tr>
             <th>6:00</th>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
+            <td colspan="2"><div class="role-1"><button type="button" class="empty" style="display:none;"></button><button type="button" class="empty" style="display:none;"></button></div></td>
         </tr>
         <tr>
             <th>7:00</th>
             <td colspan="2"></td>
             <td colspan="2"><div class="role-1"><button type="button" id="ta_button" onclick="displaySessionCode()">TA1</button><button type="button" id="ta_button" onclick="displaySessionCode()">TA2</button></div>
-            <div class="role-0"><button type="button" id="student_button" onclick="getSessionCode()">7:00-8:00 in Room 243</button></div>
+            <div class="role-0"><button type="button" id="student_button" onclick="getSessionCode()">7:00-8:00<br>Room 243</button></div>
             <div class="role-2"><button type="button" id="ta_button">TA1</button><button type="button" id="ta_button">TA2</button></div></td>
             <td colspan="2"></td>
             <td colspan="2"></td>
@@ -127,7 +127,7 @@
             <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2"><div class="role-1"><button type="button" id="ta_button" onclick="displaySessionCode()">TA3</button></div>
-            <div class="role-0"><button type="button" id="student_button" onclick="getSessionCode()">10:00-11:00 in Room 243</button></div>
+            <div class="role-0"><button type="button" id="student_button" onclick="getSessionCode()">10:00-11:00<br>Room 243</button></div>
             <div class="role-2"><button type="button" id="ta_button">TA3</button></div></td>
             <td colspan="2"></td>
         </tr>
@@ -175,6 +175,7 @@
             <input type="text" id="code" readonly></input>
         </form>
     </div>
+
     <footer>
       <img src="https://www.jmu.edu/_images/cise/cise-logo.jpg"
       alt="JMU CISE" height="80" width="200"/>
@@ -213,6 +214,22 @@
     {
       var session = Math.floor(1000 + Math.random() * 9000);
       var x = document.getElementById("code").value = session;
+    }
+
+    function addTATime()
+    {
+      var x = document.getElementsByClassName("empty");
+      for (var i=0; i< x.length; i++)
+      {
+        if (x[i].style.display === "none")
+        {
+          x[i].style.display = "inline-block";
+        }
+        else
+        {
+          x[i].style.display = "none";
+        }
+      }
     }
 
 </script>

@@ -99,6 +99,10 @@ footer {
   font-size: 18px;
   margin: 5px;
   cursor: pointer;
+  font-family: "Lucida Sans Unicode";
+  /* font-weight: bold; */
+  border-style: solid;
+  border-radius: 5px;
 }
 
 #c149 {
@@ -116,8 +120,8 @@ footer {
   padding: 30px;
   background: linear-gradient(
     to bottom,
-    #7b8af7 0%,
-    #7b8af7 55%,
+    #0B9BE3 0%,
+    #0B9BE3 55%,
     #ffffff 55%,
     #ffffff 100%
   );
@@ -127,8 +131,8 @@ footer {
   padding: 30px;
   background: linear-gradient(
     to bottom,
-    #ea4866 0%,
-    #ea4866 55%,
+    #F06291 0%,
+    #F06291 55%,
     #ffffff 55%,
     #ffffff 100%
   );
@@ -138,16 +142,11 @@ footer {
   padding: 30px;
   background: linear-gradient(
     to bottom,
-    #b52ed3 0%,
-    #b52ed3 55%,
+    #91349B 0%,
+    #91349B 55%,
     #ffffff 55%,
     #ffffff 100%
   );
-}
-
-
-#cID {
-  margin-top: 10px;
 }
 
 li {
@@ -185,11 +184,13 @@ th, td {
   padding-right: 5px;
   padding-top: 10px;
   padding-bottom: 5px;
+  column-width: 100px;
 }
 
 td {
   border-left: solid 1px black;
 }
+
 
 tr {
   border: solid 1px black;
@@ -197,7 +198,7 @@ tr {
 
 table {
   /**table-layout: fixed;*/
-  width: 60%;
+  /* width: 100px; */
   border-width: thin;
   border-style: solid;
   border-color: black;
@@ -206,16 +207,23 @@ table {
   text-align: center;
   margin: auto;
   margin-right: auto;
+
+}
+
+#calendar_table button {
+    /* margin-right: -100px; */
+    margin-left: 5px;
 }
 
 #ta_calendar_buttons, #admin_calendar_button {
   text-align: center;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 #ta_button {
   /**background-color: #37d100;*/
 }
+
 
 #hidden_session_code, #hidden_generate_session {
   text-align: center;
