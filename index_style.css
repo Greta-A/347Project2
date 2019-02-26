@@ -1,0 +1,113 @@
+#log_in {
+  padding-top: 150px;
+}
+
+#login_button {
+  cursor: pointer;
+  padding: 10px;
+}
+
+#log_in input {
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
+  width: 200px;
+  border: none;
+  background-color: #e8e8e8;
+}
+
+#student_sign_up input {
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
+  width: 200px;
+  border: none;
+  background-color: #e8e8e8;
+}
+
+#ta_sign_up input {
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
+  width: 200px;
+  border: none;
+  background-color: #e8e8e8;
+}
+
+#professor_sign_up input{
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
+  width: 200px;
+  border: none;
+  background-color: #e8e8e8;
+}
+
+#login_button, #sign_up_button {
+  background-color: #6a9ced;
+  height: 30px;
+  width: 210px;
+  margin-left: -2px;
+  padding-top: 7px;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+
+.index {
+  text-align: center;
+}
+
+
+dl {
+  margin: 0 auto;
+  width: 170px;
+  height:30px;
+  border: none;
+}
+
+#signups dt>a{
+   margin-left: -20px;
+   padding-left: 10px;
+   height: 30px;
+   width: 180px;
+   text-align: center;
+}
+
+.desc { color:#ffffff;}
+.desc a {color:#ffffff;}
+.dropdown dd, .dropdown dt, .dropdown ul { margin:0px; padding:0px; }
+.dropdown dd { position:relative; }
+.dropdown a, .dropdown a:visited { color:#816c5b; text-decoration:none; outline:none;}
+.dropdown a:hover { color:#5d4617;}
+.dropdown dt a:hover { color:#5d4617; border: 1px solid #000000;}
+.dropdown dt a {background:#ffffff no-repeat scroll right center; display:block; padding-right:20px;
+                        border:1px solid #000000; width:150px;}
+.dropdown dt a span {cursor:pointer; display:block; padding:5px;}
+.dropdown dd ul { background:#ffffff none repeat scroll 0 0; border:1px solid #000000; color:#000000; display:none;
+                          left:-20px; padding:2px 0px; position:absolute; top:2px; width:auto; min-width:210px; list-style:none;}
+.dropdown span.value { display:none;}
+.dropdown dd ul li a { padding:5px; display:block;}
+.dropdown dd ul li a:hover { background-color:#efefef;}
+
+.hidden {
+  display: none;
+}
+
+.showing {
+  display: inherit;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 4.5rem;
+  width: 100%;
+  text-align: center;
+  overflow: inherit;
+  background-color: #d4d7db;
+  padding-bottom: 10px;
+}

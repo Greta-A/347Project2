@@ -1,0 +1,62 @@
+#nav_bar {
+  text-align: center;
+}
+
+h1,h2 {
+  font-family: "Arial";
+  text-align: center;
+}
+
+.courses {
+  text-align: center;
+}
+
+.course, #add {
+  padding: 10px;
+  font-size: 18px;
+  margin: 5px;
+  cursor: pointer;
+  font-family: "Lucida Sans Unicode";
+  border-style: solid;
+  border-radius: 5px;
+}
+
+#c149, #c159, #c240, #c345 {
+  padding: 30px;
+  background: linear-gradient(
+    to bottom,
+    #CBB677 0%,
+    #CBB677 55%,
+    #ffffff 55%,
+    #ffffff 100%
+  );
+}
+
+li {
+  display: inline-block;
+  padding: 5px;
+}
+
+#picked_courses {
+  display: inline-block;
+}
+
+.hidden {
+  display: none;
+}
+
+.showing {
+  display: inherit;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 4.5rem;
+  width: 100%;
+  text-align: center;
+  overflow: inherit;
+  background-color: #d4d7db;
+  padding-bottom: 10px;
+}
