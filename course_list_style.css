@@ -21,7 +21,13 @@ h1,h2 {
   border-radius: 5px;
 }
 
-#c149, #c159, #c240, #c345 {
+#add {
+  background-color: #DACCE6;
+  color: black;
+  border: solid 1px #B599CE;
+}
+
+.course {
   padding: 30px;
   background: linear-gradient(
     to bottom,
@@ -39,6 +45,23 @@ li {
 
 #picked_courses {
   display: inline-block;
+}
+
+#create_course_btn, #submit_course_info {
+  padding: 10px;
+  background-color: #F4EFE1;
+  color: black;
+  border: solid 1px #CBB677;
+  cursor: pointer;
+}
+
+#hidden_create_course_menu input {
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
+  width: 300px;
+  border: none;
+  background-color: #e8e8e8;
 }
 
 .hidden {
