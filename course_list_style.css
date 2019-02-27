@@ -2,8 +2,16 @@
   text-align: center;
 }
 
+header {
+  margin-top: -20px;
+  background: #450084;
+  text-align: center;
+  color: white;
+  line-height: normal;
+}
+
 h1,h2 {
-  font-family: "Arial";
+  font-family: "Lucida Sans Unicode";
   text-align: center;
 }
 
@@ -12,9 +20,7 @@ h1,h2 {
 }
 
 .course, #add {
-  padding: 10px;
   font-size: 18px;
-  margin: 5px;
   cursor: pointer;
   font-family: "Lucida Sans Unicode";
   border-style: solid;
@@ -22,9 +28,12 @@ h1,h2 {
 }
 
 #add {
-  background-color: #DACCE6;
-  color: black;
-  border: solid 1px #B599CE;
+  background-color: #450084;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 5px;
+  vertical-align: top;
 }
 
 .course {
@@ -49,9 +58,10 @@ li {
 
 #create_course_btn, #submit_course_info {
   padding: 10px;
-  background-color: #F4EFE1;
-  color: black;
-  border: solid 1px #CBB677;
+  background-color: #450084;
+  color: white;
+  font-size: 11pt;
+  border: none;
   cursor: pointer;
 }
 

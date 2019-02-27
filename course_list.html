@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="course_list_style.css">
   </head>
   <body class="courses">
+    <header>
+      <h2>JAMES MADISON UNIVERSITY</h2>
+    </header>
     <select name="role" id="role-selector">
       <option value="role-0">Student</option>
       <option value="role-1">TA</option>
@@ -20,8 +23,6 @@
       </ul>
       <button id="add" type="button" onclick="showCourses()">+</button>
     </form>
-    <br>
-    <br>
     <div style="display:none;" id="hidden_course_list">
       <h2> Available Courses </h2>
       <ul id="available_courses">
@@ -30,6 +31,7 @@
         <li><button id="CS345" class="course" type="button" onclick="addCourse(event)">CS345<br><br>Software Engineering</button></li>
     </ul>
     </div>
+    <br>
     <div class="role-2 hidden">
       <button type="button" id="create_course_btn" onclick="displayCreateForm()">Create a Course</button>
       <br>

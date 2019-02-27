@@ -1,10 +1,18 @@
 h1,h2 {
-  font-family: "Arial";
+  font-family: "Lucida Sans Unicode";
   text-align: center;
 }
 
 #nav_bar {
   text-align: center;
+}
+
+header {
+  margin-top: -20px;
+  background: #450084;
+  text-align: center;
+  color: white;
+  line-height: normal;
 }
 
 ul {
@@ -19,6 +27,11 @@ li {
 #page_container {
   position: relative;
   min-height: 100vh;
+}
+
+#days {
+  font-family: "Lucida Sans Unicode";
+  background-color: #CBB677;
 }
 
 button {
@@ -64,9 +77,33 @@ table {
   margin-bottom: 5px;
 }
 
+#ta_calendar_buttons button
+{
+  background-color: #450084;
+  font-size: 11pt;
+  color: white;
+  border:none;
+  cursor: pointer;
+}
+
+#admin_calendar_button button {
+  background-color: #450084;
+  font-size: 11pt;
+  color: white;
+  border:none;
+  cursor: pointer;
+}
+
 
 #hidden_session_code, #hidden_generate_session {
   text-align: center;
+}
+
+#hidden_session_code input[type="submit"] {
+  background-color: #450084;
+  color: white;
+  font-size: 12pt;
+  border: none;
 }
 
 .hidden {

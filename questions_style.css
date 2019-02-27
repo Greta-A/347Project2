@@ -1,6 +1,14 @@
 h1,h2 {
-  font-family: "Arial";
+  font-family: "Lucida Sans Unicode";
   text-align: center;
+}
+
+header {
+  margin-top: -20px;
+  background: #450084;
+  text-align: center;
+  color: white;
+  line-height: normal;
 }
 
 ul {
@@ -16,6 +24,14 @@ li {
   text-align: center;
 }
 
+#AskQuestion input[type="submit"] {
+  background-color: #450084;
+  font-size: 11pt;
+  color: white;
+  border:none;
+  cursor: pointer;
+}
+
 button {
   padding: 10px;
   margin-left: 5px;
@@ -27,12 +43,14 @@ button {
   border: solid black 1px;
   overflow-y: scroll;
   padding-bottom: 200px;
+  background-color: #F4EFE1;
 }
 
 #question {
   border: solid black 1px;
   padding: 17px;
   margin: 2px;
+  background-color: white;
 }
 
 #upvote, #remove {
