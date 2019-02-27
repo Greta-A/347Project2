@@ -4,53 +4,49 @@
     <meta charset="utf-8">
     <title>Course List</title>
     <link rel="stylesheet" type="text/css" href="reset.css">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="course_list_style.css">
   </head>
   <body class="courses">
+    <header>
+      <h2>JAMES MADISON UNIVERSITY</h2>
+    </header>
+    <select name="role" id="role-selector">
+      <option value="role-0">Student</option>
+      <option value="role-1">TA</option>
+      <option value="role-2">Admin</option>
+    </select>
     <h1>Your Course List</h1>
     <br>
     <form action="calendar.html" id="chooseCourse">
       <ul id="picked_courses">
-      <li><button <div id="c149" class="course" type="submit">CS 149<br><br>Programming Fundamentals</button></li>
+      <li><button <div id="CS149" class="course" type="submit">CS149<br><br>Programming Fundamentals</button></li>
       </ul>
       <button id="add" type="button" onclick="showCourses()">+</button>
     </form>
-    <br>
-    <br>
     <div style="display:none;" id="hidden_course_list">
       <h2> Available Courses </h2>
       <ul id="available_courses">
-        <li><button id="c159" class="course" type="button" onclick="addCourse(event)">CS 159<br><br>Advanced Programming</button></li>
-        <li><button id="c240" class="course" type="button" onclick="addCourse(event)">CS 240<br><br>Algorithms & Data Structures</button></li>
-        <li><button id="c345" class="course" type="button" onclick="addCourse(event)">CS 345<br><br>Software Engineering</button></li>
+        <li><button id="CS159" class="course" type="button" onclick="addCourse(event)">CS159<br><br>Advanced Programming</button></li>
+        <li><button id="CS240" class="course" type="button" onclick="addCourse(event)">CS240<br><br>Algorithms & Data Structures</button></li>
+        <li><button id="CS345" class="course" type="button" onclick="addCourse(event)">CS345<br><br>Software Engineering</button></li>
     </ul>
+    </div>
+    <br>
+    <div class="role-2 hidden">
+      <button type="button" id="create_course_btn" onclick="displayCreateForm()">Create a Course</button>
+      <br>
+    </div>
+    <br>
+    <div id="hidden_create_course_menu" style="display:none;">
+      <p><input type="text" id="class_ID" placeholder="Class ID"></p>
+      <p><input type="text" id="class_name" placeholder="Class Name"></p>
+      <p><button type="button" id="submit_course_info" onclick="createCourse()">Submit</button></p>
     </div>
     <footer>
       <img src="https://www.jmu.edu/_images/cise/cise-logo.jpg"
       alt="JMU CISE" height="80" width="200"/>
     </footer>
   </body>
-  <script>
-  function showCourses()
-  {
-    var x = document.getElementById("hidden_course_list");
-    if (x.style.display === "none")
-    {
-      x.style.display = "inline-block";
-    }
-    else
-    {
-    x.style.display = "none";
-    }
-  }
-
-  function addCourse(e)
-  {
-    var pickedList = document.getElementById("picked_courses");
-    pickedList.appendChild(e.target);
-    e.target.removeAttribute("onclick");
-    //creates a new onclick event which makes it work on a new click, not this click.
-    e.target.onclick = function() {e.target.type = "submit";};
-  }
-  </script>
+  <script src="display_by_role.js"></script>
+  <script src="course_list.js"></script>
 </html>

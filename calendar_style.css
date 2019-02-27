@@ -1,0 +1,127 @@
+h1,h2 {
+  font-family: "Lucida Sans Unicode";
+  text-align: center;
+}
+
+#nav_bar {
+  text-align: center;
+}
+
+header {
+  margin-top: -20px;
+  background: #450084;
+  text-align: center;
+  color: white;
+  line-height: normal;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+  padding: 5px;
+}
+
+#page_container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#days {
+  font-family: "Lucida Sans Unicode";
+  background-color: #CBB677;
+}
+
+button {
+  padding: 10px;
+  margin-left: 5px;
+}
+
+th, td {
+  font-family: "Arial";
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  width: 100px;
+}
+
+td {
+  border-left: solid 1px black;
+}
+
+
+tr {
+  border: solid 1px black;
+}
+
+table {
+  border-width: thin;
+  border-style: solid;
+  border-color: black;
+  border-radius: 4px;
+  border-collapse: collapse;
+  text-align: center;
+  margin: auto;
+  margin-right: auto;
+
+}
+
+#calendar_table button {
+    margin-left: 5px;
+}
+
+#ta_calendar_buttons, #admin_calendar_button {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+#ta_calendar_buttons button
+{
+  background-color: #450084;
+  font-size: 11pt;
+  color: white;
+  border:none;
+  cursor: pointer;
+}
+
+#admin_calendar_button button {
+  background-color: #450084;
+  font-size: 11pt;
+  color: white;
+  border:none;
+  cursor: pointer;
+}
+
+
+#hidden_session_code, #hidden_generate_session {
+  text-align: center;
+}
+
+#hidden_session_code input[type="submit"] {
+  background-color: #450084;
+  color: white;
+  font-size: 12pt;
+  border: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.showing {
+  display: inherit;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 4.5rem;
+  width: 100%;
+  text-align: center;
+  overflow: inherit;
+  background-color: #d4d7db;
+  padding-bottom: 10px;
+}
