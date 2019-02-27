@@ -30,6 +30,9 @@ function generateSessionCode()
   var x = document.getElementById("code").value = session;
 }
 
+/**
+ * connected to TAs adding times for taing.
+ */
 function addTATime()
 {
   var addButton = document.getElementById("add");
@@ -49,7 +52,9 @@ function addTATime()
   }
   
 }
-
+/**
+ * Support function. Adds buttons.
+ */
 function addButtons()
 {
   var openSlots = 2; 
@@ -58,32 +63,57 @@ function addButtons()
   //filter tds by ones that have div and ones that dont.
   //if it has one add to it based on open slots.
   //else create one and add two to it.
-  //var
+  
   //Add buttons to div.
   for(var td of tds)
   {
-    var timeDiv = document.createElement("DIV");
-    timeDiv.setAttribute("class", "role-1");
-    var slotButton1 = document.createElement("BUTTON");
-    slotButton1.setAttribute("class", "empty");
-    slotButton1.setAttribute("type", "button");
-    //onclick="claimTime()"
-    var slotButton2 = document.createElement("BUTTON");
-    slotButton2.setAttribute("class", "empty");
-    slotButton2.setAttribute("type", "button");
-    //onclick="claimTime()"
-    if(openSlots === 2)
+    if(containsDiv(td))
     {
-      timeDiv.appendChild(slotButton1);
+      alert();
     }
-    if(openSlots >= 1) //|| openSLots === 2
-    {
-      timeDiv.appendChild(slotButton2);
-      td.appendChild(timeDiv);
+    else{
+      var timeDiv = document.createElement("DIV");
+      timeDiv.setAttribute("class", "role-1");
+      var slotButton1 = document.createElement("BUTTON");
+      slotButton1.setAttribute("class", "empty");
+      slotButton1.setAttribute("type", "button");
+      //onclick="claimTime()"
+      var slotButton2 = document.createElement("BUTTON");
+      slotButton2.setAttribute("class", "empty");
+      slotButton2.setAttribute("type", "button");
+      //onclick="claimTime()"
+      if(openSlots === 2)
+      {
+        timeDiv.appendChild(slotButton1);
+      }
+      if(openSlots >= 1) //|| openSLots === 2
+      {
+        timeDiv.appendChild(slotButton2);
+        td.appendChild(timeDiv);
+      }
     }
   }
 }
 
+/**
+ * 
+ */
+function containsDiv(td)
+{
+  var c = false;
+  // for(var div of td.childNodes)
+  // {
+  //   if(div.classList.contains("role-1"))
+  //   {
+  //     c = true;
+  //   }
+  // }
+  return c;
+}
+
+/**
+ * Support function removes elements with empty class.
+ */
 function removeButtons()
 {
   var x = document.getElementsByClassName("empty");
