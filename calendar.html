@@ -5,6 +5,7 @@
   <title>Calendar</title>
   <link rel="stylesheet" type="text/css" href="reset.css">
   <link rel="stylesheet" type="text/css" href="calendar_style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
   <header>
@@ -26,9 +27,9 @@
     <br>
     <h1>CS 149<p>Programming Fundamentals</p></h1>
     <div class="role-1" id="ta_calendar_buttons">
-    <button type="button" onclick="addTATime()">Add</button>
-    <button type="button">Remove</button>
-    <button type="button">Request Cover</button>
+        <button id="add" type="button" onclick="addTATime()">Add</button>
+        <button type="button">Remove</button>
+        <button type="button">Request Cover</button>
     </div>
     <div class="role-2" id="admin_calendar_button">
       <button type="button">Approve Cover</button>
@@ -68,9 +69,20 @@
         <tr>
             <th>7:00</th>
             <td colspan="2"></td>
-            <td colspan="2"><div class="role-1"><button type="button" id="ta_button" onclick="displaySessionCode()">TA1</button><button type="button" id="ta_button" onclick="displaySessionCode()">TA2</button></div>
-            <div class="role-0"><button type="button" id="student_button" onclick="getSessionCode()">7:00-8:00<br>Room 243</button></div>
-            <div class="role-2"><button type="button" id="ta_button">TA1</button><button type="button" id="ta_button">TA2</button></div></td>
+            <td colspan="2">
+                <div class="role-1">
+                    <button type="button" id="ta_button" onclick="displaySessionCode()">TA1</button>
+                    <button type="button" id="ta_button" onclick="displaySessionCode()">TA2</button>
+                </div>
+                <div class="role-0">
+                    <button type="button" id="student_button" onclick="getSessionCode()">7:00-8:00<br>Room 243</button>
+                    <button type="button" id="student_button" onclick="getSessionCode()">7:30-8:30<br>Room 243</button>
+                </div>
+                <div class="role-2">
+                    <button type="button" id="ta_button">TA1</button>
+                    <button type="button" id="ta_button">TA2</button>
+                </div>
+            </td>
             <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2"></td>
