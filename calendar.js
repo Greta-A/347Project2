@@ -53,6 +53,9 @@ function addTATime()
   }
   
 }
+
+
+
 /**
  * Support function. Adds buttons.
  */
@@ -76,10 +79,12 @@ function addButtons()
       if(openSlots === 2)
       {
         div.appendChild(slotButton1);
+        childToParentMap.set(slotButton1,div);
       }
       if(openSlots >= 1)
       {
         div.appendChild(slotButton2);
+        childToParentMap.set(slotButton2,div);
       }
   }
 }
@@ -89,11 +94,14 @@ function addButtons()
  */
 function removeButtons()
 {
-  var tempButtons = document.getElementsByClassName("temporary");
-  for (var b of tempButtons)
+  for (var [child, parent] of childToParentMap)
   {
-    b.remove();
+    if(child.classList.contains("temporary"))
+    {
+      parent.removeChild(child);
+    }
   }
+  childToParentMap = new Map();
 }
 
 function populateTdsWithDivs()
@@ -118,4 +126,5 @@ function populateTdsWithDivs()
   }
 }
 
+var childToParentMap = new Map();
 populateTdsWithDivs();
