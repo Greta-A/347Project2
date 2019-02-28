@@ -30,35 +30,33 @@
 
     <div class="role-0 showing">
       <section>
-      <form id="AskQuestion">
+      <div id="AskQuestion">
         <label>Ask a Question</label>
-        <input type="text" name="QuestionString">
-        <input type="submit" value="Submit">
-      </form>
+        <input type="text" id="question_string">
+        <input type="submit" value="Submit" onclick="submitQuestion()">
+      </div>
     </div>
-      <div id="currentQuestion">
+      <div id="currQuest">
       <label> Current Question: </label>
-      <textarea rows="1" cols="40">How do I make a for loop?</textarea>
+      <textarea rows="1" cols="40" id="currentQuestion">How do I make a for loop?</textarea>
       </div>
     <br>
     <br>
 
     <div class="role-1 hidden" id="get_next_question">
-      <button>Get Next Question</button>
+      <button type="button" onclick="getNextQuestion()">Get Next Question</button>
     </div>
     <br>
     <div class="role-0 showing" id="up_next">
       <label> Up Next </label>
     </div>
 
-    <div id="questionList">
-      <div id="question">
-        <p>Question 1 Placeholder<button type="button" id="upvote">&#x1F44D; 7</button type="button" id="student"><button type="button" id="remove">Remove</button></p>
-      </div>
-      <div id="question">
-        <p>Question 2 Placeholder<button type="button" id="upvote">&#x1F44D; 2</button type ="button" id="student"><span id="student"><button type="button" id="remove">Remove</button></span></p>
-      </div>
-    </div>
+      <ul id="questionList">
+        <div><li id = "question_item">Question 1</li><button type="button" id="upvote" onclick="upvote(event)">&#x1F44D; 7</button>
+          <button type="button" id="remove" onclick="removeQuestion(event)">Remove</button></div>
+        <div><li id = "question_item">Question 2</li><button type="button" id="upvote" onclick="upvote(event)">&#x1F44D; 2</button>
+          <button type="button" id="remove" onclick="removeQuestion(event)">Remove</button></div>
+      </ul>
     <br>
     <br>
     <footer>
@@ -66,5 +64,6 @@
       alt="JMU CISE" height="80" width="200"/>
     </footer>
     <script src="display_by_role.js"></script>
+    <script src="questions.js"></script>
   </body>
 </html>

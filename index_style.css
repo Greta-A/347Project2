@@ -1,3 +1,11 @@
+header {
+  margin-top: -20px;
+  background: #450084;
+  text-align: center;
+  color: white;
+  line-height: normal;
+}
+
 #log_in {
   padding-top: 150px;
 }
