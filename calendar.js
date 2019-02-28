@@ -39,12 +39,13 @@ function addTATime()
   if(addButton.textContent === "Add")
   {
     addButton.textContent = "Done";
-    //declarations
     addButtons();
+    //disable other buttons (remove, request, accept)
   } else if (addButton.textContent === "Done")
   {
     addButton.textContent = "Add";
     removeButtons();
+    //enable other buttons (remove, request, accept)
   }
   else
   {
@@ -58,57 +59,29 @@ function addTATime()
 function addButtons()
 {
   var openSlots = 2; 
-  //get all tds in table.
-  var tds = document.getElementsByTagName("td");
-  //filter tds by ones that have div and ones that dont.
-  //if it has one add to it based on open slots.
-  //else create one and add two to it.
+  //get all divs in table.
+  var timeDivs = document.getElementsByClassName("times");
   
-  //Add buttons to div.
-  for(var td of tds)
-  {
-    if(containsDiv(td))
-    {
-      alert();
-    }
-    else{
-      var timeDiv = document.createElement("DIV");
-      timeDiv.setAttribute("class", "role-1");
+  for(var div of timeDivs)
+  {   
+      openSlots = 2-div.childElementCount;
       var slotButton1 = document.createElement("BUTTON");
-      slotButton1.setAttribute("class", "empty");
+      slotButton1.classList.add("temporary")
       slotButton1.setAttribute("type", "button");
       //onclick="claimTime()"
       var slotButton2 = document.createElement("BUTTON");
-      slotButton2.setAttribute("class", "empty");
+      slotButton2.classList.add("temporary")
       slotButton2.setAttribute("type", "button");
       //onclick="claimTime()"
       if(openSlots === 2)
       {
-        timeDiv.appendChild(slotButton1);
+        div.appendChild(slotButton1);
       }
-      if(openSlots >= 1) //|| openSLots === 2
+      if(openSlots >= 1)
       {
-        timeDiv.appendChild(slotButton2);
-        td.appendChild(timeDiv);
+        div.appendChild(slotButton2);
       }
-    }
   }
-}
-
-/**
- * 
- */
-function containsDiv(td)
-{
-  var c = false;
-  // for(var div of td.childNodes)
-  // {
-  //   if(div.classList.contains("role-1"))
-  //   {
-  //     c = true;
-  //   }
-  // }
-  return c;
 }
 
 /**
@@ -116,16 +89,33 @@ function containsDiv(td)
  */
 function removeButtons()
 {
-  var x = document.getElementsByClassName("empty");
-    for (var i=0; i< x.length; i++)
-    {
-      if (x[i].style.display === "none")
-      {
-//       x[i].style.display = "inline-block";
-      }
-      else
-      {
-        x[i].style.display = "none";
-      }
-    }
+  var tempButtons = document.getElementsByClassName("temporary");
+  for (var b of tempButtons)
+  {
+    b.remove();
+  }
 }
+
+function populateTdsWithDivs()
+{
+  var tds = document.getElementsByTagName("td");
+  for(var td of tds)
+  {
+    // alert(td.childElementCount);
+    if(td.childElementCount === 0)
+    {
+      var timeDiv0 = document.createElement("DIV");
+      timeDiv0.classList.add("role-0", "times")
+      var timeDiv1 = document.createElement("DIV");
+      timeDiv1.classList.add("role-1", "times")
+      var timeDiv2 = document.createElement("DIV");
+      timeDiv2.classList.add("role-2", "times")
+
+      td.appendChild(timeDiv0);
+      td.appendChild(timeDiv1);
+      td.appendChild(timeDiv2);
+    }
+  }
+}
+
+populateTdsWithDivs();
