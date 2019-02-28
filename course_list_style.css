@@ -1,5 +1,14 @@
 #nav_bar {
+  font-family: "Lucida Sans Unicode";
+  padding: 5px;
   text-align: center;
+  background: #dfd2aa;
+  margin-top: -20px;
+  font-size: 12pt;
+}
+
+#nav_bar li {
+  padding: 2px;
 }
 
 header {

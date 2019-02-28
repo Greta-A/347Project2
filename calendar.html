@@ -11,6 +11,12 @@
   <header>
     <h2>JAMES MADISON UNIVERSITY</h2>
   </header>
+  <div id="nav_bar">
+    <ul>
+      <li><a href="index.html">Sign Out</a></li>
+    </ul>
+  </div>
+  <button onclick="window.location.href='course_list.html';" id="back_to_courses">←</button>
   <!-- Role selector: TEMPORARY -->
   <select name="role" id="role-selector">
     <option value="role-0">Student</option>
@@ -18,18 +24,13 @@
     <option value="role-2">Admin</option>
   </select>
   <section id="page_container">
-    <div id="nav_bar">
-      <ul>
-        <li><a href="course_list.html">Course List</a></li>
-        <li><a href="index.html">Sign Out</a></li>
-      </ul>
-    </div>
     <br>
     <h1>CS 149<p>Programming Fundamentals</p></h1>
     <div class="role-1" id="ta_calendar_buttons">
         <button id="add" type="button" onclick="addTATime()">Add</button>
-        <button type="button">Remove</button>
+        <button type="button" id="remove" onclick="removeTATimes()">Remove</button>
         <button type="button">Request Cover</button>
+        <button type="button">Accept Cover</button>
     </div>
     <div class="role-2" id="admin_calendar_button">
       <button type="button">Approve Cover</button>

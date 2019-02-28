@@ -4,7 +4,22 @@ h1,h2 {
 }
 
 #nav_bar {
+  font-family: "Lucida Sans Unicode";
+  padding: 5px;
   text-align: center;
+  background: #dfd2aa;
+  margin-top: -20px;
+  font-size: 12pt;
+}
+
+#nav_bar li {
+  padding: 2px;
+}
+
+#back_to_courses {
+  background: #450084;
+  color: white;
+  border: none;
 }
 
 header {
