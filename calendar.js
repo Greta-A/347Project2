@@ -66,16 +66,19 @@ function addButtons()
   var timeDivs = document.getElementsByClassName("times");
   
   for(var div of timeDivs)
-  {   
+  { 
+    //was adding to student and admin before as well.
+    if(div.classList.contains("role-1"))
+    {
       openSlots = 2-div.childElementCount;
       var slotButton1 = document.createElement("BUTTON");
       slotButton1.classList.add("temporary")
       slotButton1.setAttribute("type", "button");
-      slotButton1.setAttribute("onclick", "claimTATime()")
+      slotButton1.setAttribute("onclick", "claimTATime(this)")
       var slotButton2 = document.createElement("BUTTON");
       slotButton2.classList.add("temporary")
       slotButton2.setAttribute("type", "button");
-      slotButton2.setAttribute("onclick", "claimTATime()")
+      slotButton2.setAttribute("onclick", "claimTATime(this)")
       if(openSlots === 2)
       {
         div.appendChild(slotButton1);
@@ -86,6 +89,7 @@ function addButtons()
         div.appendChild(slotButton2);
         childToParentMap.set(slotButton2,div);
       }
+    }  
   }
 }
 
@@ -105,11 +109,13 @@ function removeButtons()
 }
 
 //ADD / SELECT TIME
+var timeSlotButton = null;
 /**
  * Takes a button and adds it perm
  */
-function claimTATime()
+function claimTATime(button)
 {
+  timeSlotButton = button;
   //TODO: get target and keep it. so that it can be added after submit is clicked.
   if(taSelectTime.style.display === "none")
   {
@@ -136,7 +142,53 @@ function hideSelectTime()
 
 function confirmAddTime()
 {
-  alert();
+  // <button type="button" id="ta_button">TA3</button>
+  var timeDivs = document.getElementsByClassName("times");
+  
+  //get form values and populate:
+
+  //student button setup
+  var student_button = document.createElement("BUTTON")
+  student_button.id = "student_button";
+  student_button.setAttribute("type", "button");
+  student_button.setAttribute("onclick", "getSessionCode()");
+  student_button.textContent = "start-end Room 123"; //TODO time-time <br> Room ###
+  //added in loop below.
+
+  //ta button setup
+  var taParent = childToParentMap.get(timeSlotButton);
+  var taButton = document.createElement("BUTTON");
+  taButton.id = "ta_button";
+  taButton.setAttribute("type", "button");
+  taButton.setAttribute("onclick", "displaySessionCode()");
+  taButton.textContent = "TA#"; //TODO #
+  taParent.appendChild(taButton);
+
+  //admin button setup
+  var admin_button = document.createElement("BUTTON")
+  admin_button.id = "admin_button";
+  admin_button.setAttribute("type", "button");
+  admin_button.textContent = "TA#"; //TODO #
+
+  //find student and admin divs to add buttons to as well.
+  for(var div of timeDivs)
+  { 
+    //was adding to student and admin before as well.
+    if(div.classList.contains("role-0") && taParent.parentElement === div.parentElement)
+    {
+      div.appendChild(student_button);
+    }
+    //ta one is done above since we dont have to search for the parent.
+    if(div.classList.contains("role-2") && taParent.parentElement === div.parentElement)
+    {
+      div.appendChild(admin_button);
+    }
+  }
+
+  //cleanup
+  hideSelectTime();
+  // childToParentMap.delete(timeSlotButton); //removes from map
+  addTATime(); //removes from div.
 }
 
 //OTHER

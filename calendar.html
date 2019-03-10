@@ -161,12 +161,16 @@
 
     <!-- When the ta chooses a time let them select a start time and end time. -->
     <div style="display:none;" class="role-1" id="select_time">
-        <form onsubmit="return confirmAddTime()">
-            <input type="time" min="17:00" max="23:00">
-            <input type="time" min="17:00" max="23:00">
-            <input type="submit" value="Confirm">
+        <form onsubmit="confirmAddTime()">
+            <label for="start_time">Start Time</label>
+            <input type="time" min="17:00" max="23:00" name="start_time">
+            <label for="end_time">End Time</label>
+            <input type="time" min="17:00" max="23:00" name="end_time">
+            <label for="room_number">Room Number</label>
+            <input type="text" name="room_number">
+            <!-- <input type="submit" value="Confirm"> -->
+            <button type="button" onclick="confirmAddTime()">Confirm</button>
         </form>
-        <!-- <button onclick="confirmAddTime()">Confirm</button> -->
     </div>
 
     <div style="display:none;" class="role-0" id="hidden_session_code">
