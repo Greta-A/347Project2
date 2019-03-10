@@ -158,6 +158,17 @@
         And anything with "ta" or "professor" should be removed from page.-->
     <br>
     <br>
+
+    <!-- When the ta chooses a time let them select a start time and end time. -->
+    <div style="display:none;" class="role-1" id="select_time">
+        <form onsubmit="return confirmAddTime()">
+            <input type="time" min="17:00" max="23:00">
+            <input type="time" min="17:00" max="23:00">
+            <input type="submit" value="Confirm">
+        </form>
+        <!-- <button onclick="confirmAddTime()">Confirm</button> -->
+    </div>
+
     <div style="display:none;" class="role-0" id="hidden_session_code">
         <form  action="questions.html">
             <label for="sesion_code">Session Code:</label>
@@ -170,7 +181,7 @@
     <div style="display:none;" class="role-1" id="hidden_generate_session">
         <form>
             <input type="button" name="generate_code" value="Generate Code" onclick="generateSessionCode()">
-            <input type="text" id="code" readonly></input>
+            <input type="text" id="code" readonly>
         </form>
     </div>
 

@@ -1,3 +1,4 @@
+//SESSION CODE
 function getSessionCode() {
     var x = document.getElementById("hidden_session_code");
     if (x.style.display === "none")
@@ -30,6 +31,7 @@ function generateSessionCode()
   var x = document.getElementById("code").value = session;
 }
 
+//ADD
 /**
  * connected to TAs adding times for taing.
  */
@@ -54,8 +56,6 @@ function addTATime()
   
 }
 
-
-
 /**
  * Support function. Adds buttons.
  */
@@ -71,11 +71,11 @@ function addButtons()
       var slotButton1 = document.createElement("BUTTON");
       slotButton1.classList.add("temporary")
       slotButton1.setAttribute("type", "button");
-      //onclick="claimTime()"
+      slotButton1.setAttribute("onclick", "claimTATime()")
       var slotButton2 = document.createElement("BUTTON");
       slotButton2.classList.add("temporary")
       slotButton2.setAttribute("type", "button");
-      //onclick="claimTime()"
+      slotButton2.setAttribute("onclick", "claimTATime()")
       if(openSlots === 2)
       {
         div.appendChild(slotButton1);
@@ -104,6 +104,42 @@ function removeButtons()
   childToParentMap = new Map();
 }
 
+//ADD / SELECT TIME
+/**
+ * Takes a button and adds it perm
+ */
+function claimTATime()
+{
+  //TODO: get target and keep it. so that it can be added after submit is clicked.
+  if(taSelectTime.style.display === "none")
+  {
+    displaySelectTime();
+  }
+  else
+  {
+    hideSelectTime();
+  }
+}
+
+/**
+ * separated display and hide so they can be called from anywhere.
+ */
+var taSelectTime = document.getElementById("select_time");
+function displaySelectTime()
+{
+  taSelectTime.style.display = "block";
+}
+function hideSelectTime()
+{
+  taSelectTime.style.display = "none";
+}
+
+function confirmAddTime()
+{
+  alert();
+}
+
+//OTHER
 function populateTdsWithDivs()
 {
   var tds = document.getElementsByTagName("td");
