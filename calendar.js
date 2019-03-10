@@ -140,12 +140,17 @@ function hideSelectTime()
   taSelectTime.style.display = "none";
 }
 
+/**
+ * takes the select_time form and creates a button for the ta time slot 
+ * in all three roles.
+ */
 function confirmAddTime()
 {
   // <button type="button" id="ta_button">TA3</button>
   var timeDivs = document.getElementsByClassName("times");
   
   //get form values and populate:
+  //TODO:
 
   //student button setup
   var student_button = document.createElement("BUTTON")
@@ -186,12 +191,14 @@ function confirmAddTime()
   }
 
   //cleanup
-  hideSelectTime();
-  // childToParentMap.delete(timeSlotButton); //removes from map
-  addTATime(); //removes from div.
+  hideSelectTime(); //makes the form disapear
+  addTATime(); //makes the empty buttons dissapear.
 }
 
 //OTHER
+/**
+ * instead of writing every single div out in html...
+ */
 function populateTdsWithDivs()
 {
   var tds = document.getElementsByTagName("td");
