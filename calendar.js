@@ -53,7 +53,7 @@ function addTATime()
   {
     console.log("Add button should have text of 'Add' or 'Done'");
   }
-  
+
 }
 
 /**
@@ -61,12 +61,12 @@ function addTATime()
  */
 function addButtons()
 {
-  var openSlots = 2; 
+  var openSlots = 2;
   //get all divs in table.
   var timeDivs = document.getElementsByClassName("times");
-  
+
   for(var div of timeDivs)
-  { 
+  {
     //was adding to student and admin before as well.
     if(div.classList.contains("role-1"))
     {
@@ -89,7 +89,7 @@ function addButtons()
         div.appendChild(slotButton2);
         childToParentMap.set(slotButton2,div);
       }
-    }  
+    }
   }
 }
 
@@ -141,20 +141,20 @@ function hideSelectTime()
 }
 
 /**
- * takes the select_time form and creates a button for the ta time slot 
+ * takes the select_time form and creates a button for the ta time slot
  * in all three roles.
  */
 function confirmAddTime()
 {
   // <button type="button" id="ta_button">TA3</button>
   var timeDivs = document.getElementsByClassName("times");
-  
+
   //get form values and populate:
   //TODO:
 
   //student button setup
   var student_button = document.createElement("BUTTON")
-  student_button.id = "student_button";
+  student_button.class = "student_button";
   student_button.setAttribute("type", "button");
   student_button.setAttribute("onclick", "getSessionCode()");
   student_button.textContent = "start-end Room 123"; //TODO time-time <br> Room ###
@@ -163,7 +163,7 @@ function confirmAddTime()
   //ta button setup
   var taParent = childToParentMap.get(timeSlotButton);
   var taButton = document.createElement("BUTTON");
-  taButton.id = "ta_button";
+  taButton.class = "ta_button";
   taButton.setAttribute("type", "button");
   taButton.setAttribute("onclick", "displaySessionCode()");
   taButton.textContent = "TA#"; //TODO #
@@ -177,7 +177,7 @@ function confirmAddTime()
 
   //find student and admin divs to add buttons to as well.
   for(var div of timeDivs)
-  { 
+  {
     //was adding to student and admin before as well.
     if(div.classList.contains("role-0") && taParent.parentElement === div.parentElement)
     {

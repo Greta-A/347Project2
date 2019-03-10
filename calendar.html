@@ -11,7 +11,7 @@
   <header>
     <h2>JAMES MADISON UNIVERSITY</h2>
   </header>
-  <div id="nav_bar">
+  <div class="nav_bar">
     <ul>
       <li><a href="index.html">Sign Out</a></li>
     </ul>
@@ -29,7 +29,7 @@
     <div class="role-1" id="ta_calendar_buttons">
         <button id="add" type="button" onclick="addTATime()">Add</button>
         <button type="button" id="remove" onclick="removeTATimes()">Remove</button>
-        <button type="button">Request Cover</button>
+        <button type="button" id="request" onclick="requestCover()">Request Cover</button>
         <button type="button">Accept Cover</button>
     </div>
     <div class="role-2" id="admin_calendar_button">
@@ -39,13 +39,13 @@
         <tr>
             <th id="days"></th>
             <!-- Colspan = 2, since 2 TAs can sign up for the same time. -->
-            <th colspan="2" id="days">SUN</th>
-            <th colspan="2" id="days">MON</th>
-            <th colspan="2" id="days">TUE</th>
-            <th colspan="2" id="days">WED</th>
-            <th colspan="2" id="days">THU</th>
-            <th colspan="2" id="days">FRI</th>
-            <th colspan="2" id="days">SAT</th>
+            <th colspan="2" class="days">SUN</th>
+            <th colspan="2" class="days">MON</th>
+            <th colspan="2" class="days">TUE</th>
+            <th colspan="2" class="days">WED</th>
+            <th colspan="2" class="days">THU</th>
+            <th colspan="2" class="days">FRI</th>
+            <th colspan="2" class="days">SAT</th>
         </tr>
         <tr>
             <th>5:00</th>
@@ -72,16 +72,16 @@
             <td colspan="2"></td>
             <td colspan="2">
                 <div class="role-1 times">
-                    <button type="button" id="ta_button" onclick="displaySessionCode()">TA1</button>
-                    <button type="button" id="ta_button" onclick="displaySessionCode()">TA2</button>
+                    <button type="button" class="ta_button" onclick="displaySessionCode()">TA1</button>
+                    <button type="button" class="ta_button" onclick="displaySessionCode()">TA2</button>
                 </div>
                 <div class="role-0 times">
-                    <button type="button" id="student_button" onclick="getSessionCode()">7:00-8:00<br>Room 243</button>
-                    <button type="button" id="student_button" onclick="getSessionCode()">7:30-8:30<br>Room 243</button>
+                    <button type="button" class="student_button" onclick="getSessionCode()">7:00-8:00<br>Room 243</button>
+                    <button type="button" class="student_button" onclick="getSessionCode()">7:30-8:30<br>Room 243</button>
                 </div>
                 <div class="role-2 times">
-                    <button type="button" id="ta_button">TA1</button>
-                    <button type="button" id="ta_button">TA2</button>
+                    <button type="button" class="ta_button">TA1</button>
+                    <button type="button" class="ta_button">TA2</button>
                 </div>
             </td>
             <td colspan="2"></td>
@@ -119,13 +119,13 @@
             <td colspan="2"></td>
             <td colspan="2">
                 <div class="role-1 times">
-                    <button type="button" id="ta_button" onclick="displaySessionCode()">TA3</button>
+                    <button type="button" class="ta_button" onclick="displaySessionCode()">TA3</button>
                 </div>
                 <div class="role-0 times">
-                    <button type="button" id="student_button" onclick="getSessionCode()">10:00-11:00<br>Room 243</button>
+                    <button type="button" class="student_button" onclick="getSessionCode()">10:00-11:00<br>Room 243</button>
                 </div>
                 <div class="role-2 times">
-                    <button type="button" id="ta_button">TA3</button>
+                    <button type="button" class="ta_button">TA3</button>
                 </div></td>
             <td colspan="2"></td>
         </tr>

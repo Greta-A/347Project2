@@ -3,7 +3,7 @@ h1,h2 {
   text-align: center;
 }
 
-#nav_bar {
+.nav_bar {
   font-family: "Lucida Sans Unicode";
   padding: 5px;
   text-align: center;
@@ -12,7 +12,7 @@ h1,h2 {
   font-size: 12pt;
 }
 
-#nav_bar li {
+.nav_bar li {
   padding: 2px;
 }
 
@@ -44,7 +44,7 @@ li {
   min-height: 100vh;
 }
 
-#days {
+.days {
   font-family: "Lucida Sans Unicode";
   background-color: #CBB677;
 }

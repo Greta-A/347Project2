@@ -51,7 +51,7 @@ header {
   background-color: #e8e8e8;
 }
 
-#login_button, #sign_up_button {
+#login_button, .sign_up_button {
   background-color: #450084;
   height: 30px;
   width: 210px;

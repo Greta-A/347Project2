@@ -2,18 +2,18 @@ function submitQuestion() {
   var questionInput = document.getElementById("question_string").value;
   var surroundingDiv = document.createElement('div');
   var newQuestion = document.createElement('li');
-  newQuestion.setAttribute('id', 'question_item');
+  newQuestion.setAttribute('class', 'question_item');
   newQuestion.innerHTML = questionInput;
   surroundingDiv.appendChild(newQuestion);
   var upvoteBtn = document.createElement("button");
   upvoteBtn.setAttribute('type', 'button');
-  upvoteBtn.setAttribute('id', 'upvote');
+  upvoteBtn.setAttribute('class', 'upvote');
   upvoteBtn.innerHTML = "&#x1F44D; 0";
   upvoteBtn.addEventListener("click", function(e) {upvote(e)});
   surroundingDiv.appendChild(upvoteBtn);
   var removeBtn = document.createElement("button");
   removeBtn.setAttribute('type', 'button');
-  removeBtn.setAttribute('id', 'remove');
+  removeBtn.setAttribute('class', 'remove');
   removeBtn.innerHTML = "Remove";
   removeBtn.addEventListener("click", function(e) {removeQuestion(e)});
   surroundingDiv.appendChild(removeBtn);
@@ -24,7 +24,7 @@ function submitQuestion() {
 
 function getNextQuestion()
 {
-  var topQuestion = document.getElementById("question_item").innerHTML;
+  var topQuestion = document.getElementsByClassName("question_item")[0].innerHTML;
   var list = document.getElementById("questionList");
   document.getElementById("currentQuestion").value = topQuestion;
   var firstElement = document.getElementById("questionList").getElementsByTagName("div")[0];
