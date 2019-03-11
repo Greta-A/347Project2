@@ -1,6 +1,17 @@
 //SESSION CODE
 var ta_button_target;
 
+
+function setTATarget(e)
+{
+  ta_button_target = e.target;
+}
+
+function getTATarget()
+{
+  return ta_button_target;
+}
+
 function getSessionCode() {
     var x = document.getElementById("hidden_session_code");
     if (x.style.display === "none")
@@ -41,9 +52,19 @@ function generateSessionCode()
 
 function validateCheck()
 {
+  var parentDivs = getTATarget().parentElement.parentElement.getElementsByTagName("div");
+  var buttonText = getTATarget().innerHTML;
   if (document.getElementById("request_cover").checked)
   {
       getTATarget().style.backgroundColor = "yellow";
+      var buttonAmount = parentDivs[2].getElementsByTagName("button").length;
+      for (var i = 0; i < buttonAmount; i++)
+      {
+        if (parentDivs[2].getElementsByTagName("button")[i].innerHTML == buttonText)
+        {
+          parentDivs[2].getElementsByTagName("button")[i].style.backgroundColor = "yellow";
+        }
+      }
       var x = document.getElementById("hidden_checkbox");
       if (x.style.display === "none")
       {
@@ -53,23 +74,19 @@ function validateCheck()
       if (document.getElementById("accept_cover").checked)
       {
         getTATarget().style.backgroundColor = "#06d829";
+        for (var i = 0; i < buttonAmount; i++)
+        {
+          if (parentDivs[2].getElementsByTagName("button")[i].innerHTML == buttonText)
+          {
+            parentDivs[2].getElementsByTagName("button")[i].style.backgroundColor = "#06d829";
+          }
+        }
       }
   }
   else
   {
     getTATarget().style.backgroundColor = "";
   }
-
-}
-
-function setTATarget(e)
-{
-  ta_button_target = e.target;
-}
-
-function getTATarget()
-{
-  return ta_button_target;
 }
 
 //ADD
