@@ -1,4 +1,6 @@
 //SESSION CODE
+var ta_button_target;
+
 function getSessionCode() {
     var x = document.getElementById("hidden_session_code");
     if (x.style.display === "none")
@@ -11,7 +13,7 @@ function getSessionCode() {
     }
   }
 
-function displaySessionCode()
+function displaySessionCode(e)
 {
   var x = document.getElementById("hidden_generate_session");
   if (x.style.display === "none")
@@ -23,12 +25,51 @@ function displaySessionCode()
   {
     x.style.display = "none";
   }
+  setTATarget(e);
+  document.getElementById("request_cover").checked = false;
+  document.getElementById("hidden_checkbox").style.display = "none";
+  document.getElementById("accept_cover").checked = false;
+
+
 }
 
 function generateSessionCode()
 {
   var session = Math.floor(1000 + Math.random() * 9000);
   var x = document.getElementById("code").value = session;
+}
+
+function validateCheck()
+{
+  if (document.getElementById("request_cover").checked)
+  {
+      getTATarget().style.backgroundColor = "yellow";
+      var x = document.getElementById("hidden_checkbox");
+      if (x.style.display === "none")
+      {
+        x.style.display = "block";
+      }
+
+      if (document.getElementById("accept_cover").checked)
+      {
+        getTATarget().style.backgroundColor = "#06d829";
+      }
+  }
+  else
+  {
+    getTATarget().style.backgroundColor = "";
+  }
+
+}
+
+function setTATarget(e)
+{
+  ta_button_target = e.target;
+}
+
+function getTATarget()
+{
+  return ta_button_target;
 }
 
 //ADD
@@ -165,7 +206,7 @@ function confirmAddTime()
   var taButton = document.createElement("BUTTON");
   taButton.class = "ta_button";
   taButton.setAttribute("type", "button");
-  taButton.setAttribute("onclick", "displaySessionCode()");
+  taButton.setAttribute("onclick", "displaySessionCode(event)");
   taButton.textContent = "TA#"; //TODO #
   taParent.appendChild(taButton);
 

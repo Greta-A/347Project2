@@ -109,6 +109,12 @@ table {
   cursor: pointer;
 }
 
+#request_form {
+    font-family: "Lucida Sans Unicode";
+    font-size: 11pt;
+    padding-top: 4px;
+}
+
 
 #hidden_session_code, #hidden_generate_session {
   text-align: center;

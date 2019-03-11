@@ -29,8 +29,6 @@
     <div class="role-1" id="ta_calendar_buttons">
         <button id="add" type="button" onclick="addTATime()">Add</button>
         <button type="button" id="remove" onclick="removeTATimes()">Remove</button>
-        <button type="button" id="request" onclick="requestCover()">Request Cover</button>
-        <button type="button">Accept Cover</button>
     </div>
     <div class="role-2" id="admin_calendar_button">
       <button type="button">Approve Cover</button>
@@ -72,8 +70,8 @@
             <td colspan="2"></td>
             <td colspan="2">
                 <div class="role-1 times">
-                    <button type="button" class="ta_button" onclick="displaySessionCode()">TA1</button>
-                    <button type="button" class="ta_button" onclick="displaySessionCode()">TA2</button>
+                    <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA1</button>
+                    <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA2</button>
                 </div>
                 <div class="role-0 times">
                     <button type="button" class="student_button" onclick="getSessionCode()">7:00-8:00<br>Room 243</button>
@@ -119,7 +117,7 @@
             <td colspan="2"></td>
             <td colspan="2">
                 <div class="role-1 times">
-                    <button type="button" class="ta_button" onclick="displaySessionCode()">TA3</button>
+                    <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA3</button>
                 </div>
                 <div class="role-0 times">
                     <button type="button" class="student_button" onclick="getSessionCode()">10:00-11:00<br>Room 243</button>
@@ -176,6 +174,10 @@
         <form>
             <input type="button" name="generate_code" value="Generate Code" onclick="generateSessionCode()">
             <input type="text" id="code" readonly>
+        </form>
+        <form id="request_form">
+          <input type="checkbox" id="request_cover" value="request" onclick="validateCheck()">Request Cover
+          <label style="display:none" id="hidden_checkbox"><input type="checkbox" id="accept_cover" value="accept" onclick="validateCheck()">Accept Cover</label>
         </form>
     </div>
 
