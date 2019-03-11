@@ -18,7 +18,7 @@
   </div>
   <button onclick="window.location.href='course_list.html';" id="back_to_courses">←</button>
   <!-- Role selector: TEMPORARY -->
-  <select name="role" id="role-selector">
+  <select name="role" id="role-selector" onchange="hideInfo(value)">
     <option value="role-0">Student</option>
     <option value="role-1">TA</option>
     <option value="role-2">Admin</option>

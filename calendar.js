@@ -12,6 +12,18 @@ function getTATarget()
   return ta_button_target;
 }
 
+function hideInfo(option)
+{
+  if (option = "role-0")
+  {
+    document.getElementById("hidden_generate_session").style.display = "none";
+  }
+  if (option = "role-2")
+  {
+    document.getElementById("hidden_session_code").style.display = "none";
+  }
+}
+
 function getSessionCode() {
     var x = document.getElementById("hidden_session_code");
     if (x.style.display === "none")
