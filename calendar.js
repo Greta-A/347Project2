@@ -49,11 +49,13 @@ function displaySessionCode(e)
     x.style.display = "none";
   }
   setTATarget(e);
-  document.getElementById("request_cover").checked = false;
-  document.getElementById("hidden_checkbox").style.display = "none";
-  document.getElementById("accept_cover").checked = false;
-
-
+  document.getElementById("request_form").style.display = "block";
+  if (getTATarget().style.backgroundColor == "")
+  {
+    document.getElementById("request_cover").checked = false;
+    document.getElementById("hidden_accept").style.display = "none";
+    document.getElementById("accept_cover").checked = false;
+  }
 }
 
 function generateSessionCode()
@@ -68,36 +70,41 @@ function validateCheck()
   var buttonText = getTATarget().innerHTML;
   if (document.getElementById("request_cover").checked)
   {
-      getTATarget().style.backgroundColor = "yellow";
+      getTATarget().style.backgroundColor = "#ff6d6b";
       var buttonAmount = parentDivs[2].getElementsByTagName("button").length;
       for (var i = 0; i < buttonAmount; i++)
       {
         if (parentDivs[2].getElementsByTagName("button")[i].innerHTML == buttonText)
         {
-          parentDivs[2].getElementsByTagName("button")[i].style.backgroundColor = "yellow";
+          parentDivs[2].getElementsByTagName("button")[i].style.backgroundColor = "#ff6d6b";
         }
       }
-      var x = document.getElementById("hidden_checkbox");
+      var x = document.getElementById("hidden_accept");
       if (x.style.display === "none")
       {
+        document.getElementById("new_ta_name").value = "";
         x.style.display = "block";
       }
 
       if (document.getElementById("accept_cover").checked)
       {
-        getTATarget().style.backgroundColor = "#06d829";
+        getTATarget().style.backgroundColor = "yellow";
+        getTATarget().innerHTML = document.getElementById("new_ta_name").value;
         for (var i = 0; i < buttonAmount; i++)
         {
           if (parentDivs[2].getElementsByTagName("button")[i].innerHTML == buttonText)
           {
-            parentDivs[2].getElementsByTagName("button")[i].style.backgroundColor = "#06d829";
+            parentDivs[2].getElementsByTagName("button")[i].style.backgroundColor = "yellow";
+            parentDivs[2].getElementsByTagName("button")[i].innerHTML = document.getElementById("new_ta_name").value;
           }
         }
+        document.getElementById("request_form").style.display = "none";
       }
   }
   else
   {
     getTATarget().style.backgroundColor = "";
+    document.getElementById("hidden_accept").style.display = "none";
   }
 }
 

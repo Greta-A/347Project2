@@ -78,7 +78,7 @@
                     <button type="button" class="student_button" onclick="getSessionCode()">7:30-8:30<br>Room 243</button>
                 </div>
                 <div class="role-2 times">
-                    <button type="button" class="ta_button">TA1</button>
+                    <button type="button" class="ta_button" onclick="confirmCover()">TA1</button>
                     <button type="button" class="ta_button">TA2</button>
                 </div>
             </td>
@@ -177,7 +177,11 @@
         </form>
         <form id="request_form">
           <input type="checkbox" id="request_cover" value="request" onclick="validateCheck()">Request Cover
-          <label style="display:none" id="hidden_checkbox"><input type="checkbox" id="accept_cover" value="accept" onclick="validateCheck()">Accept Cover</label>
+          <div id="hidden_accept">
+          <label>TA Name:</label>
+          <input type="text" id="new_ta_name" placeholder="TA#" required>
+          <input type="checkbox" style="display:inline-block;" id="accept_cover" value="accept" onclick="validateCheck()">Accept Cover
+          </div>
         </form>
     </div>
 
