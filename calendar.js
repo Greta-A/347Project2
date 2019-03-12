@@ -56,6 +56,10 @@ function displaySessionCode(e)
     document.getElementById("hidden_accept").style.display = "none";
     document.getElementById("accept_cover").checked = false;
   }
+  else if (getTATarget().style.backgroundColor == "yellow")
+  {
+    document.getElementById("request_form").style.display = "none";
+  }
 }
 
 function generateSessionCode()
