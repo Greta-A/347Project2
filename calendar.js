@@ -112,6 +112,25 @@ function validateCheck()
   }
 }
 
+function confirmCover(e)
+{
+  var parentDivs = getTATarget().parentElement.parentElement.getElementsByTagName("div");
+  var buttonAmount = parentDivs[1].getElementsByTagName("button").length;
+  var buttonText = e.target.innerHTML;
+  if (e.target.style.backgroundColor = "yellow")
+  {
+    e.target.style.backgroundColor = "#11d86e";
+    for (var i = 0; i < buttonAmount; i++)
+    {
+      alert(parentDivs[0].getElementsByTagName("button")[i].innerHTML);
+      if (parentDivs[0].getElementsByTagName("button")[i].innerHTML == buttonText)
+      {
+        parentDivs[0].getElementsByTagName("button")[i].style.backgroundColor = "#11d86e";
+      }
+    }
+  }
+}
+
 //ADD
 /**
  * connected to TAs adding times for taing.
@@ -254,6 +273,7 @@ function confirmAddTime()
   var admin_button = document.createElement("BUTTON")
   admin_button.id = "admin_button";
   admin_button.setAttribute("type", "button");
+  admin_button.setAttribute("onclick", "confirmCover(event)");
   admin_button.textContent = "TA#"; //TODO #
 
   //find student and admin divs to add buttons to as well.
@@ -295,8 +315,8 @@ function populateTdsWithDivs()
       var timeDiv2 = document.createElement("DIV");
       timeDiv2.classList.add("role-2", "times")
 
-      td.appendChild(timeDiv0);
       td.appendChild(timeDiv1);
+      td.appendChild(timeDiv0);
       td.appendChild(timeDiv2);
     }
   }
