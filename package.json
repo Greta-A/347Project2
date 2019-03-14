@@ -1,0 +1,36 @@
+{
+  "name": "347Project2",
+  "version": "0.3.0",
+  "description": "ta system",
+  "engines": {
+    "node": "10.x"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "mongoose": "^5.4.19"
+  },
+  "devDependencies": {
+    "request": "^2.81.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Greta-A/347Project2.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Greta-A/347Project2/issues"
+  },
+  "homepage": "https://github.com/Greta-A/347Project2#readme",
+  "author": ""
+}
