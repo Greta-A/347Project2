@@ -1,21 +1,25 @@
-var express = require("express");
-var app     = express();
-var path    = require("path");
+//var express = require("express");
+//var app     = express();
+//var path    = require("path");
 
-app.use(express.static(__dirname + '/public'));
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
 
-// app.get('/',function(req,res){
-//   res.sendFile(path.join(__dirname+'/index.html'));
-// });
+express()
+  .use(express.static(path.join(__dirname, '/public')))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('/public/index.html'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
+//app.use(express.static(__dirname + '/public'));
+
+/**
 app.get('/',function(req,res){
   res.sendFile(path.join(__dirname+'/public/index.html'));
 });
 
-// var dir = path.join(__dirname, 'public');
-//
-// app.use(express.static(dir));
-
 app.listen(3000);
 
 console.log("Running at Port 3000");
+*/
