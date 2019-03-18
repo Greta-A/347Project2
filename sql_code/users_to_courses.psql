@@ -1,0 +1,24 @@
+-- Table: public.users_to_courses
+
+-- DROP TABLE public.users_to_courses;
+
+CREATE TABLE public.users_to_courses
+(
+    eid character(8) COLLATE pg_catalog."default" NOT NULL,
+    course smallint NOT NULL,
+    CONSTRAINT users_to_courses_courses_fk FOREIGN KEY (course)
+        REFERENCES public.courses (course_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT users_to_courses_eid_fk FOREIGN KEY (eid)
+        REFERENCES public.users (eid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.users_to_courses
+    OWNER to mvmhdzizvrkbcs;
