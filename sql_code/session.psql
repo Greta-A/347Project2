@@ -1,0 +1,26 @@
+-- Table: public.session
+
+-- DROP TABLE public.session;
+
+CREATE TABLE public.session
+(
+    student character(8) COLLATE pg_catalog."default" NOT NULL,
+    session_code smallint NOT NULL,
+    ta character(8) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT session_pkey PRIMARY KEY (student),
+    CONSTRAINT session_student_fk FOREIGN KEY (student)
+        REFERENCES public.users (eid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT session_ta_fk FOREIGN KEY (ta)
+        REFERENCES public.users (eid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.session
+    OWNER to mvmhdzizvrkbcs;

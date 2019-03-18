@@ -1,0 +1,19 @@
+-- Table: public.users
+
+-- DROP TABLE public.users;
+
+CREATE TABLE public.users
+(
+    eid character(8) COLLATE pg_catalog."default" NOT NULL,
+    name character varying(32) COLLATE pg_catalog."default" NOT NULL,
+    password text COLLATE pg_catalog."default" NOT NULL,
+    role smallint NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (eid)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.users
+    OWNER to mvmhdzizvrkbcs;

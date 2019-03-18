@@ -1,0 +1,33 @@
+-- Table: public.calendar_items
+
+-- DROP TABLE public.calendar_items;
+
+CREATE TABLE public.calendar_items
+(
+    slot smallint NOT NULL,
+    ta character(8) COLLATE pg_catalog."default" NOT NULL,
+    course_id smallint NOT NULL,
+    "time" timestamp without time zone NOT NULL,
+    room smallint NOT NULL,
+    session_code smallint,
+    cover_requested boolean NOT NULL DEFAULT false,
+    cover_accepted boolean NOT NULL DEFAULT false,
+    cover_approved boolean NOT NULL DEFAULT false,
+    remove_pending boolean NOT NULL DEFAULT false,
+    CONSTRAINT calendar_items_pkey PRIMARY KEY (slot),
+    CONSTRAINT calendar_items_course_id_fk FOREIGN KEY (course_id)
+        REFERENCES public.courses (course_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT calendar_items_ta_fk FOREIGN KEY (ta)
+        REFERENCES public.users (eid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.calendar_items
+    OWNER to mvmhdzizvrkbcs;

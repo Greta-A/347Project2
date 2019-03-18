@@ -1,0 +1,17 @@
+-- Table: public.courses
+
+-- DROP TABLE public.courses;
+
+CREATE TABLE public.courses
+(
+    course_id smallint NOT NULL,
+    course_name text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT courses_pkey PRIMARY KEY (course_id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.courses
+    OWNER to mvmhdzizvrkbcs;
