@@ -40,8 +40,15 @@ const client = new Client({
 })
 
 //2 methods for connecting
+//method 1
 client.connect()
 .then(() => console.log("Connected successfuly"))
+.then(() => client.query("SELECT * FROM users WHERE eid='clermocj'"))
+.then(results => console.table(results.rows))
 .catch(e => console.log(e))
 .finally(() => client.end())
+//method 2
+
 /////////////////////////////////////
+// "SELECT * FROM users WHERE eid='clermocj'"
+// "INSERT INTO users (eid, name, password, role) VALUES ('sttester', 'student tester', 'password', 0);"
