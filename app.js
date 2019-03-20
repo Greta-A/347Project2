@@ -43,11 +43,25 @@ app.post('/course_list.html', function(req, res) {
 app.listen(PORT);
 
 //2 methods for connecting
-//method 1
+var query = {
+  name: 'get-carl',
+  text: 'SELECT * FROM users WHERE eid = $1',
+  values: ['clermocj']
+}
+//method 1 (promises)
+// client.connect()
+// .then(() => console.log("Connected successfuly"))
+// .then(() => client.query(query))
+// .then(results => console.table(results.rows))
+// .catch(e => console.log(e))
+// .finally(() => client.end())
+//method 2 (callbacks)
 client.connect()
-.then(() => console.log("Connected successfuly"))
-.then(() => client.query("SELECT * FROM users WHERE eid='clermocj'"))
-.then(results => console.table(results.rows))
-.catch(e => console.log(e))
-.finally(() => client.end())
-//method 2
+client.query(query, (err, res) => {
+  if(err) {
+    console.log(err)
+  } else {
+    console.table(res.rows)
+  }
+  client.end();
+})
