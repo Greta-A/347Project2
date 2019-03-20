@@ -1,35 +1,16 @@
-//var express = require("express");
-//var app     = express();
-//var path    = require("path");
-
-/////////////////////////////////////
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT || 5000
-
-express()
-  .use(express.static(path.join(__dirname, '/public')))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('/public/index.html'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-/////////////////////////////////////
-
-//app.use(express.static(__dirname + '/public'));
-
-/**
-app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/public/index.html'));
-});
-
-app.listen(3000);
-
-console.log("Running at Port 3000");
-*/
+const {Client} = require('pg');
+var ejs = require('ejs');
+var bodyParser = require('body-parser');
+var app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+const PORT = process.env.PORT || 3000
 
 /////////////////////////////////////
 //postgres
 // const Client = require('pg').Client
-const {Client} = require('pg') //Same thing^
+ //Same thing^
 const client = new Client({
   user: "mvmhdzizvrkbcs",
   password: "2a2888413688b8b8e1f623fee3b9ed4e770ef17e953057b4b0cf43de00cfa292",
@@ -38,6 +19,28 @@ const client = new Client({
   database: "d1rs8bbufqm7hh",
   ssl: true
 })
+
+// app.use(express.static(__dirname + '/public/'));
+app.use(bodyParser.json());
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.use('/js', express.static(path.join(__dirname, '/public/js')));
+app.use('/css', express.static(path.join(__dirname, '/public/css')));
+app.use(express.static(path.join(__dirname, '/public/views')));
+app.set('views', __dirname + '/public/views');
+
+app.get('/', function(req, res) {
+  res.render('views/index.html');
+});
+
+app.post('/course_list.html', function(req, res) {
+  var eid = req.body.EID;
+  console.log(eid);
+  res.render('course_list.html');
+  res.end();
+});
+
+app.listen(PORT);
 
 //2 methods for connecting
 //method 1
@@ -48,7 +51,3 @@ client.connect()
 .catch(e => console.log(e))
 .finally(() => client.end())
 //method 2
-
-/////////////////////////////////////
-// "SELECT * FROM users WHERE eid='clermocj'"
-// "INSERT INTO users (eid, name, password, role) VALUES ('sttester', 'student tester', 'password', 0);"

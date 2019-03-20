@@ -15,7 +15,7 @@ header {
   padding: 10px;
 }
 
-#sign_up button {
+.sign_up button {
   cursor: pointer;
   padding: 10px;
 }

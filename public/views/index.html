@@ -13,7 +13,7 @@
     </header>
     <div id="log_in">
     <h1> Login </h1>
-      <form action="course_list.html" id="general_sign_in">
+      <form action="course_list.html" id="general_sign_in" method="post">
         <p><input type="text" name="EID" placeholder="EID"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
         <p><button type="submit" id="login_button">Login</button></p>
@@ -36,7 +36,7 @@
     <br>
     <span id="result"></span>
     <div hidden id="student_sign_up">
-      <form action="course_list.html" id="sign_up">
+      <form action="course_list.html" class="sign_up" method="post">
         <p><input type="text" name="name" placeholder="Name"></p>
         <p><input type="text" name="EID" placeholder="EID"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
@@ -44,7 +44,7 @@
       </form>
     </div>
     <div hidden id="ta_sign_up">
-      <form action="course_list.html" id="sign_up">
+      <form action="course_list.html" class="sign_up" method="post">
         <p><input type="text" name="name" placeholder="Name"></p>
         <p><input type="text" name="EID" placeholder="EID"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
@@ -52,7 +52,7 @@
       </form>
     </div>
     <div hidden id="professor_sign_up">
-      <form action="course_list.html" id="sign_up">
+      <form action="course_list.html" class="sign_up" method="post">
         <p><input type="text" name="name" placeholder="Name"></p>
         <p><input type="text" name="EID" placeholder="EID"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
