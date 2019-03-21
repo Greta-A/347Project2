@@ -14,7 +14,7 @@
     <div id="log_in">
     <h1> Login </h1>
       <form action="course_list.html" id="general_sign_in" method="post">
-        <p><input type="text" name="EID" placeholder="EID"></p>
+        <p><input type="text" name="eid" placeholder="EID"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
         <p><button type="submit" id="login_button">Login</button></p>
       </form>
@@ -38,15 +38,16 @@
     <div hidden id="student_sign_up">
       <form action="course_list.html" class="sign_up" method="post">
         <p><input type="text" name="name" placeholder="Name"></p>
-        <p><input type="text" name="EID" placeholder="EID"></p>
+        <p><input type="text" name="eid" placeholder="EID"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
+        <p><input type="hidden" name=role value="0"></p>
         <p><button type="submit" class="sign_up_button">Sign Up</button></p>
       </form>
     </div>
     <div hidden id="ta_sign_up">
       <form action="course_list.html" class="sign_up" method="post">
         <p><input type="text" name="name" placeholder="Name"></p>
-        <p><input type="text" name="EID" placeholder="EID"></p>
+        <p><input type="text" name="eid" placeholder="EID"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
         <p><button type="submit" class="sign_up_button">Sign Up</button></p>
       </form>
@@ -54,7 +55,7 @@
     <div hidden id="professor_sign_up">
       <form action="course_list.html" class="sign_up" method="post">
         <p><input type="text" name="name" placeholder="Name"></p>
-        <p><input type="text" name="EID" placeholder="EID"></p>
+        <p><input type="text" name="eid" placeholder="EID"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
         <p><button type="submit" class="sign_up_button">Sign Up</button></p>
       </form>

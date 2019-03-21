@@ -34,6 +34,7 @@ app.get('/', function(req, res) {
 });
 
 exports.app = app;
+exports.client = client;
 var index = require(__dirname + '/public/js/index.js');
 index.data.loginFormPost();
 
