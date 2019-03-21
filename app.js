@@ -33,12 +33,16 @@ app.get('/', function(req, res) {
   res.render('views/index.html');
 });
 
-app.post('/course_list.html', function(req, res) {
-  var eid = req.body.EID;
-  console.log(eid);
-  res.render('course_list.html');
-  res.end();
-});
+exports.app = app;
+var index = require(__dirname + '/public/js/index.js');
+index.data.print();
+
+// app.post('/course_list.html', function(req, res) {
+//   var eid = req.body.EID;
+//   console.log(eid);
+//   res.render('course_list.html');
+//   res.end();
+// });
 
 app.listen(PORT);
 
