@@ -35,14 +35,7 @@ app.get('/', function(req, res) {
 
 exports.app = app;
 var index = require(__dirname + '/public/js/index.js');
-index.data.print();
-
-// app.post('/course_list.html', function(req, res) {
-//   var eid = req.body.EID;
-//   console.log(eid);
-//   res.render('course_list.html');
-//   res.end();
-// });
+index.data.loginFormPost();
 
 app.listen(PORT);
 

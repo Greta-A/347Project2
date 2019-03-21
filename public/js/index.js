@@ -1,9 +1,9 @@
 var main = require('../../app.js');
 var methods = {
-  print: function()
+  loginFormPost: function()
    {
-    console.log("in index.js");
     var app = main.app;
+    console.log("in index.js");
     app.post('/course_list.html', function(req, res) {
       var eid = req.body.EID;
       console.log(eid);
