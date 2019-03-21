@@ -47,18 +47,18 @@ index.data.loginFormPost();
 app.listen(PORT);
 
 //2 methods for connecting
-var query = {
-  name: 'get-carl',
-  text: 'SELECT * FROM users WHERE eid = $1',
-  values: ['clermocj']
-}
+// var query = {
+//   name: 'get-carl',
+//   text: 'SELECT * FROM users WHERE eid = $1',
+//   values: ['clermocj']
+// }
 
-client.connect()
-client.query(query, (err, res) => {
-  if(err) {
-    console.log(err)
-  } else {
-    console.table(res.rows)
-  }
-  client.end();
-})
+// client.connect()
+// client.query(query, (err, res) => {
+//   if(err) {
+//     console.log(err)
+//   } else {
+//     console.table(res.rows)
+//   }
+//   client.end();
+// })
