@@ -1,4 +1,6 @@
+//make app.js known to index.js
 var main = require('../../app.js');
+// list methods available to app.js
 var methods = {
   loginFormPost: function()
    {
@@ -24,6 +26,7 @@ var methods = {
   }
 }
 
+// send method list to app.js using export
 exports.data = methods;
 
 
