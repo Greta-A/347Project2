@@ -36,29 +36,15 @@ app.get('/', function(req, res) {
   res.render('views/index.html');
 });
 
+
+//client.connect();
+exports.client = client;
+
 //share app variable to index.js
 exports.app = app;
-exports.client = client;
 // make index.js known to app.js
 var index = require(__dirname + '/public/js/index.js');
 // call loginFormPost method
 index.data.loginFormPost();
 
 app.listen(PORT);
-
-//2 methods for connecting
-// var query = {
-//   name: 'get-carl',
-//   text: 'SELECT * FROM users WHERE eid = $1',
-//   values: ['clermocj']
-// }
-
-// client.connect()
-// client.query(query, (err, res) => {
-//   if(err) {
-//     console.log(err)
-//   } else {
-//     console.table(res.rows)
-//   }
-//   client.end();
-// })
