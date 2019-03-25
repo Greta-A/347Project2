@@ -9,6 +9,8 @@ var methods = {
     var app = main.app;
     app.post('/course_list.html', function(req, res) {
       var role = req.body.role;
+      var pass = req.body.password;
+      var eid = req.body.eid;
       // console.log("role = " + role)
       switch(role)
       {
@@ -20,7 +22,7 @@ var methods = {
           break;
         default:
           console.log("about to login")
-          login();
+          login(eid, pass, res);
       }
     });
   }
@@ -54,7 +56,30 @@ function addToDB(req, client, response)
 
 //client.end()???
 
-function login()
+function login(eid, password, response)
 {
+  var authenticateUser = {
+  name: 'authenticate-user',
+  text: 'SELECT password FROM users WHERE eid = $1::text',
+  values: [eid],
+  rowMode: 'array'
+  }
 
+  client.query(authenticateUser, (err,res) => {
+    if (err)
+    {
+      console.log(err)
+    }
+    else {
+      if (password != res.rows[0])
+      {
+        // not equal passwords
+         response.end()
+      }
+      else {
+        response.render('course_list.html')
+        response.end()
+      }
+    }
+  })
 }
