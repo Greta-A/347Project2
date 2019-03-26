@@ -44,6 +44,7 @@ exports.client = client;
 exports.app = app;
 // make index.js known to app.js
 var index = require(__dirname + '/public/js/index.js');
+var courses = require(__dirname + '/public/js/index.js');
 // call loginFormPost method
 index.data.loginFormPost();
 

@@ -40,10 +40,13 @@ function addToDB(req, client, response)
     values: [req.body.eid, req.body.name, req.body.password, req.body.role]
   }
 
+  var json;
+
   client.query(query, (err, res) => {
     if (err)
     {
       //failed
+      response.render('index.html')
       response.end()
     }
     else {
@@ -74,6 +77,7 @@ function login(eid, password, response)
       if (password != res.rows[0])
       {
         // not equal passwords
+         response.render('index.html')
          response.end()
       }
       else {
