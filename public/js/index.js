@@ -61,6 +61,7 @@ function addToDB(req, client, response)
 
 function login(eid, password, response)
 {
+  //Unsafe. We not this is not hashed or safe. Just use the password 'password' or something
   var authenticateUser = {
   name: 'authenticate-user',
   text: 'SELECT password FROM users WHERE eid = $1::text',
@@ -81,7 +82,10 @@ function login(eid, password, response)
          response.end()
       }
       else {
-        response.render('course_list.html')
+        //Dont need to do this
+        //response.json({eid: clermocj, role: 1,});
+        var data = { eid: eid};
+        response.render('course_list.ejs', {data})
         response.end()
       }
     }
