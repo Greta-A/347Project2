@@ -21,7 +21,6 @@ var methods = {
           addToDB(req, client, res);
           break;
         default:
-          console.log("about to login")
           login(eid, pass, res);
       }
     });
@@ -85,7 +84,10 @@ function login(eid, password, response)
         //Dont need to do this
         //response.json({eid: clermocj, role: 1,});
         var data = { eid: eid};
+        exports.eid = eid;
+        var courses = require('./course_list_back.js');
         response.render('course_list.ejs', {data})
+        courses.data.parseEid();
         response.end()
       }
     }
