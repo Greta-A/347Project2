@@ -100,6 +100,7 @@ function login(eid, password, response)
             var id = eid;
             var courses = require('./course_list_back.js');
             response.render('course_list.ejs', {eid:id, role:role});
+            courses.data.loadUsersCourses();
             courses.data.loadCourseList();
             response.end()
           }
