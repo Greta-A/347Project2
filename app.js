@@ -1,12 +1,11 @@
 // requirements //
-const express = require('express')
+const express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
 const path = require('path')
 const {Client} = require('pg');
 var ejs = require('ejs');
 // allows post request to see form fields //
-var bodyParser = require('body-parser');
-var app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 3000
 
 /////////////////////////////////////
@@ -22,6 +21,7 @@ const client = new Client({
 })
 
 // set up for app variable //
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -43,9 +43,8 @@ exports.client = client;
 exports.app = app;
 // make index.js known to app.js
 var index = require(__dirname + '/public/js/index.js');
-// var courses = require(__dirname + '/public/js/course_list_back.js');
+//var courses = require(__dirname + '/public/js/course_list_back.js');
 // call loginFormPost method
 index.data.loginFormPost();
-// courses.data.parseEid();
 
 app.listen(PORT);

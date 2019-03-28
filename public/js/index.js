@@ -98,11 +98,13 @@ function login(eid, password, response)
           else {
             var role = res.rows[0];
             var id = eid;
+            exports.role = role;
             var courses = require('./course_list_back.js');
             response.render('course_list.ejs', {eid:id, role:role});
+            response.end();
+            courses.data.createCoursePost();
             courses.data.loadUsersCourses();
             courses.data.loadCourseList();
-            response.end()
           }
         })
       }

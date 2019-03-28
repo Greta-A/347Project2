@@ -3,15 +3,26 @@ var main = require('../../app.js');
 var index = require('./index.js');
 var client = main.client;
 var eid = index.eid;
+var role = index.role;
 //client.connect()
 
+
 var methods = {
+  createCoursePost: function()
+  {
+    var app = main.app;
+    app.post('/course_list', function(req, res) {
+      var courseID = req.body.classID;
+      var courseName = req.body.className;
+      addCourse(courseID, courseName);
+    });
+  },
 
   //loads the courses that the user is in.
   loadUsersCourses: function()
   {
     /*
-     * gets all the course IDs from users_to_courses 
+     * gets all the course IDs from users_to_courses
      * that have the same eid. (ex: [[444], [240]]).
      */
     getUsersCourses(function(err,usersCoursesIDs)
@@ -22,7 +33,7 @@ var methods = {
        */
       var usersCourses = [];
       getCoursesWithName(usersCourses, usersCoursesIDs, function(err, courses)
-      { 
+      {
         console.log(courses);
         /*
          * TODO: Parse and add courses to DOM.
@@ -37,16 +48,31 @@ var methods = {
   {
     /*
      * Will have to get all the courses from the db
-     * then filter out the ones in the user's course list. 
+     * then filter out the ones in the user's course list.
      * (which may re use methods and structure from loadUsersCourses())
      */
-  
-  },
 
-  addCourse:function()
-  {
-    //adds a course to the db.
   }
+}
+
+function addCourse(id, name)
+{
+  //adds a course to the db.
+  var addCourse = {
+    name: 'add-course',
+    text: 'INSERT INTO courses(course_id, course_name) values ($1, $2)',
+    values: [id, name]
+  }
+  client.query(addCourse, (err, res) => {
+    if (err)
+    {
+        console.log(err);
+    }
+    else {
+      // unique, single PKs
+      console.table(res.rows);
+    }
+  });
 }
 
 function getUsersCourses(callback)
@@ -57,7 +83,7 @@ function getUsersCourses(callback)
     values: [index.eid],
     rowMode: 'array'
   }
-  client.query(query, (err,res) => 
+  client.query(query, (err,res) =>
   {
     if (err)
     {
@@ -65,7 +91,7 @@ function getUsersCourses(callback)
     }
     else {
       // console.log(res.rows);
-      return callback(err, res.rows); 
+      return callback(err, res.rows);
     }
   })
 }
@@ -83,7 +109,7 @@ function getCoursesWithName(usersCourses, usersCoursesIDs, callback)
       rowMode: 'array'
     }
     //
-    client.query(getCourses, (err,res) => 
+    client.query(getCourses, (err,res) =>
     {
       if (err)
       {

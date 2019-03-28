@@ -35,6 +35,7 @@ function displayCreateForm()
 
 function createCourse()
 {
+  console.log("in create Course");
   var id = document.getElementById("class_ID").value;
   var name = document.getElementById("class_name").value;
   var new_course = document.createElement("button");
@@ -49,6 +50,6 @@ function createCourse()
   var list = document.getElementById("available_courses");
   list.appendChild(new_course);
   displayCreateForm();
-  document.getElementById("class_ID").value = "";
-  document.getElementById("class_name").value = "";
+  //document.getElementById("class_ID").value = "";
+  //document.getElementById("class_name").value = "";
 }
