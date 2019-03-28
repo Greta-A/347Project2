@@ -1,18 +1,3 @@
-var role = document.getElementById("user_role").innerHTML;
-  if (role == 0)
-  {
-    document.getElementById("0").selected = true;
-  }
-  if (role == 1)
-  {
-    document.getElementById("1").selected = true;
-  }
-
-  if (role == 2)
-  {
-    document.getElementById("2").selected = true;
-  }
-
 function showCourses()
 {
   var x = document.getElementById("hidden_course_list");

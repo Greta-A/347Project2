@@ -3,11 +3,6 @@ var roleValues = [0,1,2]
 // create the string classname for that role
 //var currentClass = urlParams.get('role');
 //
-//if there is not string query default to student
- // if(currentClass === null)
- // {
- //     currentClass = 0;
- // }
 
  var currentClass = document.getElementById("user_role").innerHTML;
  showHide(currentClass);
@@ -37,20 +32,3 @@ function showHide(value)
         }
     }
 }
-
-//event listener
-// document.getElementById("role-selector")
-//     .addEventListener("change", function (event) {
-//         console.log("event", event);
-//         showHide(classToRoleLevel(event.target.value))});
-
-
-//showHide(classToRoleLevel(document.getElementById("role-selector").value));
-
-function classToRoleLevel (stringClass) {
-    // "role-0" => 0
-    return stringClass.split("-")[1]
-}
-
-
-//showHide(currentClass);
