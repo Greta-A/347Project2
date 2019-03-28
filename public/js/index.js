@@ -68,6 +68,13 @@ function login(eid, password, response)
   rowMode: 'array'
   }
 
+  var retrieveRole = {
+  name: 'retrieve-role',
+  text: 'SELECT role FROM users WHERE eid = $1::text',
+  values: [eid],
+  rowMode: 'array'
+  }
+
   client.query(authenticateUser, (err,res) => {
     if (err)
     {
@@ -82,13 +89,21 @@ function login(eid, password, response)
       }
       else {
         //Dont need to do this
-        //response.json({eid: clermocj, role: 1,});
-        var data = { eid: eid};
         exports.eid = eid;
-        var courses = require('./course_list_back.js');
-        response.render('course_list.ejs', {data})
-        courses.data.parseEid();
-        response.end()
+        client.query(retrieveRole, (err, res) => {
+          if (err)
+          {
+            console.log(err);
+          }
+          else {
+            var role = res.rows[0];
+            var id = eid;
+            var courses = require('./course_list_back.js');
+            response.render('course_list.ejs', {eid:id, role:role});
+            courses.data.loadCourseList();
+            response.end()
+          }
+        })
       }
     }
   })

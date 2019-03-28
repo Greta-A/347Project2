@@ -6,9 +6,9 @@ var eid = index.eid;
 //client.connect()
 
 var methods = {
-  parseEid: function()
+  loadCourseList: function()
   {
-    
+
   }
 }
 

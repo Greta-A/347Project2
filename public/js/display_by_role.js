@@ -1,13 +1,17 @@
-var urlParams = new URLSearchParams(location.search);
+//var urlParams = new URLSearchParams(location.search);
 var roleValues = [0,1,2]
 // create the string classname for that role
-var currentClass = urlParams.get('role');
-
+//var currentClass = urlParams.get('role');
+//
 //if there is not string query default to student
-if(currentClass === null)
-{
-    currentClass = 0;
-}
+ // if(currentClass === null)
+ // {
+ //     currentClass = 0;
+ // }
+
+ var currentClass = document.getElementById("user_role").innerHTML;
+ showHide(currentClass);
+
 
 //show and hids based on value (0,1,2)
 function showHide(value)
@@ -21,7 +25,7 @@ function showHide(value)
         // debugger
         // if we have selected the currentRole of the loop in our dropdown
         // >= would allow teacher to see student elements, and etc.
-        // if (classToRoleLevel(event.target.value) >= possibleRoleVal) { 
+        // if (classToRoleLevel(event.target.value) >= possibleRoleVal) {
         if (value == possibleRoleVal) {
             // add the class "showing" (and remove the class "hidden")
             elements.forEach(elem => elem.classList.remove("hidden"))
@@ -35,10 +39,13 @@ function showHide(value)
 }
 
 //event listener
-document.getElementById("role-selector")
-    .addEventListener("change", function (event) {
-        console.log("event", event);
-        showHide(classToRoleLevel(event.target.value))});
+// document.getElementById("role-selector")
+//     .addEventListener("change", function (event) {
+//         console.log("event", event);
+//         showHide(classToRoleLevel(event.target.value))});
+
+
+//showHide(classToRoleLevel(document.getElementById("role-selector").value));
 
 function classToRoleLevel (stringClass) {
     // "role-0" => 0
@@ -46,4 +53,4 @@ function classToRoleLevel (stringClass) {
 }
 
 
-showHide(currentClass);
+//showHide(currentClass);

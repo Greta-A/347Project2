@@ -7,10 +7,6 @@
     <link rel="stylesheet" type="text/css" href="css/course_list_style.css">
   </head>
   <body class="courses">
-
-    <!-- eid    style="display:none;" -->
-    <!-- <p id="eid" ><%= data.eid%></p> -->
-
     <header>
       <h2>JAMES MADISON UNIVERSITY</h2>
     </header>
@@ -19,11 +15,12 @@
         <li><a href="index.html">Sign Out</a></li>
       </ul>
     </div>
-    <h4 id="eid">Welcome, <%= data.eid%></h4>
-    <select name="role" id="role-selector">
-      <option value="role-0">Student</option>
-      <option value="role-1">TA</option>
-      <option value="role-2">Admin</option>
+    <h4 id="eid">Welcome, <%= eid%></h4>
+    <p style="display:none;" id="user_role" ><%= role%></p>
+    <select style="display:none;" name="role" id="role-selector">
+      <option value="role-0" id="0">Student</option>
+      <option value="role-1" id="1">TA</option>
+      <option value="role-2" id="2">Admin</option>
     </select>
     <h1>Your Course List</h1>
     <form action="calendar.html" id="chooseCourse">
