@@ -104,7 +104,7 @@ function login(eid, password, response)
             response.end();
             courses.data.createCoursePost();
             courses.data.loadUsersCourses();
-            courses.data.loadCourseList();
+            //courses.data.loadCourseList();
           }
         })
       }

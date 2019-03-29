@@ -14,7 +14,7 @@ var methods = {
     app.post('/course_list', function(req, res) {
       var courseID = req.body.classID;
       var courseName = req.body.className;
-      addCourse(courseID, courseName);
+      addCourse(courseID, courseName, res);
     });
   },
 
@@ -44,18 +44,18 @@ var methods = {
 
   //loads additional courses into users addable list.
   //all courses - user's courses = addable courses.
-  loadCourseList: function()
-  {
-    /*
-     * Will have to get all the courses from the db
-     * then filter out the ones in the user's course list.
-     * (which may re use methods and structure from loadUsersCourses())
-     */
-
-  }
+  // loadCourseList: function()
+  // {
+  //   /*
+  //    * Will have to get all the courses from the db
+  //    * then filter out the ones in the user's course list.
+  //    * (which may re use methods and structure from loadUsersCourses())
+  //    */
+  //
+  // }
 }
 
-function addCourse(id, name)
+function addCourse(id, name, response)
 {
   //adds a course to the db.
   var addCourse = {
@@ -69,10 +69,15 @@ function addCourse(id, name)
         console.log(err);
     }
     else {
-      // unique, single PKs
-      console.table(res.rows);
+      //added course to database successfully
+      loadCourseList(id, name, response);
     }
   });
+}
+
+function loadCourseList(id, name, response)
+{
+  response.json({"id": id});
 }
 
 function getUsersCourses(callback)
@@ -93,7 +98,7 @@ function getUsersCourses(callback)
       // console.log(res.rows);
       return callback(err, res.rows);
     }
-  })
+  });
 }
 
 function getCoursesWithName(usersCourses, usersCoursesIDs, callback)
