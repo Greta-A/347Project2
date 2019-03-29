@@ -48,7 +48,7 @@ var methods = {
       var usersCourses = [];
       getCoursesWithName(usersCourses, usersCoursesIDs, function(err, courses)
       {
-        console.log(courses);
+        // console.log(courses);
         /*
          * TODO: Parse and add courses to DOM.
          */
@@ -59,6 +59,10 @@ var methods = {
   {
     var app = main.app;
     app.get('/availableCourses', function(req, res) {
+    getAllCourses(function(err, res)
+    {
+      console.log(res);
+    })
           //ask database for my Courses
           // res.json({
           //   id: id,
@@ -149,6 +153,26 @@ function getCoursesWithName(usersCourses, usersCoursesIDs, callback)
       }
     })
 
+}
+
+function getAllCourses(callback)
+{
+  var query = {
+    name: 'getAllCourses',
+    text: 'SELECT * FROM courses',
+    rowMode: 'array'
+  }
+  client.query(query, (err,res) =>
+  {
+    if (err)
+    {
+      console.log(err)
+    }
+    else {
+      // console.log(res.rows);
+      return callback(err, res.rows);
+    }
+  });
 }
 
 exports.data = methods;
