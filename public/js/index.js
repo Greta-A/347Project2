@@ -103,6 +103,7 @@ function login(eid, password, response)
             response.render('course_list.ejs', {eid:id, role:role});
             response.end();
             courses.data.createCoursePost();
+            courses.data.listAvailableCourses();
             courses.data.loadUsersCourses();
             //courses.data.loadCourseList();
           }

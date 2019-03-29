@@ -53,3 +53,22 @@ function createCourse()
   //document.getElementById("class_ID").value = "";
   //document.getElementById("class_name").value = "";
 }
+
+// function getMyCourses() {
+//   fetch('/course_list')
+//     .then(response => {
+//       document.getElementById("picked_courses").
+//       //append to picked courses
+//     })
+// }
+//
+// function newCourseHTML(id, desc) {
+//   let li = createElement("li");
+//   let button = createElement("button");
+//   let idSpan = createElement("span");
+//   //fill idSpan inner HTML
+//   let nameSpan = createElement("span");
+//   //fill nameSpan inner html with param
+//   //append to li
+//   //   <li><button <div id="CS149" class="course" type="submit">CS149<br><br>Programming Fundamentals</button></li>
+// }

@@ -18,12 +18,12 @@
     <h4 id="eid">Welcome, <%= eid%></h4>
     <p style="display:none;" id="user_role" ><%= role%></p>
     <h1>Your Course List</h1>
-    <form action="calendar.html" id="chooseCourse">
+    <!-- <form action="calendar.html" id="chooseCourse"> -->
       <ul id="picked_courses">
-      <li><button <div id="CS149" class="course" type="submit">CS149<br><br>Programming Fundamentals</button></li>
+      <li><button id="CS149" class="course" type="submit">CS149<br><br>Programming Fundamentals</button></li>
       </ul>
-      <button id="add" type="button" onclick="showCourses()">+</button>
-    </form>
+      <form action="availableCourses" method="get"><button id="add" type="submit" onclick="showCourses()">+</button></form>
+    <!-- </form> -->
     <div style="display:none;" id="hidden_course_list">
       <h2> Available Courses </h2>
       <ul id="available_courses">

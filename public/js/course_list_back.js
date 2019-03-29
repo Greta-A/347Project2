@@ -6,17 +6,31 @@ var eid = index.eid;
 var role = index.role;
 //client.connect()
 
+var courseID;
+var courseName;
 
 var methods = {
   createCoursePost: function()
   {
     var app = main.app;
     app.post('/course_list', function(req, res) {
-      var courseID = req.body.classID;
-      var courseName = req.body.className;
-      addCourse(courseID, courseName, res);
+      courseID = req.body.classID;
+      courseName = req.body.className;
+      addCourse(courseID, courseName);
     });
   },
+   // listCourses: function()
+   //  {
+   //    var app = main.app;
+   //    app.get('/course_list', function(req, res) {
+   //      //ask database for my Courses
+   //      // res.json(myCourses)
+   //      res.json({
+   //        name: "Webdev",
+   //        number: "CS347"
+   //      })
+   //    });
+    //},
 
   //loads the courses that the user is in.
   loadUsersCourses: function()
@@ -41,6 +55,17 @@ var methods = {
       })
     })
   },
+  listAvailableCourses: function()
+  {
+    var app = main.app;
+    app.get('/availableCourses', function(req, res) {
+          //ask database for my Courses
+          // res.json({
+          //   id: id,
+          //   name: name
+          // })
+    });
+  }
 
   //loads additional courses into users addable list.
   //all courses - user's courses = addable courses.
@@ -55,7 +80,8 @@ var methods = {
   // }
 }
 
-function addCourse(id, name, response)
+
+function addCourse(id, name)
 {
   //adds a course to the db.
   var addCourse = {
@@ -70,14 +96,8 @@ function addCourse(id, name, response)
     }
     else {
       //added course to database successfully
-      loadCourseList(id, name, response);
     }
   });
-}
-
-function loadCourseList(id, name, response)
-{
-  response.json({"id": id});
 }
 
 function getUsersCourses(callback)
