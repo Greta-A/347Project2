@@ -7,7 +7,6 @@ function showCourses(ev)
     })
     .then(function(jsonResponse) {
       listCoursesInHTML(jsonResponse);
-      //console.log(jsonResponse[0].course_id);
     });
   var x = document.getElementById("hidden_course_list");
   if (x.style.display === "none")
@@ -44,39 +43,15 @@ function displayCreateForm()
 
 function createCourse()
 {
-  console.log("in create Course");
-  var id = document.getElementById("class_ID").value;
-  var name = document.getElementById("class_name").value;
-  var new_course = document.createElement("button");
-  new_course.setAttribute('class', 'course');
-  new_course.setAttribute('id', id);
-  var br = document.createElement("br");
-  new_course.innerHTML = id + "<br />";
-  new_course.appendChild(br);
-  new_course.innerHTML += name;
-  new_course.type = "button";
-  new_course.addEventListener("click", function(e) {addCourse(e)});
-  var list = document.getElementById("available_courses");
-  list.appendChild(new_course);
   displayCreateForm();
-  //document.getElementById("class_ID").value = "";
-  //document.getElementById("class_name").value = "";
 }
 
-// function getMyCourses() {
-//   fetch('/course_list')
-//     .then(response => {
-//       document.getElementById("picked_courses").
-//       //append to picked courses
-//     })
-// }
-//
 function listCoursesInHTML(jsonData) {
   var allCourses = document.getElementById("available_courses").getElementsByTagName("li");
   var leng = allCourses.length;
   if (jsonData.length > leng)
   {
-    for (var i=0; i < jsonData.length; i++)
+    for (var i=leng; i < jsonData.length; i++)
     {
       var id = jsonData[i].course_id;
       var desc = jsonData[i].course_name;
@@ -93,11 +68,6 @@ function listCoursesInHTML(jsonData) {
       li.appendChild(button);
       var list = document.getElementById("available_courses");
       list.appendChild(li);
-      //list.appendChild(button);
     }
   }
-
-  //fill nameSpan inner html with param
-  //append to li
-  //   <li><button <div id="CS149" class="course" type="submit">CS149<br><br>Programming Fundamentals</button></li>
 }
