@@ -1,9 +1,18 @@
-function showCourses()
+function showCourses(ev)
 {
+  ev.preventDefault();
+  fetch("/availableCourses")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(jsonResponse) {
+      listCoursesInHTML(jsonResponse);
+      //console.log(jsonResponse[0].course_id);
+    });
   var x = document.getElementById("hidden_course_list");
   if (x.style.display === "none")
   {
-    x.style.display = "inline-block";
+    x.style.display = "block";
   }
   else
   {
@@ -62,13 +71,33 @@ function createCourse()
 //     })
 // }
 //
-// function newCourseHTML(id, desc) {
-//   let li = createElement("li");
-//   let button = createElement("button");
-//   let idSpan = createElement("span");
-//   //fill idSpan inner HTML
-//   let nameSpan = createElement("span");
-//   //fill nameSpan inner html with param
-//   //append to li
-//   //   <li><button <div id="CS149" class="course" type="submit">CS149<br><br>Programming Fundamentals</button></li>
-// }
+function listCoursesInHTML(jsonData) {
+  var allCourses = document.getElementById("available_courses").getElementsByTagName("li");
+  var leng = allCourses.length;
+  if (jsonData.length > leng)
+  {
+    for (var i=0; i < jsonData.length; i++)
+    {
+      var id = jsonData[i].course_id;
+      var desc = jsonData[i].course_name;
+      var li = document.createElement("li");
+      var button = document.createElement("button");
+      var br = document.createElement("br");
+      button.setAttribute('class', 'course');
+      button.setAttribute('id', "CS"+id);
+      button.setAttribute('type', 'button');
+      button.addEventListener("click", function(e) {addCourse(e)});
+      button.innerHTML = "CS"+id +"<br />";
+      button.appendChild(br);
+      button.innerHTML += desc;
+      li.appendChild(button);
+      var list = document.getElementById("available_courses");
+      list.appendChild(li);
+      //list.appendChild(button);
+    }
+  }
+
+  //fill nameSpan inner html with param
+  //append to li
+  //   <li><button <div id="CS149" class="course" type="submit">CS149<br><br>Programming Fundamentals</button></li>
+}

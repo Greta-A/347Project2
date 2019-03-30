@@ -59,15 +59,12 @@ var methods = {
   {
     var app = main.app;
     app.get('/availableCourses', function(req, res) {
-    getAllCourses(function(err, res)
+    getAllCourses(function(err, response)
     {
-      console.log(res);
-    })
-          //ask database for my Courses
-          // res.json({
-          //   id: id,
-          //   name: name
-          // })
+      //send JSON object containing all available classes to client
+      res.json(response);
+      res.end();
+    });
     });
   }
 
@@ -157,11 +154,12 @@ function getCoursesWithName(usersCourses, usersCoursesIDs, callback)
 
 function getAllCourses(callback)
 {
+  // simple query to list all keys/values of courses table
   var query = {
     name: 'getAllCourses',
-    text: 'SELECT * FROM courses',
-    rowMode: 'array'
+    text: 'SELECT * FROM courses'
   }
+
   client.query(query, (err,res) =>
   {
     if (err)
