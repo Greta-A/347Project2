@@ -105,6 +105,7 @@ function login(eid, password, response)
             courses.data.createCoursePost();
             courses.data.listAvailableCourses();
             courses.data.loadUsersCourses();
+            courses.data.listPickedCourses();
             //courses.data.loadCourseList();
           }
         })

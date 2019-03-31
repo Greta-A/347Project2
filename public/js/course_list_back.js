@@ -66,8 +66,31 @@ var methods = {
       res.end();
     });
     });
-  }
+  },
 
+  listPickedCourses: function()
+  {
+    var app = main.app;
+    app.post('/pickedCourses', function(req, res) {
+
+      var addPickedCourse = {
+        name: 'add-picked-course',
+        text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
+        values: [eid, req.body.classNum]
+      }
+      client.query(addPickedCourse, (err,res) =>
+      {
+        if (err)
+        {
+          console.log(err)
+        }
+        else {
+          //return callback(err, res.rows);
+        }
+      });
+
+      });
+  }
   //loads additional courses into users addable list.
   //all courses - user's courses = addable courses.
   // loadCourseList: function()
@@ -167,7 +190,6 @@ function getAllCourses(callback)
       console.log(err)
     }
     else {
-      // console.log(res.rows);
       return callback(err, res.rows);
     }
   });

@@ -21,11 +21,13 @@ function showCourses(ev)
 
 function addCourse(e)
 {
+  document.getElementById("pickCourseForm").submit();
   var pickedList = document.getElementById("picked_courses");
-  pickedList.appendChild(e.target);
-  e.target.removeAttribute("onclick");
-  //creates a new onclick event which makes it work on a new click, not this click.
-  e.target.onclick = function() {e.target.type = "submit";};
+  // e.preventDefault();
+  // pickedList.appendChild(e.target);
+  // e.target.removeAttribute("onclick");
+  // //creates a new onclick event which makes it work on a new click, not this click.
+  // e.target.onclick = function() {e.target.type = "submit";};
 }
 
 function displayCreateForm()
@@ -55,17 +57,24 @@ function listCoursesInHTML(jsonData) {
     {
       var id = jsonData[i].course_id;
       var desc = jsonData[i].course_name;
+      var form = document.createElement("form");
+      form.setAttribute('action', 'pickedCourses');
+      form.setAttribute('method', 'post');
+      form.setAttribute('id', 'pickCourseForm');
       var li = document.createElement("li");
       var button = document.createElement("button");
       var br = document.createElement("br");
       button.setAttribute('class', 'course');
       button.setAttribute('id', "CS"+id);
-      button.setAttribute('type', 'button');
+      button.setAttribute('type', 'submit');
+      button.setAttribute('name', 'classNum');
+      button.setAttribute('value', id);
       button.addEventListener("click", function(e) {addCourse(e)});
       button.innerHTML = "CS"+id +"<br />";
       button.appendChild(br);
       button.innerHTML += desc;
-      li.appendChild(button);
+      form.appendChild(button);
+      li.appendChild(form);
       var list = document.getElementById("available_courses");
       list.appendChild(li);
     }
