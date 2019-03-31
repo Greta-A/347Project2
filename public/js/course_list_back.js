@@ -19,18 +19,6 @@ var methods = {
       addCourse(courseID, courseName);
     });
   },
-   // listCourses: function()
-   //  {
-   //    var app = main.app;
-   //    app.get('/course_list', function(req, res) {
-   //      //ask database for my Courses
-   //      // res.json(myCourses)
-   //      res.json({
-   //        name: "Webdev",
-   //        number: "CS347"
-   //      })
-   //    });
-    //},
 
   //loads the courses that the user is in.
   loadUsersCourses: function()
@@ -65,6 +53,10 @@ var methods = {
       res.json(response);
       res.end();
     });
+    });
+
+    app.get('/loadPickedCourses', function(req,res) {
+      // communicate with automatic page load get request
     });
   },
 

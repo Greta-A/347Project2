@@ -1,3 +1,12 @@
+fetch("/loadPickedCourses")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(jsonResponse) {
+    //communication with backend
+  });
+
+
 function showCourses(ev)
 {
   ev.preventDefault();
