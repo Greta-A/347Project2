@@ -10,54 +10,93 @@ var courseID;
 var courseName;
 
 var methods = {
-  createCoursePost: function()
+  listenOnCourseList: function()
   {
-    var app = main.app;
-    app.post('/course_list', function(req, res) {
-      courseID = req.body.classID;
-      courseName = req.body.className;
-      addCourse(courseID, courseName);
-    });
+      var app = main.app;
+      app.post('/course_list', function(req, res) {
+        courseID = req.body.classID;
+        courseName = req.body.className;
+        addCourse(courseID, courseName);
+      });
+
+      app.get('/availableCourses', function(req, res) {
+      getAllCourses(function(err, response)
+      {
+        //send JSON object containing all available classes to client
+        res.json(response);
+        res.end();
+      });
+      });
+
+      app.post('/pickedCourses', function(req, response) {
+        console.log(req.body.classNum);
+        var addPickedCourse = {
+          name: 'add-picked-course',
+          text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
+          values: [eid, req.body.classNum]
+        }
+        client.query(addPickedCourse, (err,res) =>
+        {
+          if (err)
+          {
+            console.log(err)
+          }
+          else {
+            //response.end();
+            //return callback(err, res.rows);
+          }
+        });
+
+      });
   },
 
   //loads the courses that the user is in.
   loadUsersCourses: function()
   {
-    /*
-     * gets all the course IDs from users_to_courses
-     * that have the same eid. (ex: [[444], [240]]).
-     */
-    getUsersCourses(function(err,usersCoursesIDs)
+    var app = main.app;
+    app.get('/loadPickedCourses', function(req, res) 
     {
       /*
-       * gets all the courses and expands them to the full course from the DB.
-       * (ex: [[444,'Artifical Intelligence'],[240,'Algorithms and Data Structures']])
+       * gets all the course IDs from users_to_courses
+       * that have the same eid. (ex: [[444], [240]]).
        */
-      var usersCourses = [];
-      getCoursesWithName(usersCourses, usersCoursesIDs, function(err, courses)
+      getUsersCourses(function(err,usersCoursesIDs)
       {
-        // console.log(courses);
         /*
-         * TODO: Parse and add courses to DOM.
+         * gets all the courses and expands them to the full course from the DB.
+         * (ex: [[444,'Artifical Intelligence'],[240,'Algorithms and Data Structures']])
          */
+        var usersCourses = [];
+        getCoursesWithName(usersCourses, usersCoursesIDs, function(err, courses)
+        {
+          console.log("get good")
+          console.log(courses);
+          res.json(courses);
+          res.end();
+          
+          /*
+           * TODO: Parse and add courses to DOM.
+           */
+        })
       })
-    })
+    });
+    
   },
   listAvailableCourses: function()
   {
     var app = main.app;
     app.get('/availableCourses', function(req, res) {
-    getAllCourses(function(err, response)
-    {
-      //send JSON object containing all available classes to client
-      res.json(response);
-      res.end();
-    });
+      getAllCourses(function(err, response)
+      {
+        //send JSON object containing all available classes to client
+        res.json(response);
+        res.end();
+      });
     });
 
-    app.get('/loadPickedCourses', function(req,res) {
-      // communicate with automatic page load get request
-    });
+    // app.get('/loadPickedCourses', function(req,res) {
+    //   // communicate with automatic page load get request
+    // });
   },
 
   listPickedCourses: function()
@@ -94,6 +133,26 @@ var methods = {
   //    */
   //
   // }
+}
+
+function printCourses(courses){
+  var app = main.app;
+  var pickArray = [];
+  for (var i = 0; i < courses.length; i++)
+  {
+    pickArray.push({"classID":courses[i][0]});
+  }
+  app.get('/loadPickedCourses', function(req,res) {
+    res.json(pickArray);
+    res.end();
+    // for (var i = 0; i < courses.length; i++)
+    // {
+    //   pickArray.push("classNum:" + courses[i]);
+    // }
+    // console.log(pickArray);
+    //res.json(courses);
+    // communicate with automatic page load get request
+  });
 }
 
 
@@ -147,7 +206,7 @@ function getCoursesWithName(usersCourses, usersCoursesIDs, callback)
       name: 'getCourses',
       text: 'SELECT * FROM courses WHERE course_id = $1',
       values: [usersCoursesIDs[0][0]],
-      rowMode: 'array'
+      // rowMode: 'array'
     }
     //
     client.query(getCourses, (err,res) =>

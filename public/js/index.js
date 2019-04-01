@@ -102,10 +102,8 @@ function login(eid, password, response)
             var courses = require('./course_list_back.js');
             response.render('course_list.ejs', {eid:id, role:role});
             response.end();
-            courses.data.createCoursePost();
-            courses.data.listAvailableCourses();
+            courses.data.listenOnCourseList();
             courses.data.loadUsersCourses();
-            courses.data.listPickedCourses();
             //courses.data.loadCourseList();
           }
         })
