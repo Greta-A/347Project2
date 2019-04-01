@@ -8,13 +8,10 @@ window.displayPicked = function()
     })
     .then(function(jsonResponse) {
       listUserCoursesInHTML(jsonResponse);//communication with backend
-
     })
     .catch(function(){
       console.log("Caught");
     });
-    console.log("in displayPicked");
-    //return true;
 }
 
 function showCourses(ev)
@@ -51,10 +48,6 @@ function displayCreateForm()
   }
 }
 
-function createCourse()
-{
-  displayCreateForm();
-}
 
 //loads courses for + button (all/addable courses)
 function listCoursesInHTML(jsonData) {
@@ -67,8 +60,6 @@ function listCoursesInHTML(jsonData) {
       var id = jsonData[i].course_id;
       var desc = jsonData[i].course_name;
       var form = document.createElement("form");
-      // form.onClick = "displayPicked()";
-      //form.addEventListener("click", function() {displayPicked()});
       form.setAttribute('action', 'pickedCourses');
       form.setAttribute('method', 'post');
       form.setAttribute('id', id+'Form');
@@ -83,12 +74,7 @@ function listCoursesInHTML(jsonData) {
       button.innerHTML = "CS"+id +"<br />";
       button.appendChild(br);
       button.innerHTML += desc;
-      // button.addEventListener("click", function() {
-      //   rememberButton(id, desc);
-      // })
-      //button.appendChild(form);
       form.appendChild(button);
-      //form.appendChild(button);
       li.appendChild(form);
       var list = document.getElementById("available_courses");
       list.appendChild(li);
@@ -96,19 +82,10 @@ function listCoursesInHTML(jsonData) {
   }
 }
 
-function rememberButton(id, desc)
-{
-  document.getElementById(id+"Form").submit();
-  location.reload();
-  displayPicked();
-}
-
 //lists user's courses.
 function listUserCoursesInHTML(jsonResponse)
 {
   console.log(jsonResponse);
-  console.log(jsonResponse[0].course_id);
-  // alert(jsonResponse);
 }
 
 displayPicked()

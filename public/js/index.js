@@ -103,8 +103,6 @@ function login(eid, password, response)
             response.render('course_list.ejs', {eid:id, role:role});
             response.end();
             courses.data.listenOnCourseList();
-            courses.data.loadUsersCourses();
-            //courses.data.loadCourseList();
           }
         })
       }
