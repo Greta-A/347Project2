@@ -10,14 +10,44 @@ var courseID;
 var courseName;
 
 var methods = {
-  createCoursePost: function()
+  listenOnCourseList: function()
   {
-    var app = main.app;
-    app.post('/course_list', function(req, res) {
-      courseID = req.body.classID;
-      courseName = req.body.className;
-      addCourse(courseID, courseName);
-    });
+      var app = main.app;
+      app.post('/course_list', function(req, res) {
+        courseID = req.body.classID;
+        courseName = req.body.className;
+        addCourse(courseID, courseName);
+      });
+
+      app.get('/availableCourses', function(req, res) {
+      getAllCourses(function(err, response)
+      {
+        //send JSON object containing all available classes to client
+        res.json(response);
+        res.end();
+      });
+      });
+
+      app.post('/pickedCourses', function(req, response) {
+        console.log(req.body.classNum);
+        var addPickedCourse = {
+          name: 'add-picked-course',
+          text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
+          values: [eid, req.body.classNum]
+        }
+        client.query(addPickedCourse, (err,res) =>
+        {
+          if (err)
+          {
+            console.log(err)
+          }
+          else {
+            //response.end();
+            //return callback(err, res.rows);
+          }
+        });
+
+      });
   },
 
   //loads the courses that the user is in.
@@ -36,53 +66,14 @@ var methods = {
       var usersCourses = [];
       getCoursesWithName(usersCourses, usersCoursesIDs, function(err, courses)
       {
-        // console.log(courses);
+        //console.log(courses);
+        printCourses(courses);
         /*
          * TODO: Parse and add courses to DOM.
          */
       })
     })
   },
-  listAvailableCourses: function()
-  {
-    var app = main.app;
-    app.get('/availableCourses', function(req, res) {
-    getAllCourses(function(err, response)
-    {
-      //send JSON object containing all available classes to client
-      res.json(response);
-      res.end();
-    });
-    });
-
-    app.get('/loadPickedCourses', function(req,res) {
-      // communicate with automatic page load get request
-    });
-  },
-
-  listPickedCourses: function()
-  {
-    var app = main.app;
-    app.post('/pickedCourses', function(req, res) {
-
-      var addPickedCourse = {
-        name: 'add-picked-course',
-        text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
-        values: [eid, req.body.classNum]
-      }
-      client.query(addPickedCourse, (err,res) =>
-      {
-        if (err)
-        {
-          console.log(err)
-        }
-        else {
-          //return callback(err, res.rows);
-        }
-      });
-
-      });
-  }
   //loads additional courses into users addable list.
   //all courses - user's courses = addable courses.
   // loadCourseList: function()
@@ -94,6 +85,26 @@ var methods = {
   //    */
   //
   // }
+}
+
+function printCourses(courses){
+  var app = main.app;
+  var pickArray = [];
+  for (var i = 0; i < courses.length; i++)
+  {
+    pickArray.push({"classID":courses[i][0]});
+  }
+  app.get('/loadPickedCourses', function(req,res) {
+    res.json(pickArray);
+    res.end();
+    // for (var i = 0; i < courses.length; i++)
+    // {
+    //   pickArray.push("classNum:" + courses[i]);
+    // }
+    // console.log(pickArray);
+    //res.json(courses);
+    // communicate with automatic page load get request
+  });
 }
 
 
