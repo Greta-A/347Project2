@@ -11,7 +11,7 @@ window.displayPicked = function()
 
     })
     .catch(function(){
-      console.log("Cought");
+      console.log("Caught");
     });
     console.log("in displayPicked");
     //return true;
