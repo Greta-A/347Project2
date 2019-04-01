@@ -41,6 +41,8 @@ var methods = {
             console.log(err)
           }
           else {
+            response.render('course_list.ejs', {eid:eid, role:role});
+            response.end();
             //return callback(err, res.rows);
           }
         });
