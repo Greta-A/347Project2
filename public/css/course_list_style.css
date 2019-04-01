@@ -56,6 +56,10 @@ h1,h2, h4 {
   );
 }
 
+button {
+  margin: 5px;
+}
+
 li {
   display: inline-block;
   padding: 5px;

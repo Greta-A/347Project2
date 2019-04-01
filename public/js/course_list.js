@@ -1,6 +1,6 @@
 //window.onload = onStartUp();
 
-window.displayPicked = function()
+function displayPicked()
 {
   fetch("/loadPickedCourses")
     .then(function(response) {
@@ -9,14 +9,16 @@ window.displayPicked = function()
     .then(function(jsonResponse) {
       listUserCoursesInHTML(jsonResponse);//communication with backend
     })
-    .catch(function(){
-      console.log("Caught");
-    });
+    showCourses();
+    document.getElementById("hidden_course_list").style.display = "none";
+    // .catch(function(){
+    //   console.log("Caught");
+    // });
 }
 
-function showCourses(ev)
+function showCourses()
 {
-  ev.preventDefault();
+  //ev.preventDefault();
   fetch("/availableCourses")
     .then(function(response) {
       return response.json();
@@ -85,7 +87,23 @@ function listCoursesInHTML(jsonData) {
 //lists user's courses.
 function listUserCoursesInHTML(jsonResponse)
 {
+  var allCourses = document.getElementById("available_courses").getElementsByTagName("li");
+  console.log(allCourses.length);
   console.log(jsonResponse);
+  allPickedCourses = document.getElementById("picked_courses").getElementsByTagName("li");
+  var length = allPickedCourses.length;
+  if (jsonResponse.length > length)
+  {
+    for (var i = length; i < jsonResponse.length; i++)
+    {
+      //find id of available course that matches
+      // save element as variable
+      //append variable to picked courses list
+      var pickedCourseID = jsonResponse[i].course_id;
+      var pickedCourseButton = document.getElementById("CS"+pickedCourseID);
+      document.getElementById("picked_courses").appendChild(pickedCourseButton);
+    }
+  }
 }
 
 displayPicked()
