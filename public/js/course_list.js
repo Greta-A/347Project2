@@ -9,6 +9,9 @@ window.displayPicked = function()
     .then(function(jsonResponse) {
       listUserCoursesInHTML(jsonResponse);//communication with backend
 
+    })
+    .catch(function(){
+      console.log("Cought");
     });
     console.log("in displayPicked");
     //return true;
