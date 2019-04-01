@@ -29,7 +29,6 @@ var methods = {
       });
 
       app.post('/pickedCourses', function(req, response) {
-        console.log(req.body.classNum);
         var addPickedCourse = {
           name: 'add-picked-course',
           text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
@@ -42,7 +41,6 @@ var methods = {
             console.log(err)
           }
           else {
-            //response.end();
             //return callback(err, res.rows);
           }
         });
@@ -54,7 +52,7 @@ var methods = {
   loadUsersCourses: function()
   {
     var app = main.app;
-    app.get('/loadPickedCourses', function(req, res) 
+    app.get('/loadPickedCourses', function(req, res)
     {
       /*
        * gets all the course IDs from users_to_courses
@@ -73,14 +71,14 @@ var methods = {
           console.log(courses);
           res.json(courses);
           res.end();
-          
+
           /*
            * TODO: Parse and add courses to DOM.
            */
         })
       })
     });
-    
+
   },
 
   listAvailableCourses: function()
@@ -136,26 +134,26 @@ var methods = {
   //
   // }
 }
-
-function printCourses(courses){
-  var app = main.app;
-  var pickArray = [];
-  for (var i = 0; i < courses.length; i++)
-  {
-    pickArray.push({"classID":courses[i][0]});
-  }
-  app.get('/loadPickedCourses', function(req,res) {
-    res.json(pickArray);
-    res.end();
-    // for (var i = 0; i < courses.length; i++)
-    // {
-    //   pickArray.push("classNum:" + courses[i]);
-    // }
-    // console.log(pickArray);
-    //res.json(courses);
-    // communicate with automatic page load get request
-  });
-}
+//
+// function printCourses(courses){
+//   var app = main.app;
+//   var pickArray = [];
+//   for (var i = 0; i < courses.length; i++)
+//   {
+//     pickArray.push({"classID":courses[i][0]});
+//   }
+//   app.get('/loadPickedCourses', function(req,res) {
+//     res.json(pickArray);
+//     res.end();
+//     // for (var i = 0; i < courses.length; i++)
+//     // {
+//     //   pickArray.push("classNum:" + courses[i]);
+//     // }
+//     // console.log(pickArray);
+//     //res.json(courses);
+//     // communicate with automatic page load get request
+//   });
+// }
 
 
 function addCourse(id, name)

@@ -1,6 +1,6 @@
-// window.onload = displayPicked();
+//window.onload = onStartUp();
 
-function displayPicked()
+window.displayPicked = function()
 {
   fetch("/loadPickedCourses")
     .then(function(response) {
@@ -10,6 +10,9 @@ function displayPicked()
       listUserCoursesInHTML(jsonResponse);//communication with backend
 
     });
+    location.reload(true);
+    console.log("in displayPicked");
+    //return true;
 }
 
 function showCourses(ev)
@@ -31,26 +34,6 @@ function showCourses(ev)
   {
   x.style.display = "none";
   }
-  displayPicked();
-}
-
-function addCourse(id)
-{
-  console.log("in add");
-  //var formToSubmit = document.getElementById(id+"form");
-  //formToSubmit.submit();
-  //var pickedList = document.getElementById("picked_courses");
-  // fetch("/loadPickedCourses")
-  //   .then(function(response) {
-  //     return response.json();
-  //   })
-  //   .then(function(jsonResponse) {
-  //     //communication with backend
-  //   });
-  // e.preventDefault();
-  // e.target.removeAttribute("onclick");
-  // //creates a new onclick event which makes it work on a new click, not this click.
-  // e.target.onclick = function() {e.target.type = "submit";};
 }
 
 function displayCreateForm()
@@ -73,7 +56,6 @@ function createCourse()
 
 //loads courses for + button (all/addable courses)
 function listCoursesInHTML(jsonData) {
-  console.log(jsonData)//
   var allCourses = document.getElementById("available_courses").getElementsByTagName("li");
   var leng = allCourses.length;
   if (jsonData.length > leng)
@@ -83,9 +65,11 @@ function listCoursesInHTML(jsonData) {
       var id = jsonData[i].course_id;
       var desc = jsonData[i].course_name;
       var form = document.createElement("form");
+      // form.onClick = "displayPicked()";
+      form.addEventListener("click", function() {displayPicked()});
       form.setAttribute('action', 'pickedCourses');
       form.setAttribute('method', 'post');
-      form.setAttribute('id', id + 'form');
+      form.setAttribute('id', 'pickCourseForm');
       var li = document.createElement("li");
       var button = document.createElement("button");
       var br = document.createElement("br");
@@ -94,12 +78,10 @@ function listCoursesInHTML(jsonData) {
       button.setAttribute('type', 'submit');
       button.setAttribute('name', 'classNum');
       button.setAttribute('value', id);
-      //button.addEventListener("click", function() {addCourse(id)});
       button.innerHTML = "CS"+id +"<br />";
       button.appendChild(br);
       button.innerHTML += desc;
       form.appendChild(button);
-      //li.appendChild(button);
       li.appendChild(form);
       var list = document.getElementById("available_courses");
       list.appendChild(li);
@@ -107,11 +89,12 @@ function listCoursesInHTML(jsonData) {
   }
 }
 
-//lists user's courses. 
+//lists user's courses.
 function listUserCoursesInHTML(jsonResponse)
 {
   console.log(jsonResponse);
+  console.log(jsonResponse[0].course_id);
   // alert(jsonResponse);
 }
 
-displayPicked()
+//displayPicked()
