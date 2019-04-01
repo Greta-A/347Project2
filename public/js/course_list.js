@@ -1,3 +1,4 @@
+// window.onload = displayPicked();
 
 function displayPicked()
 {
@@ -7,6 +8,7 @@ function displayPicked()
     })
     .then(function(jsonResponse) {
       listUserCoursesInHTML(jsonResponse);//communication with backend
+
     });
 }
 

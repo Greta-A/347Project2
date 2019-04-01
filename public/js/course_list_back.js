@@ -82,6 +82,7 @@ var methods = {
     });
     
   },
+
   listAvailableCourses: function()
   {
     var app = main.app;
@@ -122,6 +123,7 @@ var methods = {
 
       });
   }
+
   //loads additional courses into users addable list.
   //all courses - user's courses = addable courses.
   // loadCourseList: function()
