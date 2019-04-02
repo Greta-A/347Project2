@@ -16,12 +16,11 @@
       <li><a href="index.html">Sign Out</a></li>
     </ul>
   </div>
-  <button onclick="window.location.href='course_list.html';" id="back_to_courses">←</button>
+  <!-- <button onclick="window.location.href='course_list.ejs';" id="back_to_courses">←</button> -->
   <h4 id="eid">Welcome, <%= eid%></h4>
   <p style="display:none;" id="user_role" ><%= role%></p>
-  <h1><%= pickedCourse%></h1>
+  <h1>CS<%=pickedCourse%></h1>
   <section id="page_container">
-    <br>
     <div class="role-1" id="ta_calendar_buttons">
         <button id="add" type="button" onclick="addTATime()">Add</button>
         <button type="button" id="remove" onclick="removeTATimes()">Remove</button>

@@ -14,7 +14,6 @@ var methods = {
       var app = main.app;
       var eid = index.eid;
       var role = index.role;
-      console.log("In beginning course list ID:" + eid);
       app.post('/course_list', function(req, res) {
         courseID = req.body.classID;
         courseName = req.body.className;
