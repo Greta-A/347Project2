@@ -4,6 +4,7 @@ var index = require('./index.js');
 var client = main.client;
 var eid = index.eid;
 var role = index.role;
+var pickedCourse;
 //client.connect()
 
 var courseID;
@@ -36,6 +37,7 @@ var methods = {
           text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
           values: [eid, req.body.classNum]
         }
+        pickedCourse = req.body.classNum;
         client.query(addPickedCourse, (err,res) =>
         {
           if (err)
@@ -68,6 +70,13 @@ var methods = {
             res.end();
           })
         })
+      });
+
+      app.post('/calendar', function(req, res) {
+        console.log(pickedCourse);
+        exports.pickedCourse = pickedCourse;
+        res.render('calendar.ejs', {eid:eid, role:role, pickedCourse: pickedCourse});
+        res.end();
       });
 
   },

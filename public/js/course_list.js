@@ -103,8 +103,10 @@ function listUserCoursesInHTML(jsonResponse)
       var li = document.createElement("li");
       var form = document.createElement("form");
       form.setAttribute('method', 'post');
+      form.setAttribute('action', 'calendar');
       var pickedCourseButton = document.getElementById("CS"+pickedCourseID);
       form.appendChild(pickedCourseButton);
+      //li.appendChild(pickedCourseButton);
       li.appendChild(form);
       document.getElementById("picked_courses").appendChild(li);
     }
