@@ -9,11 +9,11 @@ function displayPicked()
     .then(function(jsonResponse) {
       listUserCoursesInHTML(jsonResponse);//communication with backend
     })
+    .catch(function(){
+        console.log("Caught");
+    });
     showCourses();
     document.getElementById("hidden_course_list").style.display = "none";
-    // .catch(function(){
-    //   console.log("Caught");
-    // });
 }
 
 function showCourses()

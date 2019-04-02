@@ -29,7 +29,7 @@ h1,h2, h4 {
 }
 
 .course, #add {
-  font-size: 18px;
+  font-size: 15px;
   cursor: pointer;
   font-family: "Lucida Sans Unicode";
   border-style: solid;

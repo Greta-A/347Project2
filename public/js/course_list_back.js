@@ -17,6 +17,8 @@ var methods = {
         courseID = req.body.classID;
         courseName = req.body.className;
         addCourse(courseID, courseName);
+        res.render('course_list.ejs', {eid:eid, role:role});
+        res.end();
       });
 
       app.get('/availableCourses', function(req, res) {
