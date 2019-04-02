@@ -2,8 +2,6 @@
 var main = require('../../app.js');
 var index = require('./index.js');
 var client = main.client;
-var eid = index.eid;
-var role = index.role;
 var pickedCourse;
 //client.connect()
 
@@ -14,6 +12,9 @@ var methods = {
   listenOnCourseList: function()
   {
       var app = main.app;
+      var eid = index.eid;
+      var role = index.role;
+      console.log("In beginning course list ID:" + eid);
       app.post('/course_list', function(req, res) {
         courseID = req.body.classID;
         courseName = req.body.className;
@@ -73,9 +74,9 @@ var methods = {
       });
 
       app.post('/calendar', function(req, res) {
-        console.log(pickedCourse);
+        pickedCourse = req.body.classNum;
         exports.pickedCourse = pickedCourse;
-        res.render('calendar.ejs', {eid:eid, role:role, pickedCourse: pickedCourse});
+        res.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
         res.end();
       });
 

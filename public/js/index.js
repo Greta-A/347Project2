@@ -98,6 +98,7 @@ function login(eid, password, response)
           else {
             var role = res.rows[0];
             var id = eid;
+            console.log("In index login ID:"+ id);
             exports.role = role;
             var courses = require('./course_list_back.js');
             response.render('course_list.ejs', {eid:id, role:role});
