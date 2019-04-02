@@ -100,8 +100,13 @@ function listUserCoursesInHTML(jsonResponse)
       // save element as variable
       //append variable to picked courses list
       var pickedCourseID = jsonResponse[i].course_id;
+      var li = document.createElement("li");
+      var form = document.createElement("form");
+      form.setAttribute('method', 'post');
       var pickedCourseButton = document.getElementById("CS"+pickedCourseID);
-      document.getElementById("picked_courses").appendChild(pickedCourseButton);
+      form.appendChild(pickedCourseButton);
+      li.appendChild(form);
+      document.getElementById("picked_courses").appendChild(li);
     }
   }
 }
