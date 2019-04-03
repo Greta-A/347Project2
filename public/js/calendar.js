@@ -177,6 +177,7 @@ function addButtons()
       var form1 = document.createElement("form");
       form1.setAttribute('action', 'addTASlot');
       form1.setAttribute('method', 'post');
+      form1.classList.add('temporary');
       input1 = document.createElement("input");
       input1.setAttribute('name', "buttonSlot");
       input1.style.display = "none";
@@ -195,6 +196,7 @@ function addButtons()
       var form2 = document.createElement("form");
       form2.setAttribute('action', 'addTASlot');
       form2.setAttribute('method', 'post');
+      form2.classList.add('temporary');
       var slotButton2 = document.createElement("BUTTON");
       slotButton2.classList.add("temporary")
       // slotButton2.setAttribute("type", "button");
