@@ -12,26 +12,34 @@ var methods = {
     var role = index.role;
     app.post('/addTASlot', function(req, res)
     {
-      console.log("in ta slot post");
-      console.log(req.body.buttonSlot);
-      // var query = {
-      //   name: 'insertTATime',
-      //   text: 'INSERT INTO calendar_items(ta, course_id, room) values ($1, $2, $3)',
-      //   values: [index.eid, pickedCourse, req.body.room_number]
-      // }
-      //
-      // client.query(query, (err,res) =>
-      // {
-      //   if (err)
-      //   {
-      //     console.log(err)
-      //   }
-      //   else {
-      //     //success
-      //     res.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
-      //     res.end();
-      //   }
-      // });
+      var slotNum = req.body.buttonSlot;
+      app.post('/insertTASlot', function(req, response)
+      {
+          console.log(index.eid);
+          console.log(pickedCourse);
+          console.log(req.body.start_time);
+          console.log(req.body.end_time);
+          console.log(req.body.room_number);
+
+          var query = {
+           name: 'insertTASlot',
+           text: 'INSERT INTO calendar_items(slot, ta, course_id, start_time, room, end_time) values ($1, $2, $3, $4, $5, $6)',
+           values: [slotNum, index.eid, pickedCourse, req.body.start_time, req.body.room_number, req.body.end_time]
+          }
+          client.query(query, (err,res) =>
+         {
+           if (err)
+           {
+             console.log(err)
+           }
+           else {
+             //success
+             response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+             response.end();
+           }
+         });
+      });
+      
     });
   }
 }
