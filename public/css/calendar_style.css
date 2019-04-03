@@ -83,6 +83,10 @@ table {
 
 }
 
+#select_time {
+  text-align: center;
+}
+
 #calendar_table button {
     margin-left: 5px;
 }

@@ -162,6 +162,7 @@ function addTATime()
 function addButtons()
 {
   var openSlots = 2;
+  var slotNum = 0;
   //get all divs in table.
   var timeDivs = document.getElementsByClassName("times");
 
@@ -170,24 +171,49 @@ function addButtons()
     //was adding to student and admin before as well.
     if(div.classList.contains("role-1"))
     {
+      slotNum++;
       openSlots = 2-div.childElementCount;
       var slotButton1 = document.createElement("BUTTON");
+      var form1 = document.createElement("form");
+      form1.setAttribute('action', 'addTASlot');
+      form1.setAttribute('method', 'post');
+      input1 = document.createElement("input");
+      input1.setAttribute('name', "buttonSlot");
+      input1.style.display = "none";
+      input1.value = slotNum;
       slotButton1.classList.add("temporary")
-      slotButton1.setAttribute("type", "button");
-      slotButton1.setAttribute("onclick", "claimTATime(this)")
+      // slotButton1.setAttribute("type", "button");
+      slotButton1.setAttribute("type", "submit");
+      slotButton1.setAttribute("onclick", "claimTATime(this)");
+      form1.appendChild(input1);
+      form1.appendChild(slotButton1);
+      slotNum++;
+      input2 = document.createElement("input");
+      input2.setAttribute('name', "buttonSlot");
+      input2.style.display = "none";
+      input2.value = slotNum;
+      var form2 = document.createElement("form");
+      form2.setAttribute('action', 'addTASlot');
+      form2.setAttribute('method', 'post');
       var slotButton2 = document.createElement("BUTTON");
       slotButton2.classList.add("temporary")
-      slotButton2.setAttribute("type", "button");
-      slotButton2.setAttribute("onclick", "claimTATime(this)")
+      // slotButton2.setAttribute("type", "button");
+      slotButton2.setAttribute("type", "submit");
+      slotButton2.setAttribute('name', slotNum);
+      slotButton2.setAttribute("onclick", "claimTATime(this)");
+      form2.appendChild(input2);
+      form2.appendChild(slotButton2);
       if(openSlots === 2)
       {
-        div.appendChild(slotButton1);
-        childToParentMap.set(slotButton1,div);
+        // div.appendChild(slotButton1);
+        // childToParentMap.set(slotButton1,div);
+        div.appendChild(form1);
+        childToParentMap.set(form1,div);
       }
       if(openSlots >= 1)
       {
-        div.appendChild(slotButton2);
-        childToParentMap.set(slotButton2,div);
+        div.appendChild(form2);
+        childToParentMap.set(form2,div);
       }
     }
   }
@@ -246,11 +272,7 @@ function hideSelectTime()
  */
 function confirmAddTime()
 {
-  // <button type="button" id="ta_button">TA3</button>
   var timeDivs = document.getElementsByClassName("times");
-
-  //get form values and populate:
-  //TODO:
 
   //student button setup
   var student_button = document.createElement("BUTTON")

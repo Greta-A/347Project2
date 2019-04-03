@@ -18,7 +18,7 @@ var methods = {
         case '1':
         case '2':
           // console.log("about to call addToDB()");
-          addToDB(eid, role, req, client, res);
+          addToDB(req, client, res);
           break;
         default:
           login(eid, pass, res);
@@ -31,7 +31,7 @@ var methods = {
 exports.data = methods;
 
 
-function addToDB(eid, role, req, client, response)
+function addToDB(req, client, response)
 {
   var query = {
     name: 'insert-user',
@@ -50,14 +50,15 @@ function addToDB(eid, role, req, client, response)
     }
     else {
       // unique, single PKs
-      var id = eid;
-      var rol = role;
-      exports.eid = id;
-      exports.role = role;
-      var courses = require('./course_list_back.js');
-      response.render('course_list.ejs', {eid:id, role:rol});
-      response.end()
-      courses.data.listenOnCourseList();
+      login(req.body.eid, req.body.password, response);
+      // var id = eid;
+      // var rol = role;
+      // exports.eid = id;
+      // exports.role = role;
+      // var courses = require('./course_list_back.js');
+      // response.render('course_list.ejs', {eid:id, role:rol});
+      // response.end()
+      // courses.data.listenOnCourseList();
     }
   });
 }

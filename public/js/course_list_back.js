@@ -18,7 +18,7 @@ var methods = {
         courseID = req.body.classID;
         courseName = req.body.className;
         addCourse(courseID, courseName);
-        res.render('course_list.ejs', {eid:eid, role:role});
+        res.render('course_list.ejs', {eid:index.eid, role:role});
         res.end();
       });
 
@@ -45,7 +45,7 @@ var methods = {
             console.log(err)
           }
           else {
-            response.render('course_list.ejs', {eid:eid, role:role});
+            response.render('course_list.ejs', {eid:index.eid, role:role});
             response.end();
           }
         });
@@ -75,8 +75,10 @@ var methods = {
       app.post('/calendar', function(req, res) {
         pickedCourse = req.body.classNum;
         exports.pickedCourse = pickedCourse;
+        var calendar = require('./calendar_back.js');
         res.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
         res.end();
+        calendar.data.listenOnCalendar();
       });
 
   },
