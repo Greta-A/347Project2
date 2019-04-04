@@ -18,9 +18,29 @@ function displayTASlotsInHTML(jsonResponse)
   //values in jsonResponse: slot, ta, course_id, start_time, room,
   //  session_code, cover_requested, cover_accepted, cover_approved,
   //  remove_pending, end_time
-  for (var i = 0; i < jsonResponse.length; i++)
+  var slotNum = 0;
+  var timeDivs = document.getElementsByClassName("times");
+  for (var div of timeDivs)
   {
-    
+    if (div.classList.contains("role-1"))
+    {
+      slotNum++;
+      for (var i = 0; i < jsonResponse.length; i++)
+      {
+         var button = document.createElement("button");
+         button.class = "ta_button";
+         button.setAttribute("type", "button");
+         button.setAttribute("onclick", "displaySessionCode(event)");
+         button.innerHTML = jsonResponse[i].ta;
+
+         if (slotNum == jsonResponse[i].slot)
+         {
+           div.appendChild(button);
+         }
+       }
+       slotNum++;
+    }
+
   }
 }
 
