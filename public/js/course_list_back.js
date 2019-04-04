@@ -76,7 +76,7 @@ var methods = {
         pickedCourse = req.body.classNum;
         exports.pickedCourse = pickedCourse;
         var calendar = require('./calendar_back.js');
-        res.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+        res.render('calendar.ejs', {eid:index.eid, role:index.role, pickedCourse: pickedCourse});
         res.end();
         calendar.data.listenOnCalendar();
       });

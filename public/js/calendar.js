@@ -27,7 +27,7 @@ function displayTASlotsInHTML(jsonResponse)
       slotNum++;
       for (var i = 0; i < jsonResponse.length; i++)
       {
-         var button = document.createElement("button");
+        var button = document.createElement("button");
          button.class = "ta_button";
          button.setAttribute("type", "button");
          button.setAttribute("onclick", "displaySessionCode(event)");
@@ -40,7 +40,28 @@ function displayTASlotsInHTML(jsonResponse)
        }
        slotNum++;
     }
+  }
+  slotNum = 0;
+  for (var div of timeDivs)
+  {
+    if (div.classList.contains("role-0"))
+    {
+      slotNum++;
+      for (var i = 0; i < jsonResponse.length; i++)
+      {
+        var button = document.createElement("button");
+         button.class = "student_button";
+         button.setAttribute("type", "button");
+         button.setAttribute("onclick", "getSessionCode()");
+         button.innerHTML = jsonResponse[i].room;
 
+         if (slotNum == jsonResponse[i].slot)
+         {
+           div.appendChild(button);
+         }
+       }
+       slotNum++;
+    }
   }
 }
 
@@ -53,18 +74,6 @@ function setTATarget(e)
 function getTATarget()
 {
   return ta_button_target;
-}
-
-function hideInfo(option)
-{
-  if (option = "role-0")
-  {
-    document.getElementById("hidden_generate_session").style.display = "none";
-  }
-  if (option = "role-2")
-  {
-    document.getElementById("hidden_session_code").style.display = "none";
-  }
 }
 
 function getSessionCode() {
@@ -230,6 +239,7 @@ function addButtons()
       // slotButton1.setAttribute("type", "button");
       slotButton1.setAttribute("type", "submit");
       slotButton1.setAttribute("onclick", "claimTATime(this)");
+      slotButton1.innerHTML = slotNum;
       form1.appendChild(input1);
       form1.appendChild(slotButton1);
       slotNum++;
@@ -248,6 +258,7 @@ function addButtons()
       slotButton2.setAttribute("type", "submit");
       slotButton2.setAttribute('name', slotNum);
       slotButton2.setAttribute("onclick", "claimTATime(this)");
+      slotButton2.innerHTML = slotNum;
       form2.appendChild(input2);
       form2.appendChild(slotButton2);
       if(openSlots === 2)
