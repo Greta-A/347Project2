@@ -12,15 +12,10 @@ var methods = {
     var role = index.role;
     app.post('/addTASlot', function(req, res)
     {
+      var inserted = false;
       var slotNum = req.body.buttonSlot;
       app.post('/insertTASlot', function(req, response)
       {
-          console.log(index.eid);
-          console.log(pickedCourse);
-          console.log(req.body.start_time);
-          console.log(req.body.end_time);
-          console.log(req.body.room_number);
-
           var query = {
            name: 'insertTASlot',
            text: 'INSERT INTO calendar_items(slot, ta, course_id, start_time, room, end_time) values ($1, $2, $3, $4, $5, $6)',
@@ -34,18 +29,46 @@ var methods = {
            }
            else {
              //success
+             inserted = true;
              response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
              response.end();
            }
          });
       });
-      
+        if (inserted)
+        {
+          res.end();
+        }
+    });
+
+    app.get('/displayAllTASlots', function(req, res)
+    {
+      getCalendarInfo(function(err, response)
+      {
+        res.json(response);
+        res.end();
+      });
     });
   }
 }
-exports.data = methods;
 
-function insertAddedTime()
+function getCalendarInfo(callback)
 {
-
+  var query = {
+    name: 'selectTASlot',
+    text: 'SELECT * FROM calendar_items WHERE course_id = $1',
+    values: [courses.pickedCourse]
+  }
+  client.query(query, (err,res) =>
+ {
+   if (err)
+   {
+     console.log(err)
+   }
+   else {
+     //success
+     return callback(err, res.rows);
+   }
+ });
 }
+exports.data = methods;

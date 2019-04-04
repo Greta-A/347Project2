@@ -1,5 +1,28 @@
 //SESSION CODE
 var ta_button_target;
+displayAllTASlots();
+
+function displayAllTASlots()
+{
+  fetch("/displayAllTASlots")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(jsonResponse) {
+      displayTASlotsInHTML(jsonResponse);
+    })
+}
+
+function displayTASlotsInHTML(jsonResponse)
+{
+  //values in jsonResponse: slot, ta, course_id, start_time, room,
+  //  session_code, cover_requested, cover_accepted, cover_approved,
+  //  remove_pending, end_time
+  for (var i = 0; i < jsonResponse.length; i++)
+  {
+    
+  }
+}
 
 
 function setTATarget(e)
@@ -177,6 +200,7 @@ function addButtons()
       var form1 = document.createElement("form");
       form1.setAttribute('action', 'addTASlot');
       form1.setAttribute('method', 'post');
+      form1.setAttribute('id', slotNum+"form");
       form1.classList.add('temporary');
       input1 = document.createElement("input");
       input1.setAttribute('name', "buttonSlot");
@@ -196,6 +220,7 @@ function addButtons()
       var form2 = document.createElement("form");
       form2.setAttribute('action', 'addTASlot');
       form2.setAttribute('method', 'post');
+      form2.setAttribute('id', slotNum+"form");
       form2.classList.add('temporary');
       var slotButton2 = document.createElement("BUTTON");
       slotButton2.classList.add("temporary")
