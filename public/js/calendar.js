@@ -400,6 +400,24 @@ function populateTdsWithDivs()
       td.appendChild(timeDiv2);
     }
   }
+
+  /*
+   * Since the buttons/div/whatever above are being created dynamically the display by role has to be called again.
+   * So I am getting the role from the back end and re calling display by role with whatever role the user is.
+   * (This is the first time things needed to be displayed by role dynamically, and not on page creation).
+   */
+  fetch("/getRole")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(response) 
+  {
+    showHide(response);
+  })
+  .catch(function(response)
+  {
+    console.log("failed to get role. Display by role is borked." + response);
+  })
 }
 
 var childToParentMap = new Map();

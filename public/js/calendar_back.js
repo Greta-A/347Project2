@@ -49,6 +49,13 @@ var methods = {
         res.end();
       });
     });
+
+    //Simply gets the role (e.g. 0, 1, or 2) and sends it to the front end. used for only showing things by role dynamically.
+    app.get('/getRole', function(req, res)
+    {
+      res.json(role);
+      res.end();
+    });
   }
 }
 
