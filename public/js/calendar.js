@@ -20,6 +20,13 @@ function displayTASlotsInHTML(jsonResponse)
   //  remove_pending, end_time
   var slotNum = 0;
   var timeDivs = document.getElementsByClassName("times");
+  // slots 1-14: 5pm
+  // slots 15-28: 6pm
+  // slots 29-42: 7pm
+  // slots 43-56: 8pm
+  // slots 57-70: 9pm
+  // slots 71-84: 10pm
+  // slots 85-98: 11pm
   for (var div of timeDivs)
   {
     if (div.classList.contains("role-1"))
@@ -53,7 +60,9 @@ function displayTASlotsInHTML(jsonResponse)
          button.class = "student_button";
          button.setAttribute("type", "button");
          button.setAttribute("onclick", "getSessionCode()");
-         button.innerHTML = jsonResponse[i].room;
+         button.innerHTML = jsonResponse[i].start_time + "-";
+         button.innerHTML += jsonResponse[i].end_time + "<br />";
+         button.innerHTML += "Room " + jsonResponse[i].room;
 
          if (slotNum == jsonResponse[i].slot)
          {
@@ -410,7 +419,7 @@ function populateTdsWithDivs()
   .then(function(response) {
     return response.json();
   })
-  .then(function(response) 
+  .then(function(response)
   {
     showHide(response);
   })
