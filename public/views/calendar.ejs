@@ -166,9 +166,10 @@
     </div>
 
     <div style="display:none;" class="role-1" id="hidden_generate_session">
-        <form>
+        <form action="generateCode" method="post">
             <input type="button" name="generate_code" value="Generate Code" onclick="generateSessionCode()">
-            <input type="text" id="code" readonly>
+            <input type="text" id="code" name="sessionCode" readonly>
+            <button type="submit">Done</button>
         </form>
         <form id="request_form">
           <input type="checkbox" id="request_cover" value="request" onclick="validateCheck()">Request Cover

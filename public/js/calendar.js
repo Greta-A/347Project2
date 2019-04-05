@@ -34,15 +34,24 @@ function displayTASlotsInHTML(jsonResponse)
       slotNum++;
       for (var i = 0; i < jsonResponse.length; i++)
       {
-        var button = document.createElement("button");
+         var form = document.createElement("form");
+          form.setAttribute('action', "sendTAInfo");
+          form.setAttribute('method', "post");
+          var button = document.createElement("button");
+          var input = document.createElement("input");
+          input.setAttribute('name', "buttonSlot");
+          input.value = slotNum;
+          input.style.display = "none";
          button.class = "ta_button";
-         button.setAttribute("type", "button");
+         button.setAttribute("type", "submit");
          button.setAttribute("onclick", "displaySessionCode(event)");
          button.innerHTML = jsonResponse[i].ta;
+         form.appendChild(input);
+         form.appendChild(button);
 
          if (slotNum == jsonResponse[i].slot)
          {
-           div.appendChild(button);
+           div.appendChild(form);
          }
        }
        slotNum++;

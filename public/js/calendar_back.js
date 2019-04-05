@@ -56,6 +56,18 @@ var methods = {
       res.json(index.role);
       res.end();
     });
+
+    app.post('/sendTAInfo', function(req, res)
+    {
+      var pickedSlot = req.body.buttonSlot;
+      app.post('/generateCode', function(req, res)
+      {
+        insertSesssionCode(req.body.sessionCode, pickedSlot, function(err, res){
+
+        })
+      });
+      //res.end();
+    });
   }
 }
 
@@ -77,5 +89,30 @@ function getCalendarInfo(callback)
      return callback(err, res.rows);
    }
  });
+}
+
+function insertSesssionCode(sessionCode, pickedSlot, callback)
+{
+  console.log(sessionCode);
+  console.log(pickedSlot);
+  console.log(pickedCourse);
+  var query = {
+    name: 'insertSesssionCode',
+    text: 'UPDATE calendar_items SET session_code = $1::smallint WHERE slot = $2::smallint AND course_id = $3::smallint',
+    values: [sessionCode, pickedSlot, pickedCourse]
+  }
+
+  client.query(query, (err,res) =>
+  {
+   if (err)
+   {
+     console.log(err)
+   }
+   else {
+     //success
+     return callback(err, res.rows);
+   }
+  });
+
 }
 exports.data = methods;
