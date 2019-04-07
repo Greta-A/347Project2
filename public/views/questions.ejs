@@ -18,14 +18,10 @@
         <li><a href="index.html">Sign Out</a></li>
       </ul>
     </div>
-    <!-- Role selector: TEMPORARY -->
-    <select name="role" id="role-selector">
-        <option value="role-0">Student</option>
-        <option value="role-1">TA</option>
-        <option value="role-2">Admin</option>
-    </select>
+    <h4 id="eid">Welcome, <%= eid%></h4>
+    <p style="display:none;" id="user_role" ><%= role%></p>
 
-    <h1> Question Forum </h1>
+    <h1>CS<%= pickedCourse%> Question Forum </h1>
     <br>
 
     <div class="role-0 showing">

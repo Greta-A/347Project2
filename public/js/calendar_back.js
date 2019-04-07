@@ -60,13 +60,21 @@ var methods = {
     app.post('/sendTAInfo', function(req, res)
     {
       var pickedSlot = req.body.buttonSlot;
-      app.post('/generateCode', function(req, res)
+      app.post('/generateCode', function(req, response)
       {
         insertSesssionCode(req.body.sessionCode, pickedSlot, function(err, res){
-
+        response.render('questions.ejs', {eid:index.eid, role:index.role, pickedCourse: pickedCourse});
+        response.end();
         })
       });
       //res.end();
+      //end post request????
+    });
+
+    app.post('/studentSessionCode', function(req, res)
+    {
+      res.render('questions.ejs', {eid:index.eid, role:index.role, pickedCourse: pickedCourse});
+      res.end();
     });
   }
 }
