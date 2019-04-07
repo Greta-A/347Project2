@@ -46,12 +46,21 @@ function displayTASlotsInHTML(jsonResponse)
          button.setAttribute("type", "submit");
          button.setAttribute("onclick", "displaySessionCode(event)");
          button.innerHTML = jsonResponse[i].ta;
-         form.appendChild(input);
-         form.appendChild(button);
 
          if (slotNum == jsonResponse[i].slot)
          {
-           div.appendChild(form);
+           if (jsonResponse[i].cover_requested)
+           {
+             if (button.innerHTML == document.getElementById("fullEid").innerHTML)
+             {
+               document.getElementById("request_form").style.display = "none";
+               document.getElementById("accept_form").style.display = "none";
+             }
+             button.style.backgroundColor = "#ff6d6b";
+             form.appendChild(input);
+             form.appendChild(button);
+             div.appendChild(form);
+           }
          }
        }
        slotNum++;
@@ -119,17 +128,17 @@ function displaySessionCode(e)
     x.style.display = "none";
   }
   setTATarget(e);
-  document.getElementById("request_form").style.display = "block";
-  if (getTATarget().style.backgroundColor == "")
-  {
-    document.getElementById("request_cover").checked = false;
-    document.getElementById("hidden_accept").style.display = "none";
-    document.getElementById("accept_cover").checked = false;
-  }
-  else if (getTATarget().style.backgroundColor == "yellow")
-  {
-    document.getElementById("request_form").style.display = "none";
-  }
+  // document.getElementById("request_form").style.display = "block";
+  // if (getTATarget().style.backgroundColor == "")
+  // {
+  //   document.getElementById("request_cover").checked = false;
+  //   document.getElementById("hidden_accept").style.display = "none";
+  //   document.getElementById("accept_cover").checked = false;
+  // }
+  // else if (getTATarget().style.backgroundColor == "yellow")
+  // {
+  //   document.getElementById("request_form").style.display = "none";
+  // }
 }
 
 function generateSessionCode()
@@ -140,6 +149,7 @@ function generateSessionCode()
 
 function validateCheck()
 {
+  console.log(getTATarget().parentElement.type);
   var parentDivs = getTATarget().parentElement.parentElement.getElementsByTagName("div");
   var buttonText = getTATarget().innerHTML;
   if (document.getElementById("request_cover").checked)
@@ -156,6 +166,7 @@ function validateCheck()
       var x = document.getElementById("hidden_accept");
       if (x.style.display === "none")
       {
+        console.log("in validate check statemenet");
         document.getElementById("new_ta_name").value = "";
         x.style.display = "block";
       }

@@ -67,6 +67,18 @@ var methods = {
         response.end();
         })
       });
+
+      app.post('/requestCover', function(req, response)
+      {
+        if (req.body.request == "on")
+        {
+          updateRequestCover(pickedSlot, function(err, res)
+          {
+            response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+            response.end();
+          });
+        }
+      });
       //res.end();
       //end post request????
     });
@@ -101,9 +113,6 @@ function getCalendarInfo(callback)
 
 function insertSesssionCode(sessionCode, pickedSlot, callback)
 {
-  console.log(sessionCode);
-  console.log(pickedSlot);
-  console.log(pickedCourse);
   var query = {
     name: 'insertSesssionCode',
     text: 'UPDATE calendar_items SET session_code = $1::smallint WHERE slot = $2::smallint AND course_id = $3::smallint',
@@ -121,6 +130,26 @@ function insertSesssionCode(sessionCode, pickedSlot, callback)
      return callback(err, res.rows);
    }
   });
+}
 
+function updateRequestCover(pickedSlot, callback)
+{
+  var query = {
+    name: 'updateRequestCover',
+    text: 'UPDATE calendar_items SET cover_requested = true WHERE slot = $1::smallint AND course_id = $2::smallint',
+    values: [pickedSlot, pickedCourse]
+  }
+
+  client.query(query, (err,res) =>
+  {
+   if (err)
+   {
+     console.log(err)
+   }
+   else {
+     //success
+     return callback(err, res.rows);
+   }
+  });
 }
 exports.data = methods;
