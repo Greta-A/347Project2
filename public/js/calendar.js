@@ -86,8 +86,11 @@ function displayTASlotsInHTML(jsonResponse)
          button.class = "student_button";
          button.setAttribute("type", "button");
          button.setAttribute("onclick", "getSessionCode()");
-         button.innerHTML = jsonResponse[i].start_time + "-";
-         button.innerHTML += jsonResponse[i].end_time + "<br />";
+         var start = toStandardTime(jsonResponse[i].start_time);
+         var end = toStandardTime(jsonResponse[i].end_time);
+         console.log(end);
+         button.innerHTML = start + "-";
+         button.innerHTML += end + "<br />";
          button.innerHTML += "Room " + jsonResponse[i].room;
 
          if (slotNum == jsonResponse[i].slot)
@@ -379,6 +382,34 @@ function confirmAddTime()
   //cleanup
   hideSelectTime(); //makes the form disapear
   addTATime(); //makes the empty buttons dissapear.
+}
+
+function toStandardTime(time)
+{ // your input
+
+  time = time.split(':'); // convert to array
+
+  // fetch
+  var hours = Number(time[0]);
+  var minutes = Number(time[1]);
+  var seconds = Number(time[2]);
+
+  // calculate
+  var timeValue;
+
+  if (hours > 0 && hours <= 12) {
+    timeValue= "" + hours;
+  } else if (hours > 12) {
+    timeValue= "" + (hours - 12);
+  } else if (hours == 0) {
+    timeValue= "12";
+  }
+
+  timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+  timeValue += (seconds < 10) ? ":0" + seconds : ":" + seconds;  // get seconds
+  //timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+
+  return timeValue;
 }
 
 //OTHER

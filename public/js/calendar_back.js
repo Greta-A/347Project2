@@ -113,6 +113,7 @@ var methods = {
 
     app.post('/studentSessionCode', function(req, res)
     {
+      //NEED ERROR CHECKING
       res.render('questions.ejs', {eid:index.eid, role:index.role, pickedCourse: pickedCourse});
       res.end();
     });
