@@ -8,18 +8,18 @@ var methods = {
   listenOnCalendar: function()
   {
     var app = main.app;
-    var eid = index.eid;
-    var role = index.role;
+    //var eid = index.eid;
+    //var role = index.role;
 
     app.get('/calendar', function(req, res)
     {
-      res.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+      res.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
       res.end();
     });
 
     app.get('/CourseList', function(req, res)
     {
-      res.render('course_list.ejs', {eid:index.eid, role:role});
+      res.render('course_list.ejs', {eid:req.session.eid, role:req.session.role});
       res.end();
     });
 
@@ -32,7 +32,7 @@ var methods = {
           var query = {
            name: 'insertTASlot',
            text: 'INSERT INTO calendar_items(slot, ta, course_id, start_time, room, end_time) values ($1, $2, $3, $4, $5, $6)',
-           values: [slotNum, index.eid, pickedCourse, req.body.start_time, req.body.room_number, req.body.end_time]
+           values: [slotNum, req.session.eid, pickedCourse, req.body.start_time, req.body.room_number, req.body.end_time]
           }
           client.query(query, (err,res) =>
          {
@@ -43,7 +43,7 @@ var methods = {
            else {
              //success
              inserted = true;
-             response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+             response.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
              response.end();
            }
          });
@@ -77,7 +77,7 @@ var methods = {
       app.post('/generateCode', function(req, response)
       {
         insertSesssionCode(req.body.sessionCode, pickedSlot, function(err, res){
-        response.render('questions.ejs', {eid:index.eid, role:index.role, pickedCourse: pickedCourse});
+        response.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
         response.end();
         })
       });
@@ -88,7 +88,7 @@ var methods = {
         {
           updateRequestCover(pickedSlot, function(err, res)
           {
-            response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+            response.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
             response.end();
           });
         }
@@ -98,7 +98,7 @@ var methods = {
       {
         updateAcceptCover(req.body.new_ta_name, pickedSlot, function(err, res)
         {
-          response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+          response.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
           response.end();
         });
       });
@@ -114,7 +114,7 @@ var methods = {
     app.post('/studentSessionCode', function(req, res)
     {
       //NEED ERROR CHECKING
-      res.render('questions.ejs', {eid:index.eid, role:index.role, pickedCourse: pickedCourse});
+      res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
       res.end();
     });
 
@@ -125,7 +125,7 @@ var methods = {
       {
         updateApproveCover(pickedSlot, function(err, res)
         {
-          response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+          response.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
           response.end();
         });
       });
