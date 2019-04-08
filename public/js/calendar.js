@@ -185,15 +185,19 @@ function displaySessionCode(e)
   if (getTATarget().style.backgroundColor == "")
   {
     document.getElementById("accept_form").style.display = "none";
+    if (getTATarget().innerHTML != document.getElementById("fullEid").innerHTML)
+    {
+      document.getElementById("request_form").style.display = "none";
+    }
   }
   // accepted cover, disable all forms
-  if (getTATarget().style.backgroundColor == "yellow")
+  else if (getTATarget().style.backgroundColor == "yellow")
   {
     document.getElementById("request_form").style.display = "none";
     document.getElementById("accept_form").style.display = "none";
   }
   // cover is approved, disable all forms
-  if (getTATarget().style.backgroundColor == "lightgreen")
+  else if (getTATarget().style.backgroundColor == "lightgreen")
   {
     document.getElementById("request_form").style.display = "none";
     document.getElementById("accept_form").style.display = "none";
