@@ -10,6 +10,13 @@ var methods = {
     var app = main.app;
     var eid = index.eid;
     var role = index.role;
+
+    app.get('/calendar', function(req, res)
+    {
+      res.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+      res.end();
+    });
+
     app.post('/addTASlot', function(req, res)
     {
       var inserted = false;
@@ -60,6 +67,7 @@ var methods = {
     app.post('/sendTAInfo', function(req, res)
     {
       var pickedSlot = req.body.buttonSlot;
+      var done = false;
       app.post('/generateCode', function(req, response)
       {
         insertSesssionCode(req.body.sessionCode, pickedSlot, function(err, res){
@@ -79,8 +87,22 @@ var methods = {
           });
         }
       });
-      //res.end();
-      //end post request????
+
+      app.post('/acceptCover', function(req, response)
+      {
+        updateAcceptCover(req.body.new_ta_name, pickedSlot, function(err, res)
+        {
+          response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+          response.end();
+        });
+      });
+
+        // wait 8 seconds before reloading page?
+        setTimeout(function() {
+          res.redirect('back');
+        }, 8000);
+        //res.redirect('back');
+
     });
 
     app.post('/studentSessionCode', function(req, res)
@@ -88,6 +110,23 @@ var methods = {
       res.render('questions.ejs', {eid:index.eid, role:index.role, pickedCourse: pickedCourse});
       res.end();
     });
+
+    app.post('/sendAdInfo', function(req, res)
+    {
+      var pickedSlot = req.body.buttonSlot;
+      app.post('/approveCover', function(req, response)
+      {
+        updateApproveCover(pickedSlot, function(err, res)
+        {
+          response.render('calendar.ejs', {eid:index.eid, role:role, pickedCourse: pickedCourse});
+          response.end();
+        });
+      });
+      setTimeout(function() {
+        res.redirect('back');
+      }, 8000);
+    });
+
   }
 }
 
@@ -137,6 +176,48 @@ function updateRequestCover(pickedSlot, callback)
   var query = {
     name: 'updateRequestCover',
     text: 'UPDATE calendar_items SET cover_requested = true WHERE slot = $1::smallint AND course_id = $2::smallint',
+    values: [pickedSlot, pickedCourse]
+  }
+
+  client.query(query, (err,res) =>
+  {
+   if (err)
+   {
+     console.log(err)
+   }
+   else {
+     //success
+     return callback(err, res.rows);
+   }
+  });
+}
+
+function updateAcceptCover(newTAName, pickedSlot, callback)
+{
+  var query = {
+    name: 'updateRequestCover',
+    text: 'UPDATE calendar_items SET cover_accepted = true, ta = $1 WHERE slot = $2::smallint AND course_id = $3::smallint',
+    values: [newTAName, pickedSlot, pickedCourse]
+  }
+
+  client.query(query, (err,res) =>
+  {
+   if (err)
+   {
+     console.log(err)
+   }
+   else {
+     //success
+     return callback(err, res.rows);
+   }
+  });
+}
+
+function updateApproveCover(pickedSlot, callback)
+{
+  var query = {
+    name: 'updateRequestCover',
+    text: 'UPDATE calendar_items SET cover_approved = true WHERE slot = $1::smallint AND course_id = $2::smallint',
     values: [pickedSlot, pickedCourse]
   }
 

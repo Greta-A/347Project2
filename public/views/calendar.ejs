@@ -26,9 +26,9 @@
         <button id="add" type="button" onclick="addTATime()">Add</button>
         <button type="button" id="remove" onclick="removeTATimes()">Remove</button>
     </div>
-    <div class="role-2" id="admin_calendar_button">
+    <!-- <div class="role-2" id="admin_calendar_button">
       <button type="button">Approve Cover</button>
-    </div>
+    </div> -->
     <table id="calendar_table">
         <tr>
             <th id="days"></th>
@@ -65,7 +65,7 @@
             <th>7:00</th>
             <td colspan="2"></td>
             <td colspan="2">
-                <div class="role-1 times">
+                <!-- <div class="role-1 times">
                     <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA1</button>
                     <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA2</button>
                 </div>
@@ -76,7 +76,7 @@
                 <div class="role-2 times">
                     <button type="button" class="ta_button" onclick="confirmCover(event)">TA1</button>
                     <button type="button" class="ta_button" onclick="confirmCover(event)">TA2</button>
-                </div>
+                </div> -->
             </td>
             <td colspan="2"></td>
             <td colspan="2"></td>
@@ -112,7 +112,7 @@
             <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2">
-                <div class="role-1 times">
+                <!-- <div class="role-1 times">
                     <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA3</button>
                 </div>
                 <div class="role-0 times">
@@ -120,7 +120,8 @@
                 </div>
                 <div class="role-2 times">
                     <button type="button" class="ta_button" onclick="confirmCover(event)">TA3</button>
-                </div></td>
+                </div> -->
+              </td>
             <td colspan="2"></td>
         </tr>
         <tr>
@@ -170,19 +171,25 @@
         <form action="generateCode" method="post">
             <input type="button" name="generate_code" value="Generate Code" onclick="generateSessionCode()">
             <input type="text" id="code" name="sessionCode" readonly>
-            <button type="submit">Done</button>
+            <input type="submit" value="Done">
         </form>
         <form action="requestCover" method="post" id="request_form">
           <input type="checkbox" id="request_cover" name="request">Request Cover
           <input type="submit" value="Submit">
         </form>
-        <form id="accept_form">
+        <form action="acceptCover" method="post" id="accept_form">
           <div id="hidden_accept">
           <label>TA Name:</label>
-          <input type="text" id="new_ta_name" placeholder="TA#" required>
-          <input type="checkbox" style="display:inline-block;" id="accept_cover" value="accept" onclick="validateCheck()">Accept Cover
+          <input type="text" id="new_ta_name" name="new_ta_name" placeholder="eid" required>
+          <input type="submit" id="accept_cover" name="accept" value="Accept Cover">
           </div>
         </form>
+    </div>
+
+    <div style="display:none;" class="role-2" id="approve_cover">
+      <form action="approveCover" method="post">
+        <input type="submit" value="Approve Cover?">
+      </form>
     </div>
 
     <!-- <footer>

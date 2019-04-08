@@ -47,20 +47,28 @@ function displayTASlotsInHTML(jsonResponse)
          button.setAttribute("onclick", "displaySessionCode(event)");
          button.innerHTML = jsonResponse[i].ta;
 
+         // found the correct TA button
          if (slotNum == jsonResponse[i].slot)
          {
-           if (jsonResponse[i].cover_requested)
+           // requested cover, no one has accepted yet
+           if (jsonResponse[i].cover_requested && !(jsonResponse[i].cover_accepted))
            {
-             if (button.innerHTML == document.getElementById("fullEid").innerHTML)
-             {
-               document.getElementById("request_form").style.display = "none";
-               document.getElementById("accept_form").style.display = "none";
-             }
+             // set button color to red
              button.style.backgroundColor = "#ff6d6b";
-             form.appendChild(input);
-             form.appendChild(button);
-             div.appendChild(form);
            }
+           // someone has accepted the cover
+           if (jsonResponse[i].cover_requested && jsonResponse[i].cover_accepted)
+           {
+             button.style.backgroundColor = "yellow";
+           }
+           // admin has approved cover
+           if (jsonResponse[i].cover_requested && jsonResponse[i].cover_accepted && jsonResponse[i].cover_approved)
+           {
+             button.style.backgroundColor = "lightgreen";
+           }
+           form.appendChild(input);
+           form.appendChild(button);
+           div.appendChild(form);
          }
        }
        slotNum++;
@@ -89,6 +97,51 @@ function displayTASlotsInHTML(jsonResponse)
        }
        slotNum++;
     }
+  }
+    slotNum = 0;
+    for (var div of timeDivs)
+    {
+      if (div.classList.contains("role-2"))
+      {
+        slotNum++;
+        for (var i = 0; i < jsonResponse.length; i++)
+        {
+          var form = document.createElement("form");
+           form.setAttribute('action', "sendAdInfo");
+           form.setAttribute('method', "post");
+           var input = document.createElement("input");
+           input.setAttribute('name', "buttonSlot");
+           input.value = slotNum;
+           input.style.display = "none";
+          var button = document.createElement("button");
+           button.class = "admin_button";
+           button.setAttribute("type", "submit");
+           button.setAttribute("onclick", "confirmCover(event)");
+           button.innerHTML = jsonResponse[i].ta
+
+           if (slotNum == jsonResponse[i].slot)
+           {
+             if (jsonResponse[i].cover_requested && !(jsonResponse[i].cover_accepted))
+             {
+               // set button color to red
+               button.style.backgroundColor = "#ff6d6b";
+             }
+             // someone has accepted the cover
+             if (jsonResponse[i].cover_requested && jsonResponse[i].cover_accepted)
+             {
+               button.style.backgroundColor = "yellow";
+             }
+             if (jsonResponse[i].cover_requested && jsonResponse[i].cover_accepted && jsonResponse[i].cover_approved)
+             {
+               button.style.backgroundColor = "lightgreen";
+             }
+            form.appendChild(input);
+            form.appendChild(button);
+            div.appendChild(form);
+           }
+         }
+         slotNum++;
+      }
   }
 }
 
@@ -128,17 +181,28 @@ function displaySessionCode(e)
     x.style.display = "none";
   }
   setTATarget(e);
-  // document.getElementById("request_form").style.display = "block";
-  // if (getTATarget().style.backgroundColor == "")
-  // {
-  //   document.getElementById("request_cover").checked = false;
-  //   document.getElementById("hidden_accept").style.display = "none";
-  //   document.getElementById("accept_cover").checked = false;
-  // }
-  // else if (getTATarget().style.backgroundColor == "yellow")
-  // {
-  //   document.getElementById("request_form").style.display = "none";
-  // }
+  // no one has requested anything, request form is enabled
+  if (getTATarget().style.backgroundColor == "")
+  {
+    document.getElementById("accept_form").style.display = "none";
+  }
+  // accepted cover, disable all forms
+  if (getTATarget().style.backgroundColor == "yellow")
+  {
+    document.getElementById("request_form").style.display = "none";
+    document.getElementById("accept_form").style.display = "none";
+  }
+  // cover is approved, disable all forms
+  if (getTATarget().style.backgroundColor == "lightgreen")
+  {
+    document.getElementById("request_form").style.display = "none";
+    document.getElementById("accept_form").style.display = "none";
+  }
+  // requested cover, disable request form
+  else
+  {
+    document.getElementById("request_form").style.display = "none";
+  }
 }
 
 function generateSessionCode()
@@ -147,67 +211,19 @@ function generateSessionCode()
   var x = document.getElementById("code").value = session;
 }
 
-function validateCheck()
-{
-  console.log(getTATarget().parentElement.type);
-  var parentDivs = getTATarget().parentElement.parentElement.getElementsByTagName("div");
-  var buttonText = getTATarget().innerHTML;
-  if (document.getElementById("request_cover").checked)
-  {
-      getTATarget().style.backgroundColor = "#ff6d6b";
-      var buttonAmount = parentDivs[2].getElementsByTagName("button").length;
-      for (var i = 0; i < buttonAmount; i++)
-      {
-        if (parentDivs[2].getElementsByTagName("button")[i].innerHTML == buttonText)
-        {
-          parentDivs[2].getElementsByTagName("button")[i].style.backgroundColor = "#ff6d6b";
-        }
-      }
-      var x = document.getElementById("hidden_accept");
-      if (x.style.display === "none")
-      {
-        console.log("in validate check statemenet");
-        document.getElementById("new_ta_name").value = "";
-        x.style.display = "block";
-      }
-
-      if (document.getElementById("accept_cover").checked)
-      {
-        getTATarget().style.backgroundColor = "yellow";
-        getTATarget().innerHTML = document.getElementById("new_ta_name").value;
-        for (var i = 0; i < buttonAmount; i++)
-        {
-          if (parentDivs[2].getElementsByTagName("button")[i].innerHTML == buttonText)
-          {
-            parentDivs[2].getElementsByTagName("button")[i].style.backgroundColor = "yellow";
-            parentDivs[2].getElementsByTagName("button")[i].innerHTML = document.getElementById("new_ta_name").value;
-          }
-        }
-        document.getElementById("request_form").style.display = "none";
-      }
-  }
-  else
-  {
-    getTATarget().style.backgroundColor = "";
-    document.getElementById("hidden_accept").style.display = "none";
-  }
-}
 
 function confirmCover(e)
 {
-  var parentDivs = getTATarget().parentElement.parentElement.getElementsByTagName("div");
-  var buttonAmount = parentDivs[1].getElementsByTagName("button").length;
-  var buttonText = e.target.innerHTML;
-  if (e.target.style.backgroundColor = "yellow")
+  if (e.target.style.backgroundColor == "yellow")
   {
-    e.target.style.backgroundColor = "#11d86e";
-    for (var i = 0; i < buttonAmount; i++)
+    var x = document.getElementById("approve_cover");
+    if (x.style.display === "none")
     {
-      alert(parentDivs[0].getElementsByTagName("button")[i].innerHTML);
-      if (parentDivs[0].getElementsByTagName("button")[i].innerHTML == buttonText)
-      {
-        parentDivs[0].getElementsByTagName("button")[i].style.backgroundColor = "#11d86e";
-      }
+      x.style.display = "block";
+    }
+    else
+    {
+      x.style.display = "none";
     }
   }
 }

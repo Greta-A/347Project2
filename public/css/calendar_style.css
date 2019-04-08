@@ -105,13 +105,17 @@ table {
   cursor: pointer;
 }
 
-#admin_calendar_button button {
+#approve_cover {
+  text-align: center;
+}
+
+/* #admin_calendar_button button {
   background-color: #450084;
   font-size: 11pt;
   color: white;
   border:none;
   cursor: pointer;
-}
+} */
 
 #request_form {
     font-family: "Lucida Sans Unicode";
