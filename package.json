@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cookie-session": "^1.3.3",
     "ejs": "^2.6.1",
     "express": "^4.15.2",
     "express-formidable": "^1.2.0",

@@ -21,7 +21,7 @@ var methods = {
           addToDB(req, client, res);
           break;
         default:
-          login(eid, pass, res);
+          login(eid, pass, res, req);
       }
     });
   }
@@ -51,21 +51,11 @@ function addToDB(req, client, response)
     else {
       // unique, single PKs
       login(req.body.eid, req.body.password, response);
-      // var id = eid;
-      // var rol = role;
-      // exports.eid = id;
-      // exports.role = role;
-      // var courses = require('./course_list_back.js');
-      // response.render('course_list.ejs', {eid:id, role:rol});
-      // response.end()
-      // courses.data.listenOnCourseList();
     }
   });
 }
 
-//client.end()???
-
-function login(eid, password, response)
+function login(eid, password, response, req)
 {
   //Unsafe. We not this is not hashed or safe. Just use the password 'password' or something
   var authenticateUser = {
@@ -96,6 +86,7 @@ function login(eid, password, response)
       }
       else {
         //Dont need to do this
+        req.session.eid = eid;
         exports.eid = eid;
         client.query(retrieveRole, (err, res) => {
           if (err)
@@ -104,6 +95,7 @@ function login(eid, password, response)
           }
           else {
             var role = res.rows[0];
+            req.session.role = role[0];
             var id = eid;
             exports.role = role;
             var courses = require('./course_list_back.js');

@@ -5,8 +5,14 @@ var app = express();
 const path = require('path')
 const {Client} = require('pg');
 var ejs = require('ejs');
+var cookieSession = require('cookie-session')//
 // allows post request to see form fields //
 const PORT = process.env.PORT || 3000
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['a', 'b']
+}))
 
 /////////////////////////////////////
 //postgres

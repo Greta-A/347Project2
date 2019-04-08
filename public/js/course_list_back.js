@@ -32,6 +32,7 @@ var methods = {
       });
 
       app.post('/pickedCourses', function(req, response) {
+        console.log("checking: ", req.session.eid, req.session.role);
         var addPickedCourse = {
           name: 'add-picked-course',
           text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
