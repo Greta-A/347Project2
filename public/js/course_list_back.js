@@ -12,31 +12,31 @@ var methods = {
   listenOnCourseList: function()
   {
       var app = main.app;
-      var eid = index.eid;
-      var role = index.role;
+      // var eid = index.eid;
+      // var role = index.role;
       app.post('/course_list', function(req, res) {
         courseID = req.body.classID;
         courseName = req.body.className;
         addCourse(courseID, courseName);
-        res.render('course_list.ejs', {eid:index.eid, role:role});
+        res.render('course_list.ejs', {eid:req.session.eid, role:req.session.role});
         res.end();
       });
 
       app.get('/availableCourses', function(req, res) {
-      getAllCourses(function(err, response)
-      {
-        //send JSON object containing all available classes to client
-        res.json(response);
-        res.end();
-      });
+        getAllCourses(function(err, response)
+        {
+          //send JSON object containing all available classes to client
+          res.json(response);
+          res.end();
+        });
       });
 
       app.post('/pickedCourses', function(req, response) {
-        console.log("checking: ", req.session.eid, req.session.role);
+        // console.log("checking: ", req.session.eid, req.session.role);
         var addPickedCourse = {
           name: 'add-picked-course',
           text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
-          values: [eid, req.body.classNum]
+          values: [req.session.eid, req.body.classNum]
         }
         pickedCourse = req.body.classNum;
         client.query(addPickedCourse, (err,res) =>
@@ -46,7 +46,7 @@ var methods = {
             console.log(err)
           }
           else {
-            response.render('course_list.ejs', {eid:index.eid, role:role});
+            response.render('course_list.ejs', {eid:req.session.eid, role:req.session.role});
             response.end();
           }
         });
@@ -77,7 +77,7 @@ var methods = {
         pickedCourse = req.body.classNum;
         exports.pickedCourse = pickedCourse;
         var calendar = require('./calendar_back.js');
-        res.render('calendar.ejs', {eid:index.eid, role:index.role, pickedCourse: pickedCourse});
+        res.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
         res.end();
         calendar.data.listenOnCalendar();
       });
@@ -136,7 +136,7 @@ function getUsersCourses(callback)
   var query = {
     name: 'getUsersCourses',
     text: 'SELECT course FROM users_to_courses WHERE eid = $1::text',
-    values: [index.eid],
+    values: [req.session.eid],
     rowMode: 'array'
   }
   client.query(query, (err,res) =>
