@@ -88,8 +88,6 @@ function listCoursesInHTML(jsonData) {
 function listUserCoursesInHTML(jsonResponse)
 {
   var allCourses = document.getElementById("available_courses").getElementsByTagName("li");
-  console.log(allCourses.length);
-  console.log(jsonResponse);
   allPickedCourses = document.getElementById("picked_courses").getElementsByTagName("li");
   var length = allPickedCourses.length;
   if (jsonResponse.length > length)

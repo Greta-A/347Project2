@@ -14,9 +14,9 @@
   <div class="nav_bar">
     <ul>
       <li><a href="index.html">Sign Out</a></li>
+      <li><a href="/CourseList">Course List</a></li>
     </ul>
   </div>
-  <!-- <button onclick="window.location.href='course_list.ejs';" id="back_to_courses">←</button> -->
   <p style="display:none;" id="fullEid" ><%= eid%></p>
   <h4 id="eid">Welcome, <%= eid%></h4>
   <p style="display:none;" id="user_role" ><%= role%></p>
@@ -24,11 +24,7 @@
   <section id="page_container">
     <div class="role-1" id="ta_calendar_buttons">
         <button id="add" type="button" onclick="addTATime()">Add</button>
-        <button type="button" id="remove" onclick="removeTATimes()">Remove</button>
     </div>
-    <!-- <div class="role-2" id="admin_calendar_button">
-      <button type="button">Approve Cover</button>
-    </div> -->
     <table id="calendar_table">
         <tr>
             <th id="days"></th>
@@ -64,20 +60,7 @@
         <tr>
             <th>7:00</th>
             <td colspan="2"></td>
-            <td colspan="2">
-                <!-- <div class="role-1 times">
-                    <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA1</button>
-                    <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA2</button>
-                </div>
-                <div class="role-0 times">
-                    <button type="button" class="student_button" onclick="getSessionCode()">7:00-8:00<br>Room 243</button>
-                    <button type="button" class="student_button" onclick="getSessionCode()">7:30-8:30<br>Room 243</button>
-                </div>
-                <div class="role-2 times">
-                    <button type="button" class="ta_button" onclick="confirmCover(event)">TA1</button>
-                    <button type="button" class="ta_button" onclick="confirmCover(event)">TA2</button>
-                </div> -->
-            </td>
+            <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2"></td>
@@ -111,17 +94,7 @@
             <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2"></td>
-            <td colspan="2">
-                <!-- <div class="role-1 times">
-                    <button type="button" class="ta_button" onclick="displaySessionCode(event)">TA3</button>
-                </div>
-                <div class="role-0 times">
-                    <button type="button" class="student_button" onclick="getSessionCode()">10:00-11:00<br>Room 243</button>
-                </div>
-                <div class="role-2 times">
-                    <button type="button" class="ta_button" onclick="confirmCover(event)">TA3</button>
-                </div> -->
-              </td>
+            <td colspan="2"></td>
             <td colspan="2"></td>
         </tr>
         <tr>
@@ -171,11 +144,11 @@
         <form action="generateCode" method="post">
             <input type="button" name="generate_code" value="Generate Code" onclick="generateSessionCode()">
             <input type="text" id="code" name="sessionCode" readonly>
-            <input type="submit" value="Done">
+            <input type="submit" id="submitGeneratedCode" value="Done">
         </form>
         <form action="requestCover" method="post" id="request_form">
           <input type="checkbox" id="request_cover" name="request">Request Cover
-          <input type="submit" value="Submit">
+          <input type="submit" id="submitRequestCover" value="Submit">
         </form>
         <form action="acceptCover" method="post" id="accept_form">
           <div id="hidden_accept">

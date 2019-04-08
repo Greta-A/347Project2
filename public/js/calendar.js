@@ -285,10 +285,9 @@ function addButtons()
       input1.style.display = "none";
       input1.value = slotNum;
       slotButton1.classList.add("temporary")
-      // slotButton1.setAttribute("type", "button");
       slotButton1.setAttribute("type", "submit");
       slotButton1.setAttribute("onclick", "claimTATime(this)");
-      slotButton1.innerHTML = slotNum;
+      //slotButton1.innerHTML = slotNum;
       form1.appendChild(input1);
       form1.appendChild(slotButton1);
       slotNum++;
@@ -307,13 +306,11 @@ function addButtons()
       slotButton2.setAttribute("type", "submit");
       slotButton2.setAttribute('name', slotNum);
       slotButton2.setAttribute("onclick", "claimTATime(this)");
-      slotButton2.innerHTML = slotNum;
+      //slotButton2.innerHTML = slotNum;
       form2.appendChild(input2);
       form2.appendChild(slotButton2);
       if(openSlots === 2)
       {
-        // div.appendChild(slotButton1);
-        // childToParentMap.set(slotButton1,div);
         div.appendChild(form1);
         childToParentMap.set(form1,div);
       }
@@ -379,47 +376,6 @@ function hideSelectTime()
  */
 function confirmAddTime()
 {
-  var timeDivs = document.getElementsByClassName("times");
-
-  //student button setup
-  var student_button = document.createElement("BUTTON")
-  student_button.class = "student_button";
-  student_button.setAttribute("type", "button");
-  student_button.setAttribute("onclick", "getSessionCode()");
-  student_button.textContent = "start-end Room 123"; //TODO time-time <br> Room ###
-  //added in loop below.
-
-  //ta button setup
-  var taParent = childToParentMap.get(timeSlotButton);
-  var taButton = document.createElement("BUTTON");
-  taButton.class = "ta_button";
-  taButton.setAttribute("type", "button");
-  taButton.setAttribute("onclick", "displaySessionCode(event)");
-  taButton.textContent = "TA#"; //TODO #
-  taParent.appendChild(taButton);
-
-  //admin button setup
-  var admin_button = document.createElement("BUTTON")
-  admin_button.id = "admin_button";
-  admin_button.setAttribute("type", "button");
-  admin_button.setAttribute("onclick", "confirmCover(event)");
-  admin_button.textContent = "TA#"; //TODO #
-
-  //find student and admin divs to add buttons to as well.
-  for(var div of timeDivs)
-  {
-    //was adding to student and admin before as well.
-    if(div.classList.contains("role-0") && taParent.parentElement === div.parentElement)
-    {
-      div.appendChild(student_button);
-    }
-    //ta one is done above since we dont have to search for the parent.
-    if(div.classList.contains("role-2") && taParent.parentElement === div.parentElement)
-    {
-      div.appendChild(admin_button);
-    }
-  }
-
   //cleanup
   hideSelectTime(); //makes the form disapear
   addTATime(); //makes the empty buttons dissapear.

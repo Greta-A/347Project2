@@ -17,6 +17,12 @@ var methods = {
       res.end();
     });
 
+    app.get('/CourseList', function(req, res)
+    {
+      res.render('course_list.ejs', {eid:index.eid, role:role});
+      res.end();
+    });
+
     app.post('/addTASlot', function(req, res)
     {
       var inserted = false;
