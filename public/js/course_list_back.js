@@ -4,7 +4,6 @@ var index = require('./index.js');
 var client = main.client;
 var pickedCourse;
 //client.connect()
-
 var courseID;
 var courseName;
 
@@ -58,7 +57,7 @@ var methods = {
          * gets all the course IDs from users_to_courses
          * that have the same eid. (ex: [[444], [240]]).
          */
-        getUsersCourses(function(err,usersCoursesIDs)
+        getUsersCourses(req, function(err,usersCoursesIDs)
         {
           /*
            * gets all the courses and expands them to the full course from the DB.
@@ -131,7 +130,7 @@ function addCourse(id, name)
   });
 }
 
-function getUsersCourses(callback)
+function getUsersCourses(req, callback)
 {
   var query = {
     name: 'getUsersCourses',
