@@ -110,17 +110,18 @@ function displayTASlotsInHTML(jsonResponse)
         slotNum++;
         for (var i = 0; i < jsonResponse.length; i++)
         {
-          var form = document.createElement("form");
-           form.setAttribute('action', "sendAdInfo");
-           form.setAttribute('method', "post");
-           var input = document.createElement("input");
-           input.setAttribute('name', "buttonSlot");
-           input.value = slotNum;
-           input.style.display = "none";
+          // var form = document.createElement("form");
+          //  form.setAttribute('action', "sendAdInfo");
+          //  form.setAttribute('method', "post");
+          //  var input = document.createElement("input");
+          //  input.setAttribute('name', "buttonSlot");
+          //  input.value = slotNum;
+          //  input.style.display = "none";
           var button = document.createElement("button");
            button.class = "admin_button";
            button.setAttribute("type", "submit");
-           button.setAttribute("onclick", "confirmCover(event)");
+           button.setAttribute("id", "admin"+slotNum);
+           button.setAttribute("onclick", `confirmCover(${slotNum})`);
            button.innerHTML = jsonResponse[i].ta
 
            if (slotNum == jsonResponse[i].slot)
@@ -139,9 +140,9 @@ function displayTASlotsInHTML(jsonResponse)
              {
                button.style.backgroundColor = "lightgreen";
              }
-            form.appendChild(input);
-            form.appendChild(button);
-            div.appendChild(form);
+            //form.appendChild(input);
+            //form.appendChild(button);
+            div.appendChild(button);
            }
          }
          slotNum++;
@@ -226,9 +227,14 @@ function generateSessionCode()
 }
 
 
-function confirmCover(e)
+function confirmCover(slotNum)
 {
-  if (e.target.style.backgroundColor == "yellow")
+  fetch(`/generateCode/${slotNum}`)
+    .then(resp => {
+      console.log('resposne from generateCode', resp)
+    })
+  button = document.getElementById("admin"+slotNum);
+  if (button.style.backgroundColor == "yellow")
   {
     var x = document.getElementById("approve_cover");
     if (x.style.display === "none")
