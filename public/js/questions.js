@@ -23,18 +23,9 @@ function displayQuestionList(jsonResponse)
   var questionList = document.getElementById("questionList");
   //no need to sort since it will never add an 'order' higher in the table
   //and lower by now.
-  var order;
-  var question;
-  var upVotes;
-  var owner;
-  var sessionCode;
   for(jsonQuestion of jsonResponse)
   {
-    // position = jsonQuestion[0]
-    // question = jsonQuestion[1]
-    // upVotes = jsonQuestion[2]
-    // owner = jsonQuestion[3]
-    // order = jsonQuestion[4]
+    
     console.log(jsonQuestion);
   }
   
