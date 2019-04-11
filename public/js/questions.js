@@ -1,11 +1,15 @@
+//is called at the bottom on load.
 function displayPicked()
 {
+  //gimmi the pages questions.
   fetch("/loadQuestions")
     .then(function(response) {
+      //turn the response into json.
       return response.json();
     })
     .then(function(jsonResponse) {
-      displayQuestionList(jsonResponse);//communication with backend
+      //display the questions fetched from the back end that are now in json.
+      displayQuestionList(jsonResponse);
     })
     .catch(function(){
         console.log("Caught");
@@ -14,11 +18,10 @@ function displayPicked()
     // document.getElementById("hidden_course_list").style.display = "none";
 }
 
-listQuestionsInHTML(jsonResponse)
+function displayQuestionList(jsonResponse)
 {
-
+  console.log("JSON: ",jsonResponse);
 }
-
 
 function submitQuestion() {
   var questionInput = document.getElementById("question_string").value;
@@ -67,3 +70,5 @@ function removeQuestion(e)
   var list = document.getElementById("questionList");
   list.removeChild(parent);
 }
+
+displayPicked();
