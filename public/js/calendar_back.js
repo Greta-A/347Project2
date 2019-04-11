@@ -75,8 +75,9 @@ var methods = {
       app.post('/generateCode', function(req, response)
       {
         insertSesssionCode(req.body.sessionCode, slotNum, function(err, res){
-        response.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
-        response.end();
+          req.session.sessionCode = req.body.sessionCode
+          response.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
+          response.end();
         })
       });
 
@@ -104,6 +105,7 @@ var methods = {
     app.post('/studentSessionCode', function(req, res)
     {
       //NEED ERROR CHECKING
+      req.session.sessionCode = req.body.sessionCode
       res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
       res.end();
     });
