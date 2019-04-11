@@ -11,8 +11,7 @@ var methods = {
   listenOnCourseList: function()
   {
       var app = main.app;
-      // var eid = index.eid;
-      // var role = index.role;
+      
       app.post('/course_list', function(req, res) {
         courseID = req.body.classID;
         courseName = req.body.className;
@@ -31,7 +30,6 @@ var methods = {
       });
 
       app.post('/pickedCourses', function(req, response) {
-        // console.log("checking: ", req.session.eid, req.session.role);
         var addPickedCourse = {
           name: 'add-picked-course',
           text: 'INSERT INTO users_to_courses(eid, course) values ($1, $2)',
@@ -80,7 +78,6 @@ var methods = {
         var calendar = require('./calendar_back.js');
         res.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
         res.end();
-        //calendar.data.listenOnCalendar();
       });
 
   }
