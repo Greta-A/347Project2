@@ -96,7 +96,6 @@ function login(eid, password, response, req)
             req.session.role = role[0];
             var id = eid;
             exports.role = role;
-            var courses = require('./course_list_back.js');
             response.render('course_list.ejs', {eid:id, role:role});
             response.end();
           }
