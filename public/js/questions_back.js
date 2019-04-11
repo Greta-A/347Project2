@@ -19,6 +19,17 @@ var methods = {
       });
       //Should get all the questions that have the said code in the db.
     });
+
+    app.post('/submitQuestion', function(req, res)
+    {
+      questionString = req.body.question_string;
+      submitQuestion(req, questionString, function(err, result)
+      {
+        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
+        res.end();
+      });
+      //console.log("in submit");
+    });
   }
 }
 
@@ -28,7 +39,6 @@ function getQuestions(req, callback)
     name: 'getQuestions',
     text: 'SELECT * FROM questions WHERE session_code = $1',
     values: [req.session.sessionCode],
-    rowMode: 'array'
   }
   //calls the query to load the questions already in the db.
   client.query(query, (err,res) =>
@@ -41,5 +51,32 @@ function getQuestions(req, callback)
       return callback(err, res.rows);
     }
   });
+}
+
+function submitQuestion(req, questionString,callback)
+{
+  var order;
+  getQuestions(req, function(err, questions)
+  {
+    order = questions.length;
+
+    var query = {
+      name: 'submitQuestion',
+      text: 'INSERT INTO questions(position, question, upvotes, owner, session_code) values ($1, $2, $3, $4, $5)',
+      values: [order, questionString, 0, req.session.eid, req.session.sessionCode]
+    }
+    //calls the query to submit user question into database
+    client.query(query, (err,res) =>
+    {
+      if (err)
+      {
+        console.log(err)
+      }
+      else {
+        return callback(err, res.rows);
+      }
+    });
+  });
+
 }
 exports.data = methods;

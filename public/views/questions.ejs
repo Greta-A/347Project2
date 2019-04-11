@@ -27,9 +27,11 @@
     <div class="role-0 showing">
       <section>
       <div id="AskQuestion">
+        <form action="submitQuestion" method="post">
         <label>Ask a Question</label>
-        <input type="text" id="question_string">
+        <input type="text" id="question_string" name="question_string">
         <input type="submit" value="Submit" onclick="submitQuestion()">
+        </form>
       </div>
     </div>
       <div id="currQuest">

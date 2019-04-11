@@ -62,7 +62,7 @@ function submitQuestion() {
   surroundingDiv.appendChild(removeBtn);
   var list = document.getElementById("questionList");
   list.appendChild(surroundingDiv);
-  document.getElementById("question_string").value="";
+  //document.getElementById("question_string").value="";
 }
 
 function getNextQuestion()
