@@ -50,8 +50,13 @@ exports.app = app;
 
 // make index.js known to app.js
 var index = require(__dirname + '/public/js/index.js');
-//var courses = require(__dirname + '/public/js/course_list_back.js');
+var courses = require(__dirname + '/public/js/course_list_back.js');
+var calendar = require(__dirname + '/public/js/calendar_back.js');
 // call loginFormPost method
 index.data.loginFormPost();
+courses.data.listenOnCourseList();
+courses.data.loadUsersCourses();
+calendar.data.listenOnCalendar();
+
 
 app.listen(PORT);

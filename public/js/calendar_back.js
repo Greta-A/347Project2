@@ -24,16 +24,19 @@ var methods = {
       res.end();
     });
 
-    app.post('/addTASlot', function(req, res)
+    // get method soley for retrieving slotNumber without nested post requests
+    app.get('/generateCode/:slotNum', function(req, res)
     {
-      var inserted = false;
-      var slotNum = req.body.buttonSlot;
+      // method is called everytime a calendar button is pressed
+      slotNum = req.params.slotNum;
+    });
+
       app.post('/insertTASlot', function(req, response)
       {
           var query = {
            name: 'insertTASlot',
            text: 'INSERT INTO calendar_items(slot, ta, course_id, start_time, room, end_time) values ($1, $2, $3, $4, $5, $6)',
-           values: [slotNum, req.session.eid, pickedCourse, req.body.start_time, req.body.room_number, req.body.end_time]
+           values: [slotNum, req.session.eid, courses.pickedCourse, req.body.start_time, req.body.room_number, req.body.end_time]
           }
           client.query(query, (err,res) =>
          {
@@ -43,17 +46,11 @@ var methods = {
            }
            else {
              //success
-             inserted = true;
              response.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
              response.end();
            }
          });
       });
-        if (inserted)
-        {
-          res.end();
-        }
-    });
 
     app.get('/displayAllTASlots', function(req, res)
     {
@@ -71,18 +68,10 @@ var methods = {
       res.end();
     });
 
-    // get method soley for retrieving slotNumber without nested post requests
-    app.get('/generateCode/:slotNum', function(req, res)
-    {
-      // method is called everytime a calendar button is pressed
-      slotNum = req.params.slotNum;
-    });
-
     // app.post('/sendTAInfo', function(req, res)
     // {
     //   var pickedSlot = req.body.buttonSlot;
     //   var done = false;
-    console.log('about to set up the generateCode')
       app.post('/generateCode', function(req, response)
       {
         let pickedSlot =  slotNum;
@@ -113,14 +102,6 @@ var methods = {
           response.end();
         });
       });
-
-    //     // wait 8 seconds before reloading page?
-    //     setTimeout(function() {
-    //       res.redirect('back');
-    //     }, 8000);
-    //     //res.redirect('back');
-    //
-    // });
 
     app.post('/studentSessionCode', function(req, res)
     {

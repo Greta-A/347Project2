@@ -189,7 +189,6 @@ function displaySessionCode(slotNum)
     x.style.display = "none";
   }
   var selected = document.getElementById(slotNum);
-  console.log(selected.style.backgroundColor);
   // setTATarget(e);
   // no one has requested anything, request form is enabled
   if (selected.style.backgroundColor == "")
@@ -198,6 +197,7 @@ function displaySessionCode(slotNum)
     if (selected.innerHTML != document.getElementById("fullEid").innerHTML)
     {
       document.getElementById("request_form").style.display = "none";
+      document.getElementById("generate_form").style.display = "none";
     }
   }
   // accepted cover, disable all forms
@@ -286,38 +286,40 @@ function addButtons()
       openSlots = 2-div.childElementCount;
       var slotButton1 = document.createElement("BUTTON");
       var form1 = document.createElement("form");
-      form1.setAttribute('action', 'addTASlot');
-      form1.setAttribute('method', 'post');
+      // form1.setAttribute('action', 'addTASlot');
+      // form1.setAttribute('method', 'post');
       form1.setAttribute('id', slotNum+"form");
       form1.classList.add('temporary');
-      input1 = document.createElement("input");
-      input1.setAttribute('name', "buttonSlot");
-      input1.style.display = "none";
-      input1.value = slotNum;
+      // input1 = document.createElement("input");
+      // input1.setAttribute('name', "buttonSlot");
+      // input1.style.display = "none";
+      // input1.value = slotNum;
       slotButton1.classList.add("temporary")
-      slotButton1.setAttribute("type", "submit");
-      slotButton1.setAttribute("onclick", "claimTATime(this)");
+      slotButton1.setAttribute("type", "button");
+      slotButton1.setAttribute("id", slotNum);
+      slotButton1.setAttribute("onclick", `claimTATime(${slotNum})`);
       //slotButton1.innerHTML = slotNum;
-      form1.appendChild(input1);
+      //form1.appendChild(input1);
       form1.appendChild(slotButton1);
       slotNum++;
-      input2 = document.createElement("input");
-      input2.setAttribute('name', "buttonSlot");
-      input2.style.display = "none";
-      input2.value = slotNum;
+      // input2 = document.createElement("input");
+      // input2.setAttribute('name', "buttonSlot");
+      // input2.style.display = "none";
+      // input2.value = slotNum;
       var form2 = document.createElement("form");
-      form2.setAttribute('action', 'addTASlot');
-      form2.setAttribute('method', 'post');
+      // form2.setAttribute('action', 'addTASlot');
+      // form2.setAttribute('method', 'post');
       form2.setAttribute('id', slotNum+"form");
       form2.classList.add('temporary');
       var slotButton2 = document.createElement("BUTTON");
       slotButton2.classList.add("temporary")
       // slotButton2.setAttribute("type", "button");
-      slotButton2.setAttribute("type", "submit");
+      slotButton2.setAttribute("type", "button");
       slotButton2.setAttribute('name', slotNum);
-      slotButton2.setAttribute("onclick", "claimTATime(this)");
+      slotButton2.setAttribute("id", slotNum);
+      slotButton2.setAttribute("onclick", `claimTATime(${slotNum})`);
       //slotButton2.innerHTML = slotNum;
-      form2.appendChild(input2);
+      //form2.appendChild(input2);
       form2.appendChild(slotButton2);
       if(openSlots === 2)
       {
@@ -353,9 +355,15 @@ var timeSlotButton = null;
 /**
  * Takes a button and adds it perm
  */
-function claimTATime(button)
+function claimTATime(slotNum)
 {
-  timeSlotButton = button;
+  //timeSlotButton = button;
+  timeSlotButton = document.getElementById(slotNum);
+
+  fetch(`/generateCode/${slotNum}`)
+    .then(resp => {
+      console.log('resposne from generateCode', resp)
+    })
   //TODO: get target and keep it. so that it can be added after submit is clicked.
   if(taSelectTime.style.display === "none")
   {

@@ -72,7 +72,6 @@ var methods = {
         })
       });
 
-      console.log('setting up app.post /calendar')
       var calendar = require('./calendar_back.js');
       calendar.data.listenOnCalendar();
       app.post('/calendar', function(req, res) {
@@ -81,7 +80,7 @@ var methods = {
         var calendar = require('./calendar_back.js');
         res.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
         res.end();
-        calendar.data.listenOnCalendar();
+        //calendar.data.listenOnCalendar();
       });
 
   },
