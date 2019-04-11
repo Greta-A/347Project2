@@ -83,33 +83,6 @@ var methods = {
         //calendar.data.listenOnCalendar();
       });
 
-  },
-
-  //loads the courses that the user is in.
-  loadUsersCourses: function()
-  {
-    var app = main.app;
-    app.get('/loadPickedCourses', function(req, res)
-    {
-      /*
-       * gets all the course IDs from users_to_courses
-       * that have the same eid. (ex: [[444], [240]]).
-       */
-      getUsersCourses(function(err,usersCoursesIDs)
-      {
-        /*
-         * gets all the courses and expands them to the full course from the DB.
-         * (ex: [[444,'Artifical Intelligence'],[240,'Algorithms and Data Structures']])
-         */
-        var usersCourses = [];
-        getCoursesWithName(usersCourses, usersCoursesIDs, function(err, courses)
-        {
-          res.json(courses);
-          res.end();
-        })
-      })
-    });
-
   }
 }
 
