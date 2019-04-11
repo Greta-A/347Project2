@@ -3,6 +3,7 @@ var index = require('./index.js');
 var courses = require('./course_list_back.js');
 var client = main.client;
 var pickedCourse = courses.pickedCourse;
+var slotNum;
 
 var methods = {
   listenOnCalendar: function()
@@ -70,12 +71,22 @@ var methods = {
       res.end();
     });
 
-    app.post('/sendTAInfo', function(req, res)
+    // get method soley for retrieving slotNumber without nested post requests
+    app.get('/generateCode/:slotNum', function(req, res)
     {
-      var pickedSlot = req.body.buttonSlot;
-      var done = false;
+      // method is called everytime a calendar button is pressed
+      slotNum = req.params.slotNum;
+    });
+
+    // app.post('/sendTAInfo', function(req, res)
+    // {
+    //   var pickedSlot = req.body.buttonSlot;
+    //   var done = false;
+    console.log('about to set up the generateCode')
       app.post('/generateCode', function(req, response)
       {
+        let pickedSlot =  slotNum;
+        console.log(pickedSlot);
         insertSesssionCode(req.body.sessionCode, pickedSlot, function(err, res){
         response.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
         response.end();
@@ -103,13 +114,13 @@ var methods = {
         });
       });
 
-        // wait 8 seconds before reloading page?
-        setTimeout(function() {
-          res.redirect('back');
-        }, 8000);
-        //res.redirect('back');
-
-    });
+    //     // wait 8 seconds before reloading page?
+    //     setTimeout(function() {
+    //       res.redirect('back');
+    //     }, 8000);
+    //     //res.redirect('back');
+    //
+    // });
 
     app.post('/studentSessionCode', function(req, res)
     {

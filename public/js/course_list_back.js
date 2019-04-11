@@ -72,6 +72,9 @@ var methods = {
         })
       });
 
+      console.log('setting up app.post /calendar')
+      var calendar = require('./calendar_back.js');
+      calendar.data.listenOnCalendar();
       app.post('/calendar', function(req, res) {
         pickedCourse = req.body.classNum;
         exports.pickedCourse = pickedCourse;

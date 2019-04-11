@@ -34,17 +34,18 @@ function displayTASlotsInHTML(jsonResponse)
       slotNum++;
       for (var i = 0; i < jsonResponse.length; i++)
       {
-         var form = document.createElement("form");
-          form.setAttribute('action', "sendTAInfo");
-          form.setAttribute('method', "post");
+         // var form = document.createElement("form");
+          // form.setAttribute('action', "sendTAInfo");
+          // form.setAttribute('method', "post");
           var button = document.createElement("button");
-          var input = document.createElement("input");
-          input.setAttribute('name', "buttonSlot");
-          input.value = slotNum;
-          input.style.display = "none";
+          // var input = document.createElement("input");
+          // input.setAttribute('name', "buttonSlot");
+          // input.value = slotNum;
+          // input.style.display = "none";
          button.class = "ta_button";
          button.setAttribute("type", "submit");
-         button.setAttribute("onclick", "displaySessionCode(event)");
+         button.setAttribute("id", slotNum);
+         button.setAttribute("onclick", `displaySessionCode(${slotNum})`);
          button.innerHTML = jsonResponse[i].ta;
 
          // found the correct TA button
@@ -66,9 +67,10 @@ function displayTASlotsInHTML(jsonResponse)
            {
              button.style.backgroundColor = "lightgreen";
            }
-           form.appendChild(input);
-           form.appendChild(button);
-           div.appendChild(form);
+           // form.appendChild(input);
+           // form.appendChild(button);
+           // div.appendChild(input);
+           div.appendChild(button);
          }
        }
        slotNum++;
@@ -88,7 +90,6 @@ function displayTASlotsInHTML(jsonResponse)
          button.setAttribute("onclick", "getSessionCode()");
          var start = toStandardTime(jsonResponse[i].start_time);
          var end = toStandardTime(jsonResponse[i].end_time);
-         console.log(end);
          button.innerHTML = start + "-";
          button.innerHTML += end + "<br />";
          button.innerHTML += "Room " + jsonResponse[i].room;
@@ -171,8 +172,12 @@ function getSessionCode() {
     }
   }
 
-function displaySessionCode(e)
+function displaySessionCode(slotNum)
 {
+  fetch(`/generateCode/${slotNum}`)
+    .then(resp => {
+      console.log('resposne from generateCode', resp)
+    })
   var x = document.getElementById("hidden_generate_session");
   if (x.style.display === "none")
   {
@@ -183,24 +188,26 @@ function displaySessionCode(e)
   {
     x.style.display = "none";
   }
-  setTATarget(e);
+  var selected = document.getElementById(slotNum);
+  console.log(selected.style.backgroundColor);
+  // setTATarget(e);
   // no one has requested anything, request form is enabled
-  if (getTATarget().style.backgroundColor == "")
+  if (selected.style.backgroundColor == "")
   {
     document.getElementById("accept_form").style.display = "none";
-    if (getTATarget().innerHTML != document.getElementById("fullEid").innerHTML)
+    if (selected.innerHTML != document.getElementById("fullEid").innerHTML)
     {
       document.getElementById("request_form").style.display = "none";
     }
   }
   // accepted cover, disable all forms
-  else if (getTATarget().style.backgroundColor == "yellow")
+  else if (selected.style.backgroundColor == "yellow")
   {
     document.getElementById("request_form").style.display = "none";
     document.getElementById("accept_form").style.display = "none";
   }
   // cover is approved, disable all forms
-  else if (getTATarget().style.backgroundColor == "lightgreen")
+  else if (selected.style.backgroundColor == "lightgreen")
   {
     document.getElementById("request_form").style.display = "none";
     document.getElementById("accept_form").style.display = "none";
