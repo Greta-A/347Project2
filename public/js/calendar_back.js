@@ -9,8 +9,6 @@ var methods = {
   listenOnCalendar: function()
   {
     var app = main.app;
-    //var eid = index.eid;
-    //var role = index.role;
 
     app.get('/calendar', function(req, res)
     {
@@ -68,10 +66,6 @@ var methods = {
       res.end();
     });
 
-    // app.post('/sendTAInfo', function(req, res)
-    // {
-    //   var slotNum = req.body.buttonSlot;
-    //   var done = false;
       app.post('/generateCode', function(req, response)
       {
         insertSesssionCode(req.body.sessionCode, slotNum, function(err, res){
@@ -110,9 +104,6 @@ var methods = {
       res.end();
     });
 
-    // app.post('/sendAdInfo', function(req, res)
-    // {
-    //   // var  = req.body.buttonSlot;
       app.post('/approveCover', function(req, response)
       {
         updateApproveCover(slotNum, function(err, res)
@@ -121,11 +112,6 @@ var methods = {
           response.end();
         });
       });
-    //   setTimeout(function() {
-    //     res.redirect('back');
-    //   }, 8000);
-    // });
-
   }
 }
 

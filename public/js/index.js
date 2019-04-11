@@ -11,13 +11,11 @@ var methods = {
       var role = req.body.role;
       var pass = req.body.password;
       var eid = req.body.eid;
-      // console.log("role = " + role)
       switch(role)
       {
         case '0':
         case '1':
         case '2':
-          // console.log("about to call addToDB()");
           addToDB(req, client, res);
           break;
         default:
@@ -101,7 +99,6 @@ function login(eid, password, response, req)
             var courses = require('./course_list_back.js');
             response.render('course_list.ejs', {eid:id, role:role});
             response.end();
-            //courses.data.listenOnCourseList();
           }
         })
       }

@@ -1,5 +1,4 @@
 //SESSION CODE
-var ta_button_target;
 displayAllTASlots();
 
 function displayAllTASlots()
@@ -34,14 +33,7 @@ function displayTASlotsInHTML(jsonResponse)
       slotNum++;
       for (var i = 0; i < jsonResponse.length; i++)
       {
-         // var form = document.createElement("form");
-          // form.setAttribute('action', "sendTAInfo");
-          // form.setAttribute('method', "post");
           var button = document.createElement("button");
-          // var input = document.createElement("input");
-          // input.setAttribute('name', "buttonSlot");
-          // input.value = slotNum;
-          // input.style.display = "none";
          button.class = "ta_button";
          button.setAttribute("type", "submit");
          button.setAttribute("id", slotNum);
@@ -67,9 +59,6 @@ function displayTASlotsInHTML(jsonResponse)
            {
              button.style.backgroundColor = "lightgreen";
            }
-           // form.appendChild(input);
-           // form.appendChild(button);
-           // div.appendChild(input);
            div.appendChild(button);
          }
        }
@@ -110,13 +99,6 @@ function displayTASlotsInHTML(jsonResponse)
         slotNum++;
         for (var i = 0; i < jsonResponse.length; i++)
         {
-          // var form = document.createElement("form");
-          //  form.setAttribute('action', "sendAdInfo");
-          //  form.setAttribute('method', "post");
-          //  var input = document.createElement("input");
-          //  input.setAttribute('name', "buttonSlot");
-          //  input.value = slotNum;
-          //  input.style.display = "none";
           var button = document.createElement("button");
            button.class = "admin_button";
            button.setAttribute("type", "submit");
@@ -140,25 +122,12 @@ function displayTASlotsInHTML(jsonResponse)
              {
                button.style.backgroundColor = "lightgreen";
              }
-            //form.appendChild(input);
-            //form.appendChild(button);
             div.appendChild(button);
            }
          }
          slotNum++;
       }
   }
-}
-
-
-function setTATarget(e)
-{
-  ta_button_target = e.target;
-}
-
-function getTATarget()
-{
-  return ta_button_target;
 }
 
 function getSessionCode() {
@@ -190,7 +159,6 @@ function displaySessionCode(slotNum)
     x.style.display = "none";
   }
   var selected = document.getElementById(slotNum);
-  // setTATarget(e);
   // no one has requested anything, request form is enabled
   if (selected.style.backgroundColor == "")
   {
@@ -292,40 +260,23 @@ function addButtons()
       openSlots = 2-div.childElementCount;
       var slotButton1 = document.createElement("BUTTON");
       var form1 = document.createElement("form");
-      // form1.setAttribute('action', 'addTASlot');
-      // form1.setAttribute('method', 'post');
       form1.setAttribute('id', slotNum+"form");
       form1.classList.add('temporary');
-      // input1 = document.createElement("input");
-      // input1.setAttribute('name', "buttonSlot");
-      // input1.style.display = "none";
-      // input1.value = slotNum;
       slotButton1.classList.add("temporary")
       slotButton1.setAttribute("type", "button");
       slotButton1.setAttribute("id", slotNum);
       slotButton1.setAttribute("onclick", `claimTATime(${slotNum})`);
-      //slotButton1.innerHTML = slotNum;
-      //form1.appendChild(input1);
       form1.appendChild(slotButton1);
       slotNum++;
-      // input2 = document.createElement("input");
-      // input2.setAttribute('name', "buttonSlot");
-      // input2.style.display = "none";
-      // input2.value = slotNum;
       var form2 = document.createElement("form");
-      // form2.setAttribute('action', 'addTASlot');
-      // form2.setAttribute('method', 'post');
       form2.setAttribute('id', slotNum+"form");
       form2.classList.add('temporary');
       var slotButton2 = document.createElement("BUTTON");
       slotButton2.classList.add("temporary")
-      // slotButton2.setAttribute("type", "button");
       slotButton2.setAttribute("type", "button");
       slotButton2.setAttribute('name', slotNum);
       slotButton2.setAttribute("id", slotNum);
       slotButton2.setAttribute("onclick", `claimTATime(${slotNum})`);
-      //slotButton2.innerHTML = slotNum;
-      //form2.appendChild(input2);
       form2.appendChild(slotButton2);
       if(openSlots === 2)
       {
@@ -363,7 +314,6 @@ var timeSlotButton = null;
  */
 function claimTATime(slotNum)
 {
-  //timeSlotButton = button;
   timeSlotButton = document.getElementById(slotNum);
 
   fetch(`/generateCode/${slotNum}`)
@@ -405,10 +355,10 @@ function confirmAddTime()
   addTATime(); //makes the empty buttons dissapear.
 }
 
+// converts military time to standard time
 function toStandardTime(time)
-{ // your input
-
-  time = time.split(':'); // convert to array
+{
+  time = time.split(':');
 
   // fetch
   var hours = Number(time[0]);
@@ -428,7 +378,6 @@ function toStandardTime(time)
 
   timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
   timeValue += (seconds < 10) ? ":0" + seconds : ":" + seconds;  // get seconds
-  //timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
 
   return timeValue;
 }
@@ -442,7 +391,6 @@ function populateTdsWithDivs()
   var tds = document.getElementsByTagName("td");
   for(var td of tds)
   {
-    // alert(td.childElementCount);
     if(td.childElementCount === 0)
     {
       var timeDiv0 = document.createElement("DIV");
