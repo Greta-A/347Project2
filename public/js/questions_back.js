@@ -11,30 +11,35 @@ var methods = {
     //Essentially the on load get request. from fetch.
     app.get('/loadQuestions', function(req, res)
     {
-      getQuestions()
-        res.json(res.rows);
-        res.end();
-      //Should get all the questions that have the said code in the db.
-      var query = {
-        name: 'getQuestions',
-        text: 'SELECT * FROM questions WHERE session_code = $1',
-        values: [req.session.sessionCode],
-        rowMode: 'array'
-      }
-      //calls the query to load the questions already in the db.
-      client.query(query, (err,resp) =>
+      //gets the questions based on the session_code. (e.g. all questions with session_code 1111)
+      getQuestions(req, function(err, questions)
       {
-        if (err)
-        {
-          console.log(err)
-        }
-        else {
-          console.log("rows", res.rows);
-          //send to le front end.
-        }
+        res.json(questions);
+        res.end();
       });
+      //Should get all the questions that have the said code in the db.
     });
   }
 }
 
+function getQuestions(req, callback)
+{
+  var query = {
+    name: 'getQuestions',
+    text: 'SELECT * FROM questions WHERE session_code = $1',
+    values: [req.session.sessionCode],
+    rowMode: 'array'
+  }
+  //calls the query to load the questions already in the db.
+  client.query(query, (err,res) =>
+  {
+    if (err)
+    {
+      console.log(err)
+    }
+    else {
+      return callback(err, res.rows);
+    }
+  });
+}
 exports.data = methods;
