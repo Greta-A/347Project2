@@ -1,3 +1,25 @@
+function displayPicked()
+{
+  fetch("/loadQuestions")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(jsonResponse) {
+      displayQuestionList(jsonResponse);//communication with backend
+    })
+    .catch(function(){
+        console.log("Caught");
+    });
+    // showCourses();
+    // document.getElementById("hidden_course_list").style.display = "none";
+}
+
+listQuestionsInHTML(jsonResponse)
+{
+
+}
+
+
 function submitQuestion() {
   var questionInput = document.getElementById("question_string").value;
   var surroundingDiv = document.createElement('div');

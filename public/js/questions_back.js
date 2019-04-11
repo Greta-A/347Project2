@@ -7,7 +7,12 @@ var pickedCourse = courses.pickedCourse;
 var methods = {
   listenOnQuestions: function()
   {
-
+    app.get('/loadPickedCourses', function(req, res)
+    {
+      
+      res.json(questions);
+      res.end();
+    });
   }
 }
 
