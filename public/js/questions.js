@@ -18,9 +18,9 @@ function displayPicked()
 
 function displayQuestionList(jsonResponse)
 {
-  //no need to sort since it will never add an 'order' higher in the table
-  //and lower by now.
-  for(jsonQuestion of jsonResponse)
+  //Sort before going displaying.
+  var sortedJSonQuestions = jsonResponse.sort(function(a,b){return a.position - b.position});
+  for(jsonQuestion of sortedJSonQuestions)
   {
     // access data by jsonQuestion.question or jsonQuestion.position, etc.
     var surroundingDiv = document.createElement('div');
