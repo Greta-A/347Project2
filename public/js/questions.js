@@ -18,7 +18,6 @@ function displayPicked()
 
 function displayQuestionList(jsonResponse)
 {
-  var questionList = document.getElementById("questionList");
   //no need to sort since it will never add an 'order' higher in the table
   //and lower by now.
   for(jsonQuestion of jsonResponse)
@@ -27,14 +26,32 @@ function displayQuestionList(jsonResponse)
     var surroundingDiv = document.createElement('div');
     var question = document.createElement("li");
     question.setAttribute("class", "question_item");
+    // set id of question to position in list for easy access
+    question.setAttribute("id", jsonQuestion.position);
     question.innerHTML = jsonQuestion.owner + ": " + jsonQuestion.question;
     surroundingDiv.appendChild(question);
+    // create form request for upvote button
+    var inputForm = document.createElement("form");
+    inputForm.setAttribute("action", "upvoteQuestion");
+    inputForm.setAttribute("method", "post");
+    var hiddenInput = document.createElement("input");
+    var hiddenInput2 = document.createElement("input");
+    hiddenInput.style.display = "none";
+    hiddenInput2.style.display = "none";
+    // need to create name to access number of upvotes
+    hiddenInput.setAttribute("name", "upvotes");
+    hiddenInput.value = jsonQuestion.upvotes;
+    hiddenInput2.setAttribute("name", "question");
+    hiddenInput2.value = jsonQuestion.question;
     var upvoteBtn = document.createElement("button");
-    upvoteBtn.setAttribute('type', 'button');
+    upvoteBtn.setAttribute('type', 'submit');
     upvoteBtn.setAttribute('class', 'upvote');
-    upvoteBtn.innerHTML = "&#x1F44D; 0";
-    //upvoteBtn.addEventListener("click", function(e) {upvote(e)});
-    surroundingDiv.appendChild(upvoteBtn);
+    upvoteBtn.innerHTML = "&#x1F44D; " + jsonQuestion.upvotes;
+    inputForm.appendChild(hiddenInput);
+    inputForm.appendChild(hiddenInput2);
+    inputForm.appendChild(upvoteBtn);
+    surroundingDiv.appendChild(inputForm);
+    // create form for remove button
     var removeBtn = document.createElement("button");
     removeBtn.setAttribute('type', 'button');
     removeBtn.setAttribute('class', 'remove');
@@ -45,6 +62,11 @@ function displayQuestionList(jsonResponse)
     list.appendChild(surroundingDiv);
   }
 }
+
+// form
+  //hidden input: num of upvotes
+  //submit button
+// form
 
 
 function getNextQuestion()

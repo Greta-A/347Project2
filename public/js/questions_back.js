@@ -30,6 +30,15 @@ var methods = {
         res.end();
       });
     });
+
+    app.post('/upvoteQuestion', function(req, res)
+    {
+      upvoteQuestion(req, function(err, result)
+      {
+        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
+        res.end();
+      });
+    });
   }
 }
 
@@ -77,6 +86,27 @@ function submitQuestion(req, questionString,callback)
       }
     });
   });
+}
 
+function upvoteQuestion(req, callback)
+{
+  var upvoted = parseInt(req.body.upvotes) + 1;
+  var query = {
+    name: 'updateUpvotes',
+    text: 'UPDATE questions SET upvotes = $1::int WHERE session_code = $2::smallint AND question = $3::text',
+    values: [upvoted, req.session.sessionCode, req.body.question]
+  }
+
+  client.query(query, (err,res) =>
+  {
+   if (err)
+   {
+     console.log(err)
+   }
+   else {
+     //success
+     return callback(err, res.rows);
+   }
+  });
 }
 exports.data = methods;
