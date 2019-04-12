@@ -71,11 +71,23 @@ function displayQuestionList(jsonResponse)
 
 function getNextQuestion()
 {
-  var topQuestion = document.getElementsByClassName("question_item")[0].innerHTML;
-  var list = document.getElementById("questionList");
-  document.getElementById("currentQuestion").value = topQuestion;
-  var firstElement = document.getElementById("questionList").getElementsByTagName("div")[0];
-  list.removeChild(firstElement);
+  fetch("/popQueue")
+    // .then(function(response) {
+    //   //turn the response into json.
+    //   return response.json();
+    // })
+    .then(function(jsonResponse) {
+      //display the questions fetched from the back end that are now in json.
+      // displayQuestionList(jsonResponse);
+      var topQuestion = document.getElementsByClassName("question_item")[0].innerHTML;
+      var list = document.getElementById("questionList");
+      document.getElementById("currentQuestion").value = topQuestion;
+      var firstElement = document.getElementById("questionList").getElementsByTagName("div")[0];
+      list.removeChild(firstElement);
+    })
+    .catch(function(){
+      console.log("Caught");
+    });
 }
 
 function upvote(e) {
