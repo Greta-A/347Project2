@@ -22,13 +22,13 @@ var methods = {
 
     app.post('/submitQuestion', function(req, res)
     {
+      // add user submitted question to database
       questionString = req.body.question_string;
       submitQuestion(req, questionString, function(err, result)
       {
         res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
         res.end();
       });
-      //console.log("in submit");
     });
   }
 }

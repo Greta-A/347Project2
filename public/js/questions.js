@@ -14,8 +14,6 @@ function displayPicked()
     .catch(function(){
         console.log("Caught");
     });
-    // showCourses();
-    // document.getElementById("hidden_course_list").style.display = "none";
 }
 
 function displayQuestionList(jsonResponse)
@@ -25,36 +23,29 @@ function displayQuestionList(jsonResponse)
   //and lower by now.
   for(jsonQuestion of jsonResponse)
   {
-    
-    console.log(jsonQuestion);
+    // access data by jsonQuestion.question or jsonQuestion.position, etc.
+    var surroundingDiv = document.createElement('div');
+    var question = document.createElement("li");
+    question.setAttribute("class", "question_item");
+    question.innerHTML = jsonQuestion.owner + ": " + jsonQuestion.question;
+    surroundingDiv.appendChild(question);
+    var upvoteBtn = document.createElement("button");
+    upvoteBtn.setAttribute('type', 'button');
+    upvoteBtn.setAttribute('class', 'upvote');
+    upvoteBtn.innerHTML = "&#x1F44D; 0";
+    //upvoteBtn.addEventListener("click", function(e) {upvote(e)});
+    surroundingDiv.appendChild(upvoteBtn);
+    var removeBtn = document.createElement("button");
+    removeBtn.setAttribute('type', 'button');
+    removeBtn.setAttribute('class', 'remove');
+    removeBtn.innerHTML = "Remove";
+    //removeBtn.addEventListener("click", function(e) {removeQuestion(e)});
+    surroundingDiv.appendChild(removeBtn);
+    var list = document.getElementById("questionList");
+    list.appendChild(surroundingDiv);
   }
-  
-  console.log("JSON: ",jsonResponse);
 }
 
-function submitQuestion() {
-  var questionInput = document.getElementById("question_string").value;
-  var surroundingDiv = document.createElement('div');
-  var newQuestion = document.createElement('li');
-  newQuestion.setAttribute('class', 'question_item');
-  newQuestion.innerHTML = questionInput;
-  surroundingDiv.appendChild(newQuestion);
-  var upvoteBtn = document.createElement("button");
-  upvoteBtn.setAttribute('type', 'button');
-  upvoteBtn.setAttribute('class', 'upvote');
-  upvoteBtn.innerHTML = "&#x1F44D; 0";
-  upvoteBtn.addEventListener("click", function(e) {upvote(e)});
-  surroundingDiv.appendChild(upvoteBtn);
-  var removeBtn = document.createElement("button");
-  removeBtn.setAttribute('type', 'button');
-  removeBtn.setAttribute('class', 'remove');
-  removeBtn.innerHTML = "Remove";
-  removeBtn.addEventListener("click", function(e) {removeQuestion(e)});
-  surroundingDiv.appendChild(removeBtn);
-  var list = document.getElementById("questionList");
-  list.appendChild(surroundingDiv);
-  //document.getElementById("question_string").value="";
-}
 
 function getNextQuestion()
 {

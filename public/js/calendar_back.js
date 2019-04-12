@@ -70,7 +70,7 @@ var methods = {
       {
         insertSesssionCode(req.body.sessionCode, slotNum, function(err, res){
           req.session.sessionCode = req.body.sessionCode
-          response.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
+          response.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
           response.end();
         })
       });
@@ -100,7 +100,7 @@ var methods = {
     {
       //NEED ERROR CHECKING
       req.session.sessionCode = req.body.sessionCode
-      res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
+      res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
       res.end();
     });
 
