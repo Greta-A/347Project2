@@ -11,7 +11,7 @@ var methods = {
   listenOnCourseList: function()
   {
       var app = main.app;
-      
+
       app.post('/course_list', function(req, res) {
         courseID = req.body.classID;
         courseName = req.body.className;
@@ -70,12 +70,12 @@ var methods = {
         })
       });
 
-      var calendar = require('./calendar_back.js');
-      calendar.data.listenOnCalendar();
+      // var calendar = require('./calendar_back.js');
+      // calendar.data.listenOnCalendar();
       app.post('/calendar', function(req, res) {
         pickedCourse = req.body.classNum;
         exports.pickedCourse = pickedCourse;
-        var calendar = require('./calendar_back.js');
+        // var calendar = require('./calendar_back.js');
         res.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
         res.end();
       });

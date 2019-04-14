@@ -26,7 +26,7 @@ var methods = {
       questionString = req.body.question_string;
       submitQuestion(req, questionString, function(err, result)
       {
-        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
+        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse, question: ""});
         res.end();
       });
     });
@@ -35,12 +35,12 @@ var methods = {
     {
       upvoteQuestion(req, function(err, result)
       {
-        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
+        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse, question: ""});
         res.end();
       });
     });
 
-    
+
     app.post('/popQueue', function(req, res)
     {
       console.log("start POP");
@@ -53,14 +53,80 @@ var methods = {
         reSortPositions(positionRemoved);
       });
     });
+
+    app.post('/removeTop', function(req, res)
+    {
+      popQueue(function(err, result)
+      {
+        reSort(req, function(err, result)
+        {
+          res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
+          res.end();
+        });
+      });
+    });
   }
 }
 
 
+function getTopQuestion(callback)
+{
+  var query = {
+    name: 'getTop',
+    text: 'SELECT * FROM questions where position = $1::integer',
+    values: [0]
+  }
+  //calls the query to load the questions already in the db.
+  client.query(query, (err,res) =>
+  {
+    if (err)
+    {
+      console.log(err)
+    }
+    else {
+      return callback(err, res.rows);
+    }
+  });
+}
+
 function popQueue(callback)
 {
-  console.log("pop");
-  //TODO:
+  var query = {
+    name: 'popQueue',
+    text: 'DELETE FROM questions where position = $1::integer',
+    values: [0]
+  }
+  //calls the query to load the questions already in the db.
+  client.query(query, (err,res) =>
+  {
+    if (err)
+    {
+      console.log(err)
+    }
+    else {
+      return callback(err, res.rows);
+    }
+  });
+}
+
+function reSort(req, callback)
+{
+  var query = {
+    name: 'reorder-Position',
+    text: 'UPDATE questions SET position = position - 1 WHERE session_code = $1::smallint',
+    values: [req.session.sessionCode]
+  }
+  //calls the query to load the questions already in the db.
+  client.query(query, (err,res) =>
+  {
+    if (err)
+    {
+      console.log(err)
+    }
+    else {
+      return callback(err, res.rows);
+    }
+  });
 }
 
 function reSortPositions(positionRemoved)

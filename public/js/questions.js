@@ -50,9 +50,9 @@ function displayQuestionList(jsonResponse)
     inputForm.appendChild(hiddenInput);
     inputForm.appendChild(hiddenInput2);
     inputForm.appendChild(upvoteBtn);
-    question.appendChild(inputForm);
-    surroundingDiv.appendChild(question);
-    //surroundingDiv.appendChild(inputForm);
+    //question.appendChild(inputForm);
+    //surroundingDiv.appendChild(question);
+    surroundingDiv.appendChild(inputForm);
     // create form for remove button
     var removeBtn = document.createElement("button");
     removeBtn.setAttribute('type', 'button');
@@ -70,34 +70,24 @@ function displayQuestionList(jsonResponse)
   //submit button
 // form
 
-
 function getNextQuestion()
 {
-  fetch("/popQueue")
-    // .then(function(response) {
-    //   //turn the response into json.
-    //   return response.json();
-    // })
-    .then(function(jsonResponse) {
-      //display the questions fetched from the back end that are now in json.
-      // displayQuestionList(jsonResponse);
-      var topQuestion = document.getElementsByClassName("question_item")[0].innerHTML;
-      var list = document.getElementById("questionList");
+  // fetch("/popQueue")
+  //   // .then(function(response) {
+  //   //   //turn the response into json.
+  //   //   return response.json();
+  //   // })
+  //   .then(function(jsonResponse) {
+  //     //display the questions fetched from the back end that are now in json.
+  //     // displayQuestionList(jsonResponse);
+  console.log("in getNextQuestion method");
+      var topQuestion = document.getElementById("0").innerText;
       document.getElementById("currentQuestion").value = topQuestion;
-      var firstElement = document.getElementById("questionList").getElementsByTagName("div")[0];
-      list.removeChild(firstElement);
-    })
-    .catch(function(){
-      console.log("Caught");
-    });
-}
-
-function upvote(e) {
-  var upvoteString = String(e.target.innerHTML);
-  var split = upvoteString.split(" ");
-  var upvoted = parseInt(split[1]) + 1;
-  e.target.innerHTML = "&#x1F44D; " + upvoted;
-  e.target.disabled = true;
+    return true;
+    // })
+    // .catch(function(){
+    //   console.log("Caught");
+    // });
 }
 
 function removeQuestion(e)
