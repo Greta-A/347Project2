@@ -50,14 +50,16 @@ function displayQuestionList(jsonResponse)
     inputForm.appendChild(hiddenInput);
     inputForm.appendChild(hiddenInput2);
     inputForm.appendChild(upvoteBtn);
-    surroundingDiv.appendChild(inputForm);
+    question.appendChild(inputForm);
+    surroundingDiv.appendChild(question);
+    //surroundingDiv.appendChild(inputForm);
     // create form for remove button
     var removeBtn = document.createElement("button");
     removeBtn.setAttribute('type', 'button');
     removeBtn.setAttribute('class', 'remove');
     removeBtn.innerHTML = "Remove";
     //removeBtn.addEventListener("click", function(e) {removeQuestion(e)});
-    surroundingDiv.appendChild(removeBtn);
+    //surroundingDiv.appendChild(removeBtn);
     var list = document.getElementById("questionList");
     list.appendChild(surroundingDiv);
   }
