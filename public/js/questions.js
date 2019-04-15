@@ -12,10 +12,6 @@ function displayPicked()
     .then(function(jsonResponse) {
       //display the questions fetched from the back end that are now in json.
       displayQuestionList(jsonResponse);
-      console.log(jsonResponse);
-      console.log(jsonResponse[0].top_question);
-      topQuestion = jsonResponse[0].top_question;
-        document.getElementById("currentQuestion").value = topQuestion;
     })
     .catch(function(){
         console.log("Caught");

@@ -11,9 +11,6 @@ var methods = {
     //Essentially the on load get request. from fetch.
     app.get('/loadQuestions', function(req, res)
     {
-      updateTopQuestion(req, function(err, result){
-
-      });
       //gets the questions based on the session_code. (e.g. all questions with session_code 1111)
       getQuestions(req, function(err, questions)
       {
@@ -29,7 +26,7 @@ var methods = {
       questionString = req.body.question_string;
       submitQuestion(req, questionString, function(err, result)
       {
-        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse, question: ""});
+        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
         res.end();
       });
     });
@@ -38,7 +35,7 @@ var methods = {
     {
       upvoteQuestion(req, function(err, result)
       {
-        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse, question: ""});
+        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
         res.end();
       });
     });
@@ -70,27 +67,6 @@ var methods = {
     });
   }
 }
-
-function updateTopQuestion(req, callback)
-{
-    var query = {
-      name: 'updateTop',
-      text: 'UPDATE questions SET curr_question = question WHERE position = 0 AND session_code = $1',
-      values: [req.session.sessionCode]
-    }
-    //calls the query to load the questions already in the db.
-    client.query(query, (err,res) =>
-    {
-      if (err)
-      {
-        console.log(err)
-      }
-      else {
-        return callback(err, res.rows);
-      }
-    });
-}
-
 
 function popQueue(callback)
 {
