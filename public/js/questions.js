@@ -11,6 +11,7 @@ function displayPicked()
     })
     .then(function(jsonResponse) {
       //display the questions fetched from the back end that are now in json.
+      document.getElementById("currentQuestion").value = jsonResponse[0].question;
       displayQuestionList(jsonResponse);
     })
     .catch(function(){
