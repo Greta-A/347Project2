@@ -11,6 +11,9 @@ var methods = {
     //Essentially the on load get request. from fetch.
     app.get('/loadQuestions', function(req, res)
     {
+      updateTopQuestion(req, function(err, result){
+
+      });
       //gets the questions based on the session_code. (e.g. all questions with session_code 1111)
       getQuestions(req, function(err, questions)
       {
@@ -68,32 +71,32 @@ var methods = {
   }
 }
 
-
-function getTopQuestion(callback)
+function updateTopQuestion(req, callback)
 {
-  var query = {
-    name: 'getTop',
-    text: 'SELECT * FROM questions where position = $1::integer',
-    values: [0]
-  }
-  //calls the query to load the questions already in the db.
-  client.query(query, (err,res) =>
-  {
-    if (err)
+    var query = {
+      name: 'updateTop',
+      text: 'UPDATE questions SET curr_question = question WHERE position = 0 AND session_code = $1',
+      values: [req.session.sessionCode]
+    }
+    //calls the query to load the questions already in the db.
+    client.query(query, (err,res) =>
     {
-      console.log(err)
-    }
-    else {
-      return callback(err, res.rows);
-    }
-  });
+      if (err)
+      {
+        console.log(err)
+      }
+      else {
+        return callback(err, res.rows);
+      }
+    });
 }
+
 
 function popQueue(callback)
 {
   var query = {
     name: 'popQueue',
-    text: 'DELETE FROM questions where position = $1::integer',
+    text: 'DELETE FROM questions WHERE position = $1::integer',
     values: [0]
   }
   //calls the query to load the questions already in the db.
@@ -140,7 +143,7 @@ function getQuestions(req, callback)
   var query = {
     name: 'getQuestions',
     text: 'SELECT * FROM questions WHERE session_code = $1',
-    values: [req.session.sessionCode],
+    values: [req.session.sessionCode]
   }
   //calls the query to load the questions already in the db.
   client.query(query, (err,res) =>

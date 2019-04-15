@@ -36,12 +36,12 @@
     </div>
       <div id="currQuest">
       <label> Current Question: </label>
-      <textarea rows="1" cols="40" id="currentQuestion"><%= question%></textarea>
+      <textarea rows="1" cols="40" id="currentQuestion"></textarea>
       </div>
     <br>
 
     <div class="role-1 hidden" id="get_next_question">
-      <form action="removeTop" method="post">
+      <form action="removeTop" method="post" onsubmit="return getNextQuestion()">
       <button type="submit">Get Next Question</button>
       </form>
     </div>
