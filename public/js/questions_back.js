@@ -20,14 +20,33 @@ var methods = {
       //Should get all the questions that have the said code in the db.
     });
 
+    app.get('/questions', function(req, res)
+    {
+      res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
+      res.end();
+    });
+
+    app.get('/calendar', function(req, res)
+    {
+      res.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
+      res.end();
+    });
+
+    app.get('/CourseList', function(req, res)
+    {
+      res.render('course_list.ejs', {eid:req.session.eid, role:req.session.role});
+      res.end();
+    });
+
     app.post('/submitQuestion', function(req, res)
     {
       // add user submitted question to database
       questionString = req.body.question_string;
       submitQuestion(req, questionString, function(err, result)
       {
-        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
-        res.end();
+        // res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
+        // res.end();
+        res.redirect('/questions');
       });
     });
 
@@ -35,8 +54,7 @@ var methods = {
     {
       upvoteQuestion(req, function(err, result)
       {
-        res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
-        res.end();
+        res.redirect('/questions');
       });
     });
 
@@ -46,8 +64,7 @@ var methods = {
       {
         reSort(req, function(err, result)
         {
-          res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
-          res.end();
+          res.redirect('/questions');
         });
       });
     });
