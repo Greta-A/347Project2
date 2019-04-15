@@ -71,31 +71,6 @@ function displayQuestionList(jsonResponse)
   }
 }
 
-// form
-  //hidden input: num of upvotes
-  //submit button
-// form
-
-function getNextQuestion()
-{
-  // fetch("/popQueue")
-  //   // .then(function(response) {
-  //   //   //turn the response into json.
-  //   //   return response.json();
-  //   // })
-  //   .then(function(jsonResponse) {
-  //     //display the questions fetched from the back end that are now in json.
-  //     // displayQuestionList(jsonResponse);
-  console.log("in getNextQuestion method");
-  displayed = true;
-      document.getElementById("currentQuestion").value = topQuestion;
-    return true;
-    // })
-    // .catch(function(){
-    //   console.log("Caught");
-    // });
-}
-
 function removeQuestion(e)
 {
   var parent = e.target.parentNode;

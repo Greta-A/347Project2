@@ -43,20 +43,6 @@ var methods = {
       });
     });
 
-
-    app.post('/popQueue', function(req, res)
-    {
-      console.log("start POP");
-      //Pops the first question from the queue.
-      //positionRemoved is the position where a question was removed.
-      //This allows for remove to be implemented easier later.
-      popQueue(function(req, positionRemoved)
-      {
-        //Makes the db have the correct positions (e.g. 1,2,3 = 0,1,2)
-        reSortPositions(positionRemoved);
-      });
-    });
-
     app.post('/removeTop', function(req, res)
     {
       popQueue(function(err, result)
@@ -130,12 +116,6 @@ function reSort(req, callback)
       return callback(err, res.rows);
     }
   });
-}
-
-function reSortPositions(positionRemoved)
-{
-  console.log("re sort");
-  //TODO:
 }
 
 function getQuestions(req, callback)
