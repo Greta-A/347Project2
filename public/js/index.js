@@ -48,7 +48,7 @@ function addToDB(req, client, response)
     }
     else {
       // unique, single PKs
-      login(req.body.eid, req.body.password, response);
+      login(req.body.eid, req.body.password, response, req);
     }
   });
 }

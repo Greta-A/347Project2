@@ -1,6 +1,7 @@
 //is called at the bottom on load.
 var topQuestion;
 var displayed = false;
+var clientCurrentQuestion = "";
 function displayPicked()
 {
   //gimmi the pages questions.
@@ -19,15 +20,23 @@ function displayPicked()
     });
 }
 
-function displayCurrentQuestion(jsonResponse)
+function getCurrentQuestion(jsonResponse)
 {
   for(jsonQuestion of jsonResponse)
   {
     if(jsonQuestion.position == 0)
     {
-      document.getElementById("currentQuestion").value = jsonQuestion.question;
+      //return the current question
+      return jsonQuestion.question;
     }
   }
+}
+
+function displayCurrentQuestion(jsonResponse)
+{
+  //display as current question.
+  document.getElementById("currentQuestion").value = getCurrentQuestion(jsonResponse);
+  clientCurrentQuestion = getCurrentQuestion(jsonResponse);
 }
 
 function displayQuestionList(jsonResponse)
@@ -89,4 +98,32 @@ function removeQuestion(e)
   list.removeChild(parent);
 }
 
+function refreshOnNewQuestion()
+{
+  setInterval(function() {
+    console.log("5s...");
+    fetch("/loadQuestions")
+    .then(function(response) {
+      //turn the response into json.
+      return response.json();
+    })
+    .then(function(jsonResponse) {
+      //display the questions fetched from the back end that are now in json.
+      console.log("Real Current: ", getCurrentQuestion(jsonResponse));
+      console.log("Client Current: ", clientCurrentQuestion);
+      console.log((getCurrentQuestion(jsonResponse) == clientCurrentQuestion));
+      if(getCurrentQuestion(jsonResponse) != clientCurrentQuestion)
+      {
+        window.location.href = window.location.protocol +'//'+ window.location.host + window.location.pathname;
+      }
+     })
+    .catch(function(){
+        console.log("Caught");
+    });
+  }, 15000);
+}
+
+
 displayPicked();
+//should be last. since it loops forever. nothing can go after it.
+refreshOnNewQuestion();
