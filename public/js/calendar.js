@@ -145,9 +145,7 @@ function getSessionCode() {
 function displaySessionCode(slotNum)
 {
   fetch(`/generateCode/${slotNum}`)
-    .then(resp => {
-      console.log('resposne from generateCode', resp)
-    })
+    .then(resp => {})
   var x = document.getElementById("hidden_generate_session");
   if (x.style.display === "none")
   {
@@ -198,9 +196,7 @@ function generateSessionCode()
 function confirmCover(slotNum)
 {
   fetch(`/generateCode/${slotNum}`)
-    .then(resp => {
-      console.log('resposne from generateCode', resp)
-    })
+    .then(resp => {})
   button = document.getElementById("admin"+slotNum);
   if (button.style.backgroundColor == "yellow")
   {
@@ -317,9 +313,8 @@ function claimTATime(slotNum)
   timeSlotButton = document.getElementById(slotNum);
 
   fetch(`/generateCode/${slotNum}`)
-    .then(resp => {
-      console.log('resposne from generateCode', resp)
-    })
+    .then(resp => {})
+  //TODO: get target and keep it. so that it can be added after submit is clicked.
   if(taSelectTime.style.display === "none")
   {
     displaySelectTime();

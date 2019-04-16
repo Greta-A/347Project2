@@ -105,7 +105,7 @@ function refreshOnNewQuestion()
       }
      })
     .catch(function(){
-        console.log("Caught");
+        console.log("unable to reload page to get current question.");
     });
   }, 15000);
 }
