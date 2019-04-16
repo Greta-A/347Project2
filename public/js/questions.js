@@ -101,7 +101,6 @@ function removeQuestion(e)
 function refreshOnNewQuestion()
 {
   setInterval(function() {
-    console.log("5s...");
     fetch("/loadQuestions")
     .then(function(response) {
       //turn the response into json.
@@ -109,16 +108,13 @@ function refreshOnNewQuestion()
     })
     .then(function(jsonResponse) {
       //display the questions fetched from the back end that are now in json.
-      console.log("Real Current: ", getCurrentQuestion(jsonResponse));
-      console.log("Client Current: ", clientCurrentQuestion);
-      console.log((getCurrentQuestion(jsonResponse) == clientCurrentQuestion));
       if(getCurrentQuestion(jsonResponse) != clientCurrentQuestion)
       {
         window.location.href = window.location.protocol +'//'+ window.location.host + window.location.pathname;
       }
      })
     .catch(function(){
-        console.log("Caught");
+        console.log("unable to reload page to get current question.");
     });
   }, 15000);
 }
