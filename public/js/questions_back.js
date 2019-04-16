@@ -136,7 +136,8 @@ function submitQuestion(req, questionString,callback)
   var order;
   getQuestions(req, function(err, questions)
   {
-    order = questions.length + 1;
+    // order = questions.length + 1;
+    order = questions.length;
 
     var query = {
       name: 'submitQuestion',
