@@ -1,6 +1,4 @@
 //is called at the bottom on load.
-var topQuestion;
-var displayed = false;
 var clientCurrentQuestion = "";
 function displayPicked()
 {
@@ -91,17 +89,9 @@ function displayQuestionList(jsonResponse)
   }
 }
 
-function removeQuestion(e)
-{
-  var parent = e.target.parentNode;
-  var list = document.getElementById("questionList");
-  list.removeChild(parent);
-}
-
 function refreshOnNewQuestion()
 {
   setInterval(function() {
-    console.log("5s...");
     fetch("/loadQuestions")
     .then(function(response) {
       //turn the response into json.
@@ -109,9 +99,6 @@ function refreshOnNewQuestion()
     })
     .then(function(jsonResponse) {
       //display the questions fetched from the back end that are now in json.
-      console.log("Real Current: ", getCurrentQuestion(jsonResponse));
-      console.log("Client Current: ", clientCurrentQuestion);
-      console.log((getCurrentQuestion(jsonResponse) == clientCurrentQuestion));
       if(getCurrentQuestion(jsonResponse) != clientCurrentQuestion)
       {
         window.location.href = window.location.protocol +'//'+ window.location.host + window.location.pathname;

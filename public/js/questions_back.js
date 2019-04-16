@@ -44,8 +44,6 @@ var methods = {
       questionString = req.body.question_string;
       submitQuestion(req, questionString, function(err, result)
       {
-        // res.render('questions.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: courses.pickedCourse});
-        // res.end();
         res.redirect('/questions');
       });
     });
@@ -136,7 +134,6 @@ function submitQuestion(req, questionString,callback)
   var order;
   getQuestions(req, function(err, questions)
   {
-    // order = questions.length + 1;
     order = questions.length;
 
     var query = {

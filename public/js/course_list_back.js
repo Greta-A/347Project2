@@ -3,7 +3,6 @@ var main = require('../../app.js');
 var index = require('./index.js');
 var client = main.client;
 var pickedCourse;
-//client.connect()
 var courseID;
 var courseName;
 
@@ -70,12 +69,9 @@ var methods = {
         })
       });
 
-      // var calendar = require('./calendar_back.js');
-      // calendar.data.listenOnCalendar();
       app.post('/calendar', function(req, res) {
         pickedCourse = req.body.classNum;
         exports.pickedCourse = pickedCourse;
-        // var calendar = require('./calendar_back.js');
         res.render('calendar.ejs', {eid:req.session.eid, role:req.session.role, pickedCourse: pickedCourse});
         res.end();
       });

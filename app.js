@@ -53,10 +53,10 @@ var index = require(__dirname + '/public/js/index.js');
 var courses = require(__dirname + '/public/js/course_list_back.js');
 var calendar = require(__dirname + '/public/js/calendar_back.js');
 var questions = require(__dirname + '/public/js/questions_back.js');
-// call loginFormPost method
+
+// initialize listening on all requests
 index.data.loginFormPost();
 courses.data.listenOnCourseList();
-// courses.data.loadUsersCourses();
 calendar.data.listenOnCalendar();
 questions.data.listenOnQuestions();
 

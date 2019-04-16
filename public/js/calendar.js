@@ -320,7 +320,6 @@ function claimTATime(slotNum)
     .then(resp => {
       console.log('resposne from generateCode', resp)
     })
-  //TODO: get target and keep it. so that it can be added after submit is clicked.
   if(taSelectTime.style.display === "none")
   {
     displaySelectTime();
