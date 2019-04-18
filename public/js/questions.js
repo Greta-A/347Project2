@@ -33,7 +33,7 @@ function getCurrentQuestion(jsonResponse)
 function displayCurrentQuestion(jsonResponse)
 {
   //display as current question.
-  document.getElementById("currentQuestion").value = getCurrentQuestion(jsonResponse);
+  document.getElementById("currentQuestion").value = jsonResponse[0].owner + ": " + getCurrentQuestion(jsonResponse);
   clientCurrentQuestion = getCurrentQuestion(jsonResponse);
 }
 
